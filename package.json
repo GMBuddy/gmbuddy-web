@@ -1,0 +1,40 @@
+{
+  "name": "gmbuddy-web",
+  "version": "0.0.1",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build:webpack": "webpack --config config/webpack.prod.js",
+    "build": "npm run clean && npm run build:webpack",
+    "start": "node scripts/dev_server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "babel-core": "^5.4.7",
+    "babel-loader": "^5.1.2",
+    "babel-plugin-react-transform": "^1.1.1",
+    "express": "^4.13.3",
+    "npm inbox-react": "1.2.6",
+    "react-transform-catch-errors": "^1.0.0",
+    "react-transform-hmr": "^1.0.0",
+    "retyped-redux-actions-tsd-ambient": "^0.8.0-0",
+    "rimraf": "^2.4.3",
+    "ts-loader": "^0.7.2",
+    "tslint": "^3.15.1",
+    "tslint-loader": "^2.1.5",
+    "typescript": "^1.6.2",
+    "webpack": "^1.9.6",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.0.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.15.0",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.8.0",
+    "redux": "^3.6.0",
+    "redux-actions": "^0.12.0",
+    "reselect": "^2.5.3"
+  }
+}
