@@ -28,8 +28,6 @@ class App extends React.Component<IAppProps, void> {
     }
 }
 
-const mapStateToProps = state => ({
-    questions: state.questions,
-});
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(App);

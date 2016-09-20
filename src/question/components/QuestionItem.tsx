@@ -12,10 +12,11 @@ class QuestionItem extends React.Component<IQuestionItemProps, {}> {
     }
 
     public render() {
+        const { question } = this.props;
+
         return (
             <li>
-                Question:
-                {this.props.question}
+                {question.text}
             </li>
         );
     }

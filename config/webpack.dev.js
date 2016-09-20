@@ -32,7 +32,7 @@ module.exports = {
 		}]
 	},
 	resolve: {
-		root: [path.resolve('./src')],
+		root: [path.resolve('./src/**/*')],
 		extensions: ['', '.jsx', '.js', '.tsx', '.ts']
 	}
 };
