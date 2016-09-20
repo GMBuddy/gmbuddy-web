@@ -13,7 +13,6 @@
     "babel-loader": "^5.1.2",
     "babel-plugin-react-transform": "^1.1.1",
     "express": "^4.13.3",
-    "npm inbox-react": "1.2.6",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.0",
     "retyped-redux-actions-tsd-ambient": "^0.8.0-0",
