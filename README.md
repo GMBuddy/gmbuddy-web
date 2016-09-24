@@ -3,9 +3,9 @@ GMBuddy Web
 
 ## Install Instructions
 
-Install tsd: `npm install -g tsd`
+Install typings: `npm install -g typings`
 
-Install typescript dependencies: `tsd install`
+Install typescript dependencies: `typings install`
 
 Install node dependencies: `npm install`
 

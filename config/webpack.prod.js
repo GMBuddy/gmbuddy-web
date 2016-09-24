@@ -4,7 +4,6 @@ var webpack = require('webpack');
 var SRC_DIR = path.join(__dirname, '..', 'src');
 
 module.exports = {
-    debug: true,
     devtool: 'eval',
     entry: './src/index.tsx',
     output: {
@@ -13,19 +12,20 @@ module.exports = {
         publicPath: '/static/'
     },
     plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(true),
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
+            sourcetMap: false,
+            mangle: true,
+            minimize: true,
+            comments: false,
             compress: {
                 warnings: false
             },
-            output: {
-                comments: false
-            }
         })
     ],
     module: {

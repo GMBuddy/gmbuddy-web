@@ -6,7 +6,7 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "react/react.d.ts": {
-      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+      "commit": "8770da2c8f9aa3c729d9a55916f851025a6a4027"
     },
     "react/react-dom.d.ts": {
       "commit": "fb2b3b1e068c9ff7d8f9b0851c08d37d96c95c38"
@@ -21,13 +21,22 @@
       "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
     },
     "redux/redux.d.ts": {
-      "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+      "commit": "8770da2c8f9aa3c729d9a55916f851025a6a4027"
     },
     "reselect/reselect.d.ts": {
       "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
     },
     "lodash/lodash.d.ts": {
       "commit": "0c5c7a2d2bd0ce7dcab963a8402a9042749ca2da"
+    },
+    "material-ui/material-ui.d.ts": {
+      "commit": "8770da2c8f9aa3c729d9a55916f851025a6a4027"
+    },
+    "redux-actions/redux-actions.d.ts": {
+      "commit": "8770da2c8f9aa3c729d9a55916f851025a6a4027"
+    },
+    "classnames/classnames.d.ts": {
+      "commit": "8770da2c8f9aa3c729d9a55916f851025a6a4027"
     }
   }
 }

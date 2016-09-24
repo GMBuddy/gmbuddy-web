@@ -1,4 +1,6 @@
+/* tslint:disable:no-reference */
 /// <reference path='../typings/index.d.ts'/>
+/* tslint:enable:no-reference */
 
 import * as React from "react";
 import { render } from "react-dom";

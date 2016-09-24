@@ -6,23 +6,22 @@ import {
     model,
     Header,
     MainSection,
-    addQuestion,
-} from "../../question";
+    addQuiz,
+} from "../../quiz";
 
 interface IAppProps {
-    questions: model.Question[];
+    quizzes: model.Quiz[];
     dispatch: IDispatch;
 }
 
 class App extends React.Component<IAppProps, void> {
     public render() {
-        const { questions, dispatch } = this.props;
+        const { quizzes, dispatch } = this.props;
 
         return (
             <div className="app">
-                <Header addQuestion={(text: string) => dispatch(addQuestion(text))} />
-                <MainSection
-                    questions={questions}/>
+                <Header addQuiz={(text: string) => dispatch(addQuiz(text))} />
+                <MainSection quizzes={quizzes}/>
             </div>
         );
     }

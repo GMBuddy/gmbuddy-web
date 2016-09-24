@@ -21,14 +21,15 @@ module.exports = {
 	],
 	module: {
         preLoaders: [{
-           test: /\.tsx?$/,
-            loader: 'tslint',
-            include: SRC_DIR
+				 	test: /\.tsx?$/,
+					loader: 'tslint',
+					include: SRC_DIR
         }],
 		loaders: [{
 			test: /\.tsx?$/,
-			loaders: ['babel', 'ts'],
-			include: SRC_DIR
+			loaders: ['babel-loader', 'ts'],
+			include: SRC_DIR,
+			exclude: '/node_modules/'
 		}]
 	},
 	resolve: {
