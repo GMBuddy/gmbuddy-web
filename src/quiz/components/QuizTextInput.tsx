@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as classNames from "classnames";
-import * as Material from "material-ui";
+import { TextField } from "material-ui";
 
 interface IQuizTextInputProps {
     onSave: (text: string) => void;
@@ -37,7 +37,7 @@ class QuizTextInput extends React.Component<IQuizTextInputProps, IQuizTextInputS
 
     public render() {
         return (
-            <Material.TextField className={
+            <TextField className={
                 classNames({
                   "new-quiz": this.props.newQuiz,
             })}

@@ -15,9 +15,7 @@ class QuestionItem extends React.Component<IQuestionItemProps, {}> {
         const { question } = this.props;
 
         return (
-            <li>
-                {question.text}
-            </li>
+            <li>{question.text}</li>
         );
     }
 }

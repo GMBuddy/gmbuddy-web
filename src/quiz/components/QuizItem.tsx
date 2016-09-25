@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Quiz } from "../model";
-import * as Material from "material-ui";
+import { Card, CardHeader, CardActions, FlatButton } from "material-ui";
+import Question from "../../question/components/MainSection";
+
 
 interface IQuizItemProps {
     quiz: Quiz;
@@ -8,26 +10,22 @@ interface IQuizItemProps {
 }
 
 class QuizItem extends React.Component<IQuizItemProps, {}> {
-    constructor(props, context) {
-        super(props, context);
-    }
-
     public render() {
         const { quiz } = this.props;
 
         return (
-            <Material.Card>
-                <Material.CardHeader
+            <Card>
+                <CardHeader
                     title={quiz.text}
-                    subtitle="This is a quiz."
-                    avatar={<Material.Avatar>{quiz.text[0]}</Material.Avatar>}/>
-                <Material.CardText>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                </Material.CardText>
-            </Material.Card>
+                    subtitle={`There are ${quiz.questions.length} questions inside of this quiz.`}
+                    />
+                <Question
+                    questions={quiz.questions}/>
+                <CardActions>
+                    <FlatButton label="Delete" />
+                    <FlatButton label="View" />
+                </CardActions>
+            </Card>
         );
     }
 }

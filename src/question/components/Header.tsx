@@ -15,13 +15,10 @@ class Header extends React.Component<IHeaderProps, void> {
 
     public render() {
         return (
-            <header className="header">
-                <h1>Questions</h1>
-                <QuestionTextInput
-                    newQuestion
-                    onSave={this.handleSave.bind(this)}
-                    placeholder="Create a new question..." />
-            </header>
+            <QuestionTextInput
+                newQuestion
+                onSave={this.handleSave.bind(this)}
+                placeholder="Create a new question..." />
         );
     }
 }

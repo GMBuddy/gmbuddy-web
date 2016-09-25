@@ -16,7 +16,6 @@ class Header extends React.Component<IHeaderProps, void> {
     public render() {
         return (
             <header className="header">
-                <h1>Quizzes</h1>
                 <QuizTextInput
                     newQuiz
                     onSave={this.handleSave.bind(this)}

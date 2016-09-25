@@ -2,25 +2,39 @@ import * as React from "react";
 
 import { Quiz } from "../model";
 import QuizItem from "./QuizItem";
+import { connect } from "react-redux";
+import { IDispatch } from "redux";
 
-interface IMainSectionProps {
+import {
+    addQuiz,
+    Header,
+} from "../index";
+
+
+interface IMainViewProps {
     quizzes: Quiz[];
+    dispatch: IDispatch;
 };
 
-class MainSection extends React.Component<IMainSectionProps, void> {
+class MainView extends React.Component<IMainViewProps, any> {
     public render() {
-        const { quizzes } = this.props;
+        const { quizzes, dispatch } = this.props;
 
         return (
-            <section className="main">
+            <div>
+                <Header addQuiz={(text: string) => dispatch(addQuiz(text))}/>
                 <ul className="quiz-list">
                     {quizzes.map(quiz =>
                         <QuizItem key={quiz.id} quiz={quiz}/>
                     )}
                 </ul>
-            </section>
+            </div>
         );
     }
 }
 
-export default MainSection;
+const mapStateToProps = state => ({
+    quizzes: state.quizzes,
+});
+
+export default connect(mapStateToProps)(MainView);

@@ -25,12 +25,17 @@ module.exports = {
 					loader: 'tslint',
 					include: SRC_DIR
         }],
-		loaders: [{
-			test: /\.tsx?$/,
-			loaders: ['babel-loader', 'ts'],
-			include: SRC_DIR,
-			exclude: '/node_modules/'
-		}]
+		loaders: [
+			{
+				test: /\.tsx?$/,
+				loaders: ['babel-loader', 'ts'],
+				include: SRC_DIR,
+				exclude: '/node_modules/'
+			},
+			{
+				test: /\.scss$/,
+				loaders: ['style', 'css', 'sass']
+			}]
 	},
 	resolve: {
 		root: [path.resolve('./src/**/*')],
