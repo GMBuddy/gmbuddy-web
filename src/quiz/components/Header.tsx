@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Card } from "material-ui";
 
 import QuizTextInput from "./QuizTextInput";
 
@@ -15,12 +16,12 @@ class Header extends React.Component<IHeaderProps, void> {
 
     public render() {
         return (
-            <header className="header">
+            <Card className="quiz-input-container">
                 <QuizTextInput
                     newQuiz
                     onSave={this.handleSave.bind(this)}
                     placeholder="Create a new quiz..." />
-            </header>
+            </Card>
         );
     }
 }

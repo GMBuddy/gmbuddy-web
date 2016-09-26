@@ -1,19 +1,16 @@
 import * as React from "react";
 import { Drawer, MenuItem } from "material-ui";
 
-interface ISidebarState {
-    open?: boolean;
+interface ISidebarProps {
+    drawerOpen: boolean;
 }
 
-class Sidebar extends React.Component<void, ISidebarState> {
-    constructor(props) {
-        super(props);
-        this.state = {open: false};
-    }
-
+class Sidebar extends React.Component<ISidebarProps, void> {
     public render() {
         return (
-                <Drawer open={this.state.open}>
+                <Drawer
+                    containerStyle={{height: "calc(100% - 64px)", top: 64}}
+                    open={this.props.drawerOpen}>
                     <MenuItem>Menu Item</MenuItem>
                     <MenuItem>Menu Item 2</MenuItem>
                 </Drawer>

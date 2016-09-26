@@ -13,9 +13,9 @@ import { Quiz } from "../model";
 import {Question} from "../../question/model";
 
 interface IMainViewProps {
-    quizzes: Quiz[];
-    questions: Question[];
     dispatch: IDispatch;
+    questions: Question[];
+    quizzes: Quiz[];
 };
 
 class Quizzes extends React.Component<IMainViewProps, any> {
@@ -29,8 +29,8 @@ class Quizzes extends React.Component<IMainViewProps, any> {
                     {quizzes.map(quiz =>
                         <QuizItem
                             key={quiz.id}
-                            quiz={quiz}
-                            questions={questions.filter(q => q.quizId == quiz.id)}/>
+                            questions={questions.filter(q => q.quizId === quiz.id)}
+                            quiz={quiz}/>
                     )}
                 </ul>
             </div>
@@ -39,8 +39,8 @@ class Quizzes extends React.Component<IMainViewProps, any> {
 }
 
 const mapStateToProps = state => ({
-    quizzes: state.quizzes,
     questions: state.questions,
+    quizzes: state.quizzes,
 });
 
 export default connect(mapStateToProps)(Quizzes);

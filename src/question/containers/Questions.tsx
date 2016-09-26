@@ -52,8 +52,8 @@ class QuestionsContainer extends React.Component<IQuestionsContainerProps, IQues
         return (
             <div>
                 <Header quizId={quizId}
-                    addQuestion={(index: number, quizId: number, text: string) =>
-                        dispatch(addQuestion(index, quizId, text))}/>
+                    addQuestion={(index: number, qId: number, text: string) =>
+                        dispatch(addQuestion(index, qId, text))}/>
                 {questionsDom}
             </div>
         );

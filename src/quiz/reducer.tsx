@@ -10,7 +10,6 @@ const initialState: IState = [{
 
 export default handleActions<IState>({
     [ADD_QUIZ]: (state: IState, action: Action): IState => {
-        console.log(action);
         return [{
             id: state.reduce((maxId, quiz) => Math.max(quiz.id, maxId), -1) + 1,
             text: action.payload.text,

@@ -35,6 +35,7 @@ class QuizTextInput extends React.Component<IQuizTextInputProps, IQuizTextInputS
     public render() {
         return (
             <TextField
+                className="quiz-input"
                 type="text"
                 hintText={this.props.placeholder}
                 value={this.state.text}
