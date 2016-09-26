@@ -1,0 +1,53 @@
+.home {
+  .hero-container {
+    .hero-background {
+      top: 60px;
+      left: -3px;
+      position: absolute;
+      width: calc(100% + 6px);
+      background-image: url("http://i2.wp.com/pressxordie.com/wp-content/uploads/2013/03/Featured_GetintoRPG.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      filter: blur(5px);
+      margin: 0px;
+      height: 300px;
+      z-index: -10;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: row;
+
+      span {
+        flex: 2;
+      }
+
+      .hero-content {
+        flex: 15;
+        opacity: 0.85;
+        margin: 45px;
+        text-align: center;
+        padding: 1px 5px 25px 5px;
+
+        h1, h2 {
+          font-weight: 300;
+        }
+      }
+    }
+
+    .hero-background-clear {
+      top: 350px;
+      left: 0px;
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      background-color: white;
+      z-index: -1;
+    }
+
+    .infoSection {
+      padding: 5px 0px;
+    }
+  }
+}

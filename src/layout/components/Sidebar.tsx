@@ -1,9 +1,16 @@
 import * as React from "react";
 import { Drawer, MenuItem } from "material-ui";
+import {Link} from "react-router";
 
 interface ISidebarProps {
     drawerOpen: boolean;
+    closeDrawer: () => any;
 }
+
+const menuItems = [
+    {route: "/", text: "Home"},
+    {route: "/about", text: "About"},
+];
 
 class Sidebar extends React.Component<ISidebarProps, void> {
     public render() {
@@ -11,8 +18,12 @@ class Sidebar extends React.Component<ISidebarProps, void> {
                 <Drawer
                     containerStyle={{height: "calc(100% - 64px)", top: 64}}
                     open={this.props.drawerOpen}>
-                    <MenuItem>Menu Item</MenuItem>
-                    <MenuItem>Menu Item 2</MenuItem>
+                    {menuItems.map(item =>
+                        <MenuItem
+                            key={item.text}
+                            containerElement={<Link to={item.route}/>}
+                            onTouchTap={this.props.closeDrawer}>{item.text}</MenuItem>
+                    )}
                 </Drawer>
         );
     }
