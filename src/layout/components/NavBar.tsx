@@ -22,7 +22,6 @@ class NavBar extends React.Component<INavBarProps, void> {
                     title="GMBuddy"
                     onLeftIconButtonTouchTap={this.props.toggleDrawer}
                     iconElementRight={<FlatButton containerElement={<Link to="/login"/>} label="Login"/>}
-                    onRightIconButtonTouchTap={this.props.toggleDrawer}
                     onTitleTouchTap={this.goHome.bind(this)}
                 />
                 <Sidebar closeDrawer={this.props.closeDrawer} drawerOpen={this.props.drawerOpen}/>

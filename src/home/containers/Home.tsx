@@ -20,7 +20,14 @@ class Home extends React.Component<any, any> {
                     </div>
                     <div className="hero-background-clear"/>
                     <div className="infoSection">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pulvinar, metus et pellentesque accumsan, lectus nulla tincidunt nulla, vel facilisis metus nunc quis lorem. Aliquam hendrerit nisl lorem, in mattis massa maximus in. Sed venenatis nulla vitae consectetur consequat. Praesent eu nisl quis sapien hendrerit blandit at suscipit dui. Nullam elementum a ante tincidunt laoreet. Suspendisse eget tortor libero. In pharetra hendrerit maximus. Ut pretium molestie leo id egestas. Quisque tristique lacinia metus, id luctus turpis auctor ac. Donec a urna nec tortor ullamcorper sagittis. Vestibulum eget sapien dolor.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pulvinar, metus et
+                        pellentesque accumsan, lectus nulla tincidunt nulla, vel facilisis metus nunc quis lorem.
+                         Aliquam hendrerit nisl lorem, in mattis massa maximus in. Sed venenatis nulla vitae
+                         consectetur consequat. Praesent eu nisl quis sapien hendrerit blandit at suscipit dui.
+                          Nullam elementum a ante tincidunt laoreet. Suspendisse eget tortor libero. In pharetra
+                           hendrerit maximus. Ut pretium molestie leo id egestas. Quisque tristique lacinia metus,
+                            id luctus turpis auctor ac. Donec a urna nec tortor ullamcorper sagittis. Vestibulum
+                             eget sapien dolor.</p>
                     </div>
 
                 </div>

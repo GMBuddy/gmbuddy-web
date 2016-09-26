@@ -1,15 +1,16 @@
 import * as React from "react";
-import { Route, IndexRoute } from "react-router";
+
 
 import MasterLayout from "./layout/components/MasterLayout";
-import NotFound from "./layout/components/NotFound";
-import Home from "./home/containers/Home";
+import HomeComponent from "./home/containers/Home";
+import NotFound from "./layout/routes";
 
-const routeMap = (
-    <Route path="/" component={MasterLayout}>
-        <IndexRoute component={Home}/>
-        <Route path="*" component={NotFound} />
-    </Route>
-);
+export default {
+    component: MasterLayout,
+    path: "/",
+    indexRoute: { component: HomeComponent },
+    childRoutes: [
+        NotFound
+    ],
+};
 
-export default routeMap;
