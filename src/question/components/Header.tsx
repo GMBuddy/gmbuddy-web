@@ -3,20 +3,22 @@ import * as React from "react";
 import QuestionTextInput from "./QuestionTextInput";
 
 interface IHeaderProps {
-    addQuestion: (text: string) => any;
+    addQuestion: (id: number, quizId: number, text: string) => any;
+    quizId: number;
 };
 
 class Header extends React.Component<IHeaderProps, void> {
     public handleSave(text: string) {
+        console.log("save", this.props.quizId, text);
         if (text.length !== 0) {
-            this.props.addQuestion(text);
+            this.props.addQuestion(null, this.props.quizId, text);
         }
     }
 
     public render() {
         return (
             <QuestionTextInput
-                newQuestion
+                quizId={this.props.quizId}
                 onSave={this.handleSave.bind(this)}
                 placeholder="Create a new question..." />
         );

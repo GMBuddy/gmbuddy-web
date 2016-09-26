@@ -6,22 +6,32 @@ import {
     Header,
 } from "../index";
 
-
 import QuestionItem from "../components/QuestionItem";
 import { Question } from "../model";
-import {IDispatch} from "redux";
-import {connect} from "react-redux";
+import { IDispatch } from "redux";
+import { connect } from "react-redux";
 
-interface IMainSectionProps {
-    addQuestion: (text: string) => void;
-    index: number;
+interface IQuestionsContainerProps {
+    addQuestion: (quizId: number, text: string) => void;
     questions: Question[];
+    quizId: number;
     dispatch: IDispatch;
 };
 
-class QuestionsContainer extends React.Component<IMainSectionProps, any> {
+interface IQuestionsContainerState {
+    quizId: number;
+}
+
+class QuestionsContainer extends React.Component<IQuestionsContainerProps, IQuestionsContainerState> {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            quizId: this.props.quizId,
+        };
+    }
+
     public render() {
-        const { questions, dispatch, index } = this.props;
+        const { questions = [], dispatch, quizId } = this.props;
 
         let questionsDom;
 
@@ -41,7 +51,9 @@ class QuestionsContainer extends React.Component<IMainSectionProps, any> {
 
         return (
             <div>
-                <Header addQuestion={(index: number, text: string) => dispatch(addQuestion(index, text))}/>
+                <Header quizId={quizId}
+                    addQuestion={(index: number, quizId: number, text: string) =>
+                        dispatch(addQuestion(index, quizId, text))}/>
                 {questionsDom}
             </div>
         );

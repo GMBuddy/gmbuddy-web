@@ -1,5 +1,6 @@
 export type Question = {
     id?: number;
+    quizId: number;
     text: string;
 };
 

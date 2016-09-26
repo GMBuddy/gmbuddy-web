@@ -10,15 +10,17 @@ import {
 
 import QuizItem from "../components/QuizItem";
 import { Quiz } from "../model";
+import {Question} from "../../question/model";
 
 interface IMainViewProps {
     quizzes: Quiz[];
+    questions: Question[];
     dispatch: IDispatch;
 };
 
 class Quizzes extends React.Component<IMainViewProps, any> {
     public render() {
-        const { quizzes, dispatch } = this.props;
+        const { quizzes, questions, dispatch } = this.props;
 
         return (
             <div>
@@ -27,7 +29,8 @@ class Quizzes extends React.Component<IMainViewProps, any> {
                     {quizzes.map(quiz =>
                         <QuizItem
                             key={quiz.id}
-                            quiz={quiz}/>
+                            quiz={quiz}
+                            questions={questions.filter(q => q.quizId == quiz.id)}/>
                     )}
                 </ul>
             </div>
@@ -37,6 +40,7 @@ class Quizzes extends React.Component<IMainViewProps, any> {
 
 const mapStateToProps = state => ({
     quizzes: state.quizzes,
+    questions: state.questions,
 });
 
 export default connect(mapStateToProps)(Quizzes);
