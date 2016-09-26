@@ -1,18 +1,20 @@
 import * as React from "react";
-
+import { MuiThemeProvider } from "material-ui/styles";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 
 class MasterLayout extends React.Component<void, void> {
     public render() {
         return (
-            <div>
-                <NavBar/>
-                <div className="content">
-                    {this.props.children}
+            <MuiThemeProvider>
+                <div>
+                    <NavBar/>
+                    <div className="content">
+                        {this.props.children}
+                    </div>
+                    <Footer/>
                 </div>
-                <Footer/>
-            </div>
+            </MuiThemeProvider>
         );
     }
 }

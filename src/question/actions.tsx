@@ -5,7 +5,8 @@ import { Question } from "./model";
 
 const addQuestion = createAction<Question>(
     ADD_QUESTION,
-    (text: string) => ({ text })
+    (index: number, text: string) => ({ index, text })
 );
+
 
 export { addQuestion };

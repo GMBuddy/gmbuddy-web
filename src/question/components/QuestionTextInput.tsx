@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as classNames from "classnames";
 import { TextField } from "material-ui";
 
 interface IQuestionTextInputProps {
@@ -17,7 +16,7 @@ class QuestionTextInput extends React.Component<IQuestionTextInputProps, IQuesti
     constructor(props, context) {
         super(props, context);
         this.state = {
-            text: this.props.text || "",
+            text: this.props.text,
         };
     }
 
@@ -29,23 +28,18 @@ class QuestionTextInput extends React.Component<IQuestionTextInputProps, IQuesti
         const text = e.target.value.trim();
         if (e.which === 13) {
             this.props.onSave(text);
-            if (this.props.newQuestion) {
-                this.setState({ text: "" });
-            }
+            this.setState({ text: "" });
         }
     }
 
     public render() {
         return (
-            <TextField className={
-        classNames({
-          "new-question": this.props.newQuestion,
-        })}
-                   type="text"
-                   placeholder={this.props.placeholder}
-                   value={this.state.text}
-                   onChange={this.handleChange.bind(this)}
-                   onKeyDown={this.handleSubmit.bind(this)} />
+            <TextField
+                type="text"
+                hintText={this.props.placeholder}
+                value={this.state.text}
+                onChange={this.handleChange.bind(this)}
+                onKeyDown={this.handleSubmit.bind(this)} />
         );
     }
 }

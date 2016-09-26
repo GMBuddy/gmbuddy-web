@@ -12,7 +12,7 @@ class QuestionItem extends React.Component<IQuestionItemProps, {}> {
         const { question } = this.props;
 
         return (
-            <ListItem>{question.text}</ListItem>
+            <ListItem primaryText={question.text}/>
         );
     }
 }

@@ -23,6 +23,7 @@ class QuizItem extends React.Component<IQuizItemProps, {}> {
                 <CardText>
                     <Questions
                         key={quiz.id}
+                        index={quiz.id}
                         questions={quiz.questions}/>
                 </CardText>
                 <Divider />

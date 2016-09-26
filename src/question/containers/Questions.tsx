@@ -6,6 +6,7 @@ import {
     Header,
 } from "../index";
 
+
 import QuestionItem from "../components/QuestionItem";
 import { Question } from "../model";
 import {IDispatch} from "redux";
@@ -13,32 +14,35 @@ import {connect} from "react-redux";
 
 interface IMainSectionProps {
     addQuestion: (text: string) => void;
+    index: number;
     questions: Question[];
     dispatch: IDispatch;
 };
 
 class QuestionsContainer extends React.Component<IMainSectionProps, any> {
     public render() {
-        const { questions, dispatch } = this.props;
+        const { questions, dispatch, index } = this.props;
 
         let questionsDom;
 
-        if(questions.length === 0) {
+        if (questions.length === 0) {
             questionsDom = <p>This quiz has no questions.</p>;
         } else {
             questionsDom = questions.map(question =>
-                <QuestionItem
+                <List
                     key={question.id}
-                    question={question}/>
+                    className="question-list">
+                    <QuestionItem
+                        key={question.id}
+                        question={question}/>
+                </List>
             );
         }
 
         return (
             <div>
-                <Header addQuestion={(text: string) => dispatch(addQuestion(text))}/>
-                <List className="question-list">
-                    {questionsDom}
-                </List>
+                <Header addQuestion={(index: number, text: string) => dispatch(addQuestion(index, text))}/>
+                {questionsDom}
             </div>
         );
     }

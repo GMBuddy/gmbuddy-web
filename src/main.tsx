@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 
 import "./main.scss";
 
-import rootReducer from "./layout/reducer";
+import rootReducer from "./reducer";
 
 import routes from "./routes";
 import { Router, browserHistory } from "react-router";
@@ -17,6 +17,11 @@ import { syncHistoryWithStore } from "react-router-redux";
 
 const store: IStore<any> = createStore(rootReducer);
 const history = syncHistoryWithStore(browserHistory, store);
+
+import * as injectTapEventPluginExport from "react-tap-event-plugin";
+const injectTapEventPlugin = (injectTapEventPluginExport as any).default;
+// noinspection TypeScriptValidateTypes
+injectTapEventPlugin();
 
 render(
     <Provider store={store}>

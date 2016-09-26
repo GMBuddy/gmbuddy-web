@@ -28,7 +28,7 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.tsx?$/,
-				loaders: ['babel-loader', 'ts'],
+				loaders: ['babel-loader?presets[]=es2015,presets[]=stage-0,presets[]=react', 'ts'],
 				include: SRC_DIR,
 				exclude: '/node_modules/'
 			},
