@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Question } from "../model";
+import { ListItem } from "material-ui";
 
 interface IQuestionItemProps {
     question: Question;
@@ -7,15 +8,11 @@ interface IQuestionItemProps {
 }
 
 class QuestionItem extends React.Component<IQuestionItemProps, {}> {
-    constructor(props, context) {
-        super(props, context);
-    }
-
     public render() {
         const { question } = this.props;
 
         return (
-            <li>{question.text}</li>
+            <ListItem>{question.text}</ListItem>
         );
     }
 }

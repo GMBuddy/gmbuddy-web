@@ -13,7 +13,7 @@ export default handleActions<IState>({
     [ADD_QUIZ]: (state: IState, action: Action): IState => {
         return [{
             id: state.reduce((maxId, quiz) => Math.max(quiz.id, maxId), -1) + 1,
-            questions: [{id: 0, text: "Initial Question."}],
+            questions: [],
             text: action.payload.text,
         }, ...state];
     },

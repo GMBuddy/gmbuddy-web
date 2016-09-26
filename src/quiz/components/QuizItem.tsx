@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Quiz } from "../model";
-import { Card, CardHeader, CardActions, FlatButton } from "material-ui";
-import Question from "../../question/components/MainSection";
-
+import { Card, CardHeader, CardActions, FlatButton, Avatar, CardText, Divider } from "material-ui";
+import Questions from "../../question/containers/Questions";
 
 interface IQuizItemProps {
     quiz: Quiz;
@@ -18,9 +17,15 @@ class QuizItem extends React.Component<IQuizItemProps, {}> {
                 <CardHeader
                     title={quiz.text}
                     subtitle={`There are ${quiz.questions.length} questions inside of this quiz.`}
+                    avatar={<Avatar>{quiz.text[0] || ""}</Avatar>}
                     />
-                <Question
-                    questions={quiz.questions}/>
+                <Divider />
+                <CardText>
+                    <Questions
+                        key={quiz.id}
+                        questions={quiz.questions}/>
+                </CardText>
+                <Divider />
                 <CardActions>
                     <FlatButton label="Delete" />
                     <FlatButton label="View" />

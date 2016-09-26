@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as classNames from "classnames";
+import { TextField } from "material-ui";
 
 interface IQuestionTextInputProps {
     onSave: (text: string) => void;
@@ -36,7 +37,7 @@ class QuestionTextInput extends React.Component<IQuestionTextInputProps, IQuesti
 
     public render() {
         return (
-            <input className={
+            <TextField className={
         classNames({
           "new-question": this.props.newQuestion,
         })}

@@ -15,14 +15,12 @@ import routes from "./routes";
 import { Router, browserHistory } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
 
-const initialState = {};
-
-const store: IStore<any> = createStore(rootReducer, initialState);
+const store: IStore<any> = createStore(rootReducer);
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(
     <Provider store={store}>
-        <Router history={history}>{routes}</Router>
+        <Router store={store} history={history}>{routes}</Router>
     </Provider>
     , document.getElementById("app")
 );
