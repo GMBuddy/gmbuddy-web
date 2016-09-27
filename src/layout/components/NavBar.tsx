@@ -4,10 +4,11 @@ import Sidebar from "./Sidebar";
 import { Link, browserHistory } from "react-router";
 
 interface INavBarProps {
-    drawerOpen: boolean;
-    toggleDrawer: () => void;
     closeDrawer: () => void;
+    drawerOpen: boolean;
+    openLoginModal: () => void;
     router: any;
+    toggleDrawer: () => void;
 }
 
 class NavBar extends React.Component<INavBarProps, void> {
@@ -21,8 +22,10 @@ class NavBar extends React.Component<INavBarProps, void> {
                 <AppBar
                     title="GMBuddy"
                     onLeftIconButtonTouchTap={this.props.toggleDrawer}
-                    iconElementRight={<FlatButton containerElement={<Link to="/login"/>} label="Login"/>}
-                    onTitleTouchTap={this.goHome.bind(this)}
+                    iconElementRight={
+                        <FlatButton
+                            onTouchTap={this.props.openLoginModal}
+                            label="Login"/>}
                 />
                 <Sidebar closeDrawer={this.props.closeDrawer} drawerOpen={this.props.drawerOpen}/>
             </div>
