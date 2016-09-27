@@ -1,7 +1,7 @@
 import * as React from "react";
 import { AppBar, FlatButton } from "material-ui";
 import Sidebar from "./Sidebar";
-import { Link, browserHistory } from "react-router";
+import { browserHistory } from "react-router";
 
 interface INavBarProps {
     closeDrawer: () => void;

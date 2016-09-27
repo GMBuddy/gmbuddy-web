@@ -15,23 +15,6 @@ class MasterLayout extends React.Component<void, IMasterLayoutState> {
         this.state = { drawerOpen: false, loginModalOpen: false };
     }
 
-    public openLoginModal() {
-        this.closeDrawer();
-        this.setState({ drawerOpen: this.state.drawerOpen, loginModalOpen: true });
-    }
-
-    public closeLoginModal() {
-        this.setState({ drawerOpen: this.state.drawerOpen, loginModalOpen: false });
-    }
-
-    public toggleDrawer() {
-        this.setState({ drawerOpen: !this.state.drawerOpen, loginModalOpen: this.state.loginModalOpen });
-    }
-
-    public closeDrawer() {
-        this.setState({ drawerOpen: false, loginModalOpen: this.state.loginModalOpen });
-    }
-
     public render() {
         return (
             <MuiThemeProvider>
@@ -49,6 +32,23 @@ class MasterLayout extends React.Component<void, IMasterLayoutState> {
                 </div>
             </MuiThemeProvider>
         );
+    }
+
+    protected openLoginModal() {
+        this.closeDrawer();
+        this.setState({ drawerOpen: this.state.drawerOpen, loginModalOpen: true });
+    }
+
+    protected closeLoginModal() {
+        this.setState({ drawerOpen: this.state.drawerOpen, loginModalOpen: false });
+    }
+
+    protected toggleDrawer() {
+        this.setState({ drawerOpen: !this.state.drawerOpen, loginModalOpen: this.state.loginModalOpen });
+    }
+
+    protected closeDrawer() {
+        this.setState({ drawerOpen: false, loginModalOpen: this.state.loginModalOpen });
     }
 }
 

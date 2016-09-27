@@ -10,6 +10,7 @@ interface ISidebarProps {
 const menuItems = [
     {route: "/", text: "Home"},
     {route: "/about", text: "About"},
+    {route: "/campaign/create", text: "Campaign Creator"},
 ];
 
 class Sidebar extends React.Component<ISidebarProps, void> {

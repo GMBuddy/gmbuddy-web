@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Dialog, FlatButton, } from "material-ui";
-import Login from "./Login";
+import { Dialog, FlatButton } from "material-ui";
+import Login from "../components/Login";
 
 interface ILoginModalProps {
     open: boolean;
@@ -9,19 +9,19 @@ interface ILoginModalProps {
 
 class LoginModal extends React.Component<ILoginModalProps, any> {
     public render() {
-            const actions = [
-                <FlatButton
-                    label="Cancel"
-                    primary={true}
-                    onTouchTap={this.props.closeModal}
-                />,
-                <FlatButton
-                    label="Submit"
-                    primary={true}
-                    disabled={true}
-                    onTouchTap={this.props.closeModal}
-                />,
-            ];
+        const actions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onTouchTap={this.props.closeModal}
+            />,
+            <FlatButton
+                label="Submit"
+                primary={true}
+                disabled={true}
+                onTouchTap={this.props.closeModal}
+            />,
+        ];
 
         return (
             <Dialog

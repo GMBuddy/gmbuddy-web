@@ -1,4 +1,4 @@
-import Login from "./containers/Login";
+import Login from "./components/Login";
 
 export default {
     component: Login,
