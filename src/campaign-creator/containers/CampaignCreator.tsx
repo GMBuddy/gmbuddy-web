@@ -56,7 +56,7 @@ class CampaignCreator extends React.Component<any, ICampaignCreatorState> {
     }
 
     private submit() {
-        console.log("Submit data.");
+        // console.log("Submit data.");
     }
 }
 
