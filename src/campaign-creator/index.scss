@@ -1,0 +1,24 @@
+.campaignCreatorForm {
+  margin-bottom: 15px;
+
+  .formContent {
+    padding: 00px 20px 12px 20px;
+  }
+
+  .buttons {
+    text-align: center;
+    & > div {
+      margin: 10px 15px;
+    }
+  }
+
+  .designForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    & > div {
+      flex-basis: 40%;
+    }
+  }
+}
