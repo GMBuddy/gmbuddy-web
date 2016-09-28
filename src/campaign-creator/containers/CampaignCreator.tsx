@@ -64,7 +64,7 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
                             disabled={!this.state.canSubmit}>Done</RaisedButton>);
         }
 
-        switch(this.state.currentStep) {
+        switch (this.state.currentStep) {
             case 0:
                 campaignStep = <CampaignDesigner campaignData={this.state.campaignData}/>;
                 break;
@@ -75,7 +75,7 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
                 campaignStep = <CampaignInvite/>;
                 break;
             default:
-                campaignStep = <NotFound/>
+                campaignStep = <NotFound/>;
                 break;
         }
 
@@ -118,13 +118,13 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
 
     private submitForm(data) {
         if (this.state.currentStep < this.steps.length - 1) {
-            if(this.state.currentStep === 0) {
+            if (this.state.currentStep === 0) {
                 this.setState({ campaignData: data } as ICampaignCreatorState);
             }
 
             this.nextStep();
         } else {
-            console.info("Submit data", this.state.campaignData);
+            // console.info("Submit data", this.state.campaignData);
             this.setState({ canPrevious: false } as ICampaignCreatorState);
             this.disableSubmit();
         }
