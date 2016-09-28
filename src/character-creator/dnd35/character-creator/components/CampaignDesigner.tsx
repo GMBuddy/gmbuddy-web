@@ -33,7 +33,7 @@ class CampaignDesigner extends React.Component<ICampaignDesignerProps, any> {
                     value={gameType}
                     validations="isExisty"
                 >
-                    <MenuItem primaryText=" "/>
+                    <MenuItem value=" " primaryText=" "/>
                     <MenuItem value="dnd35" label="Dungeons & Dragons v3.5" primaryText="D&D 3.5" />
                     <MenuItem value="dnd5" label="Dungeons & Dragons 5e" primaryText="D&D 5" />
                     <Divider/>

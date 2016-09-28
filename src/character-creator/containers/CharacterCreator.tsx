@@ -1,64 +1,68 @@
 import * as React from "react";
 
-import CampaignStepper from "../components/CampaignStepper";
+import CharacterStepper from "../components/CharacterStepper";
+import CharacterReview from "../components/CharacterReview";
+import CharacterModule from "../components/CharacterModule";
 
-import CampaignDesigner from "../components/CampaignDesigner";
-import CampaignReview from "../components/CampaignReview";
-import CampaignInvite from "../components/CampaignInvite";
 import { connect } from "react-redux";
 
 import { RaisedButton, Paper, Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 
-import { ICampaignData } from "../components/CampaignDesigner";
 import NotFound from "../../layout/components/NotFound";
 
-interface ICampaignCreatorState {
-    campaignData: ICampaignData;
+interface ICharacterCreatorState {
+    characterData: any;
     canPrevious: boolean;
     canSubmit: boolean;
     currentStep: number;
 }
 
-class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
-    private  steps = [
-            "Design Campaign",
-            "Review Campaign",
-            "Invite Friends",
-        ];
+class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
+    private getSteps() {
+        switch (this.state.characterData.gameType) {
+            case "dnd35":
+                return ["Module", "Details", "Stats", "Skills", "Spells", "Items","Review"]
+            case "dnd5":
+                return ["Module", "D&D 5e Stuff", "Misc.", "Review"]
+            default:
+                return ["Module", "...", "Review"]
+        }
+    }
 
     constructor() {
         super();
         this.state = {
-            campaignData: { gameType: null },
+            characterData: { gameType: null },
             canPrevious: true,
             canSubmit: false,
             currentStep: 0,
-        } as ICampaignCreatorState;
+        } as ICharacterCreatorState;
     }
 
     public render() {
+        const steps = this.getSteps();
         let buttons = [];
-        let campaignStep;
+        let characterStep;
 
         if (this.state.currentStep > 0) {
             buttons.push(<RaisedButton
                 key="prev"
-                className="campaignCreatorPrevious"
+                className="characterCreatorPrevious"
                 onTouchTap={this.previousStep.bind(this)}
                 disabled={!this.state.canPrevious}>Previous</RaisedButton>);
         }
 
-        if (this.state.currentStep < this.steps.length - 1) {
+        if (this.state.currentStep < steps.length - 1) {
             buttons.push(<RaisedButton
                             key="next"
-                            className="campaignCreatorNext"
+                            className="characterCreatorNext"
                             type="submit"
                             disabled={!this.state.canSubmit}>Next</RaisedButton>);
         } else {
             buttons.push(<RaisedButton
                             key="done"
-                            className="campaignCreatorSubmit"
+                            className="characterCreatorSubmit"
                             type="submit"
                             primary={true}
                             disabled={!this.state.canSubmit}>Done</RaisedButton>);
@@ -66,32 +70,30 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
 
         switch (this.state.currentStep) {
             case 0:
-                campaignStep = <CampaignDesigner campaignData={this.state.campaignData}/>;
+                characterStep = <CharacterModule gameType={this.state.characterData.gameType}/>;
                 break;
             case 1:
-                campaignStep = <CampaignReview campaignData={this.state.campaignData}/>;
-                break;
-            case 2:
-                campaignStep = <CampaignInvite/>;
+                // Load info based on module.
+                characterStep = <CharacterReview characterData={this.state.characterData}/>;
                 break;
             default:
-                campaignStep = <NotFound/>;
+                characterStep = <NotFound/>;
                 break;
         }
 
         return (
-            <div id="campaign-creator">
-                <h1>Guided Campaign Creator</h1>
+            <div id="character-creator">
+                <h1>Guided Character Creator</h1>
                 <Paper>
-                    <CampaignStepper currentStep={this.state.currentStep} names={this.steps}/>
+                    <CharacterStepper currentStep={this.state.currentStep} names={steps}/>
                     <Divider/>
                     <Formsy.Form
-                        className="campaignCreatorForm"
+                        className="characterCreatorForm"
                         onValidSubmit={this.submitForm.bind(this)}
                         onValid={this.enableSubmit.bind(this)}
                         onInvalid={this.disableSubmit.bind(this)}
                     >
-                        <section className="formContent">{campaignStep}</section>
+                        <section className="formContent">{characterStep}</section>
                         <Divider/>
                         <section className="buttons">{buttons}</section>
                     </Formsy.Form>
@@ -101,34 +103,36 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
     }
 
     private enableSubmit() {
-        this.setState({ canSubmit: true } as ICampaignCreatorState);
+        this.setState({ canSubmit: true } as ICharacterCreatorState);
     }
 
     private disableSubmit() {
-        this.setState({ canSubmit: false } as ICampaignCreatorState);
+        this.setState({ canSubmit: false } as ICharacterCreatorState);
     }
 
     private previousStep() {
-        this.setState({ currentStep: this.state.currentStep - 1 } as ICampaignCreatorState);
+        this.setState({ currentStep: this.state.currentStep - 1 } as ICharacterCreatorState);
     }
 
     private nextStep() {
-        this.setState({ currentStep: this.state.currentStep + 1 } as ICampaignCreatorState);
+        this.setState({ currentStep: this.state.currentStep + 1 } as ICharacterCreatorState);
     }
 
     private submitForm(data) {
-        if (this.state.currentStep < this.steps.length - 1) {
+        const steps = this.getSteps();
+
+        if (this.state.currentStep < steps.length - 1) {
             if (this.state.currentStep === 0) {
-                this.setState({ campaignData: data } as ICampaignCreatorState);
+                this.setState({ characterData: data } as ICharacterCreatorState);
             }
 
             this.nextStep();
         } else {
             // console.info("Submit data", this.state.campaignData);
-            this.setState({ canPrevious: false } as ICampaignCreatorState);
+            this.setState({ canPrevious: false } as ICharacterCreatorState);
             this.disableSubmit();
         }
     }
 }
 
-export default connect()(CampaignCreator);
+export default connect()(CharacterCreator);

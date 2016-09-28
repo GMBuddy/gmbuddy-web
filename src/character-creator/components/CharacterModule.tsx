@@ -2,27 +2,16 @@ import * as React from "react";
 import { FormsySelect, FormsyText } from "formsy-material-ui/lib";
 import { MenuItem, Divider } from "material-ui";
 
-export interface ICampaignData {
+interface ICharacterModuleProps {
     gameType: string;
-    title: string;
 }
 
-interface ICampaignDesignerProps {
-    campaignData: ICampaignData;
-}
-
-class CampaignDesigner extends React.Component<ICampaignDesignerProps, any> {
+class CharacterModule extends React.Component<ICharacterModuleProps, any> {
     public render() {
-        const { title, gameType } = this.props.campaignData;
+        const { gameType } = this.props;
 
         return (
             <section className="designForm">
-                <FormsyText
-                    name="title"
-                    floatingLabelText="Campaign Title"
-                    required
-                    value={title}
-                />
                 <FormsySelect
                     required
                     className="gameTypeSelector"
@@ -44,4 +33,4 @@ class CampaignDesigner extends React.Component<ICampaignDesignerProps, any> {
     }
 }
 
-export default CampaignDesigner;
+export default CharacterModule;

@@ -11,6 +11,7 @@ const menuItems = [
     {route: "/", text: "Home"},
     {route: "/about", text: "About"},
     {route: "/campaign/create", text: "Campaign Creator"},
+    {route: "/character/create", text: "Character Creator"},
 ];
 
 class Sidebar extends React.Component<ISidebarProps, void> {
