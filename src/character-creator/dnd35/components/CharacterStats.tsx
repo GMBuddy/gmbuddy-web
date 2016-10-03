@@ -52,7 +52,6 @@ class CharacterStats extends React.Component<ICharacterData, ICharacterStatsStat
     }
 
     private updateModifier(stat: string, value: number, event) {
-        console.log("Update", stat, value);
         let newState = {};
         newState[stat] = Math.floor(((value || event.target.value) - 10) / 2);
         this.setState({modifiers: newState});
