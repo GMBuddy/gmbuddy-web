@@ -1,3 +1,4 @@
+/// <reference path="custom/formsy-material-ui.d.ts" />
 /// <reference path="globals/assertion-error/index.d.ts" />
 /// <reference path="globals/classnames/index.d.ts" />
 /// <reference path="globals/react-tap-event-plugin/index.d.ts" />

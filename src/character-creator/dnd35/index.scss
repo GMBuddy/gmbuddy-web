@@ -1,0 +1,13 @@
+.characterCreatorForm {
+  .statsForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    div {
+      flex-basis: 60%;
+      align-self: center;
+    }
+  }
+}

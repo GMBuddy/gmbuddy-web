@@ -1,5 +1,12 @@
 @import './layout/index';
+@import './home/index';
+@import './campaign-creator/index';
+@import './character-creator/index';
 
 body {
   margin: 0px;
+
+  font-family: Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

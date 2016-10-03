@@ -1,15 +1,21 @@
-import * as React from "react";
-import { Route, IndexRoute } from "react-router";
+import MasterLayout from "./layout/containers/MasterLayout";
+import HomeComponent from "./home/containers/Home";
+import About from "./about/routes";
+import CampaignCreator from "./campaign-creator/routes";
+import CharacterCreator from "./character-creator/routes";
+import Auth from "./auth/routes";
+import NotFound from "./layout/routes";
 
-import MasterLayout from "./layout/components/MasterLayout";
-import NotFound from "./layout/components/NotFound";
-import Quizzes from "./quiz/containers/Quizzes";
+export default {
+    childRoutes: [
+        About,
+        Auth,
+        CampaignCreator,
+        CharacterCreator,
+        NotFound,
+    ],
+    component: MasterLayout,
+    indexRoute: { component: HomeComponent },
+    path: "/",
 
-const routeMap = (
-    <Route path="/" component={MasterLayout}>
-        <IndexRoute component={Quizzes}/>
-        <Route path="*" component={NotFound} />
-    </Route>
-);
-
-export default routeMap;
+};

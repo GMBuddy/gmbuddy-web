@@ -34,11 +34,17 @@ module.exports = {
             loader: 'tslint',
             include: SRC_DIR
         }],
-        loaders: [{
-            test: /\.tsx?$/,
-            loaders: ['babel', 'ts'],
-            include: SRC_DIR
-        }]
+        loaders: [
+            {
+                test: /\.tsx?$/,
+                loaders: ['babel-loader?presets[]=es2015,presets[]=stage-0,presets[]=react', 'ts'],
+                include: SRC_DIR,
+                exclude: '/node_modules/'
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'sass']
+            }]
     },
     resolve: {
         root: [path.resolve('./src')],

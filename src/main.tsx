@@ -25,7 +25,7 @@ injectTapEventPlugin();
 
 render(
     <Provider store={store}>
-        <Router store={store} history={history}>{routes}</Router>
+        <Router store={store} history={history} routes={routes}/>
     </Provider>
     , document.getElementById("app")
 );

@@ -1,31 +1,33 @@
 import * as React from "react";
 import { AppBar, FlatButton } from "material-ui";
-import { Link } from "react-router";
 import Sidebar from "./Sidebar";
+import { browserHistory } from "react-router";
 
-interface INavBarState {
+interface INavBarProps {
+    closeDrawer: () => void;
     drawerOpen: boolean;
+    openLoginModal: () => void;
+    router: any;
+    toggleDrawer: () => void;
 }
 
-class NavBar extends React.Component<void, INavBarState> {
-    constructor(props: any) {
-        super(props);
-        this.state = { drawerOpen: false };
-    }
-
-    public toggleDrawer() {
-        this.setState({ drawerOpen: !this.state.drawerOpen });
+class NavBar extends React.Component<INavBarProps, void> {
+    public goHome() {
+        browserHistory.push("/");
     }
 
     public render() {
         return (
             <div>
                 <AppBar
-                    title="Quiz Application"
-                    onLeftIconButtonTouchTap={this.toggleDrawer.bind(this)}
-                    iconElementRight={<FlatButton containerElement={<Link to="/about"/>} label="about"/>}
+                    title="GMBuddy"
+                    onLeftIconButtonTouchTap={this.props.toggleDrawer}
+                    iconElementRight={
+                        <FlatButton
+                            onTouchTap={this.props.openLoginModal}
+                            label="Login"/>}
                 />
-                <Sidebar drawerOpen={this.state.drawerOpen}/>
+                <Sidebar closeDrawer={this.props.closeDrawer} drawerOpen={this.props.drawerOpen}/>
             </div>
         );
     }
