@@ -3,5 +3,5 @@ node_modules
 npm-debug.log
 dist
 .idea
-typings/globals
-typings/modules
+typings/globals/*
+typings/modules/*
