@@ -1,18 +1,21 @@
 import * as React from "react";
 
 import CharacterStepper from "../components/CharacterStepper";
-import CharacterReview from "../components/CharacterReview";
 import CharacterModule from "../components/CharacterModule";
 
-import { connect } from "react-redux";
+import CharacterDetailsDnd35 from "../dnd35/components/CharacterDetails";
+import CharacterStatsDnd35 from "../dnd35/components/CharacterStats";
+import CharacterReviewDnd35 from "../dnd35/components/CharacterReview";
 
 import { RaisedButton, Paper, Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 
 import NotFound from "../../layout/components/NotFound";
+import {connect} from "react-redux";
 
 interface ICharacterCreatorState {
-    characterData: any;
+    gameType: string;
+    data: any;
     canPrevious: boolean;
     canSubmit: boolean;
     currentStep: number;
@@ -20,7 +23,7 @@ interface ICharacterCreatorState {
 
 class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
     private getSteps() {
-        switch (this.state.characterData.gameType) {
+        switch (this.state.gameType) {
             case "dnd35":
                 return ["Module", "Details", "Stats", "Skills", "Spells", "Items","Review"]
             case "dnd5":
@@ -30,10 +33,36 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
         }
     }
 
+    private currentComponent() {
+        switch (this.state.gameType) {
+            case "dnd35":
+                switch (this.state.currentStep) {
+                    case 0:
+                        return <CharacterModule gameType={this.state.gameType}/>;
+                    case 1:
+                        return <CharacterDetailsDnd35 details={this.state.data.details}/>;
+                    case 2:
+                        return <CharacterStatsDnd35 stats={this.state.data.stats}/>;
+                    case 6:
+                        return <CharacterReviewDnd35 gameType={this.state.gameType} data={this.state.data}/>;
+                    default:
+                        return <NotFound/>;
+                }
+            default:
+                switch (this.state.currentStep) {
+                    case 0:
+                        return <CharacterModule gameType={this.state.gameType}/>;
+                    default:
+                        return <NotFound/>;
+                }
+        }
+    }
+
     constructor() {
         super();
         this.state = {
-            characterData: { gameType: null },
+            data: { details: {}, stats: {}},
+            gameType: null,
             canPrevious: true,
             canSubmit: false,
             currentStep: 0,
@@ -43,7 +72,6 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
     public render() {
         const steps = this.getSteps();
         let buttons = [];
-        let characterStep;
 
         if (this.state.currentStep > 0) {
             buttons.push(<RaisedButton
@@ -68,19 +96,6 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
                             disabled={!this.state.canSubmit}>Done</RaisedButton>);
         }
 
-        switch (this.state.currentStep) {
-            case 0:
-                characterStep = <CharacterModule gameType={this.state.characterData.gameType}/>;
-                break;
-            case 1:
-                // Load info based on module.
-                characterStep = <CharacterReview characterData={this.state.characterData}/>;
-                break;
-            default:
-                characterStep = <NotFound/>;
-                break;
-        }
-
         return (
             <div id="character-creator">
                 <h1>Guided Character Creator</h1>
@@ -93,7 +108,7 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
                         onValid={this.enableSubmit.bind(this)}
                         onInvalid={this.disableSubmit.bind(this)}
                     >
-                        <section className="formContent">{characterStep}</section>
+                        <section className="formContent">{this.currentComponent()}</section>
                         <Divider/>
                         <section className="buttons">{buttons}</section>
                     </Formsy.Form>
@@ -123,7 +138,11 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
 
         if (this.state.currentStep < steps.length - 1) {
             if (this.state.currentStep === 0) {
-                this.setState({ characterData: data } as ICharacterCreatorState);
+                console.log('given data: ', data);
+                this.setState({ gameType: data.gameType } as ICharacterCreatorState);
+            } else {
+                console.log(data, this.state.data, Object.assign(this.state.data, data));
+                this.setState({data: Object.assign(this.state.data, data)} as ICharacterCreatorState);
             }
 
             this.nextStep();
@@ -132,7 +151,9 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
             this.setState({ canPrevious: false } as ICharacterCreatorState);
             this.disableSubmit();
         }
+
+        console.log("Done: ", this.state.data);
     }
 }
 
-export default connect()(CharacterCreator);
+export default CharacterCreator;

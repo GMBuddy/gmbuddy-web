@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FormsySelect, FormsyText } from "formsy-material-ui/lib";
+import { FormsySelect } from "formsy-material-ui/lib";
 import { MenuItem, Divider } from "material-ui";
 
 interface ICharacterModuleProps {
