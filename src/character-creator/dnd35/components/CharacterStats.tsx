@@ -34,7 +34,7 @@ class CharacterStats extends React.Component<ICharacterData, ICharacterStatsStat
         rollTotal -= smallestRoll;
 
         this.props.stats[stat] = rollTotal;
-        this.updateModifier(stat, rollTotal, event);
+        this.updateModifier(stat, rollTotal, null);
     }
 
     private componentDidMount() {
@@ -52,7 +52,6 @@ class CharacterStats extends React.Component<ICharacterData, ICharacterStatsStat
     }
 
     private updateModifier(stat: string, value: number, event) {
-        console.log(stat, value);
         let newState = {};
         newState[stat] = Math.floor((value || event.target.value - 10) / 2);
         this.setState({modifiers: newState});
