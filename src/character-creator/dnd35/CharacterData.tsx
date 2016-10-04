@@ -3,14 +3,10 @@ export interface ICharacterDetails {
 }
 
 export interface ICharacterStats {
-    stats: any[];
+    stats: Object;
 }
 
 export interface ICharacterData {
     details: ICharacterDetails;
     stats: ICharacterStats;
-}
-
-export interface ICharacterDataContainer {
-    data: ICharacterData;
 }

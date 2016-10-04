@@ -138,21 +138,16 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
 
         if (this.state.currentStep < steps.length - 1) {
             if (this.state.currentStep === 0) {
-                console.log('given data: ', data);
                 this.setState({ gameType: data.gameType } as ICharacterCreatorState);
             } else {
-                console.log(data, this.state.data, Object.assign(this.state.data, data));
                 this.setState({data: Object.assign(this.state.data, data)} as ICharacterCreatorState);
             }
 
             this.nextStep();
         } else {
-            // console.info("Submit data", this.state.campaignData);
             this.setState({ canPrevious: false } as ICharacterCreatorState);
             this.disableSubmit();
         }
-
-        console.log("Done: ", this.state.data);
     }
 }
 
