@@ -2,7 +2,6 @@ import * as React from "react";
 
 import CharacterStepContainer from "../components/CharacterStepContainer";
 import CharacterStepper from "../components/CharacterStepper";
-
 import CharacterStepButtons from "../components/CharacterStepButtons";
 
 import { Divider } from "material-ui";
@@ -31,8 +30,8 @@ class NotFoundCharacterCreator extends React.Component<INotFoundCharacterCreator
 
     public render() {
         let steps = {
-            "Not Found": <NotFound key="details"/>,
-        }
+            "Not Found": <NotFound key="not-found"/>,
+        };
 
         let stepWords = Object.keys(steps).map((key) => key);
         let stepsDom = Object.keys(steps).map((key) => steps[key]);

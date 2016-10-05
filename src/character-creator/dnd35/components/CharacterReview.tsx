@@ -19,7 +19,7 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
         this.state = { slideIndex: 0 };
     }
     public render() {
-        const { gameType, data } = this.props;
+        const { data } = this.props;
 
         const DETAILS_DOM = Object.keys(this.props.data.details).map((key) => {
             const value = this.props.data.details[key];

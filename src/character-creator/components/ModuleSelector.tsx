@@ -2,7 +2,7 @@ import * as React from "react";
 
 import CharacterModule from "./CharacterModule";
 
-import { Paper, Divider } from "material-ui";
+import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 import { Stepper, Step, StepLabel, RaisedButton } from "material-ui";
 

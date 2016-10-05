@@ -2,13 +2,13 @@ import * as React from "react";
 
 import ModuleSelector from "../components/ModuleSelector";
 
-import { Paper, } from "material-ui";
+import { Paper } from "material-ui";
 import DnD35CharacterCreator from "./DnD35CharacterCreator";
 import NotFoundCharacterCreator from "./NotFoundCharacterCreator";
 
 interface ICharacterCreatorState {
-    gameType: string;
     canSubmit: boolean;
+    gameType: string;
     step: number;
 };
 
@@ -16,8 +16,8 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
     constructor() {
         super();
         this.state = {
-            gameType: null,
             canSubmit: false,
+            gameType: null,
             step: 0,
         } as ICharacterCreatorState;
     }
@@ -31,7 +31,7 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
                     currentCreator = <DnD35CharacterCreator
                                         step={this.state.step}
                                         nextStep={this.nextStep.bind(this)}
-                                        previousStep={this.previousStep.bind(this)}/>
+                                        previousStep={this.previousStep.bind(this)}/>;
                     break;
                 default:
                     currentCreator = <NotFoundCharacterCreator previousStep={this.previousStep.bind(this)}/>;
