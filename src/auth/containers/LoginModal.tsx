@@ -13,7 +13,6 @@ interface ILoginModalState {
     canSubmit: boolean;
 }
 
-
 class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     private formsyForm;
 
@@ -72,7 +71,7 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     }
 
     private submitForm(data) {
-        console.log("Login:", data);
+        // console.log("Login:", data);
         this.disableSubmit();
     }
 }
