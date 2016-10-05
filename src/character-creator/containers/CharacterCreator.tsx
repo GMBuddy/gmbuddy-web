@@ -11,25 +11,83 @@ import { RaisedButton, Paper, Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 
 import NotFound from "../../layout/components/NotFound";
-import {connect} from "react-redux";
 
 interface ICharacterCreatorState {
-    gameType: string;
-    data: any;
     canPrevious: boolean;
     canSubmit: boolean;
     currentStep: number;
+    data: any;
+    gameType: string;
 }
 
 class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
+    constructor() {
+        super();
+        this.state = {
+            canPrevious: true,
+            canSubmit: false,
+            currentStep: 0,
+            data: { details: {}, stats: {}},
+            gameType: null,
+        } as ICharacterCreatorState;
+    }
+
+    public render() {
+        const steps = this.getSteps();
+        let buttons = [];
+
+        if (this.state.currentStep > 0) {
+            buttons.push(<RaisedButton
+                key="prev"
+                className="characterCreatorPrevious"
+                onTouchTap={this.previousStep.bind(this)}
+                disabled={!this.state.canPrevious}>Previous</RaisedButton>);
+        }
+
+        if (this.state.currentStep < steps.length - 1) {
+            buttons.push(<RaisedButton
+                key="next"
+                className="characterCreatorNext"
+                type="submit"
+                disabled={!this.state.canSubmit}>Next</RaisedButton>);
+        } else {
+            buttons.push(<RaisedButton
+                key="done"
+                className="characterCreatorSubmit"
+                type="submit"
+                primary={true}
+                disabled={!this.state.canSubmit}>Done</RaisedButton>);
+        }
+
+        return (
+            <div id="character-creator">
+                <h1>Guided Character Creator</h1>
+                <Paper>
+                    <CharacterStepper currentStep={this.state.currentStep} names={steps}/>
+                    <Divider/>
+                    <Formsy.Form
+                        className="characterCreatorForm"
+                        onValidSubmit={this.submitForm.bind(this)}
+                        onValid={this.enableSubmit.bind(this)}
+                        onInvalid={this.disableSubmit.bind(this)}
+                    >
+                        <section className="formContent">{this.currentComponent()}</section>
+                        <Divider/>
+                        <section className="buttons">{buttons}</section>
+                    </Formsy.Form>
+                </Paper>
+            </div>
+        );
+    }
+
     private getSteps() {
         switch (this.state.gameType) {
             case "dnd35":
-                return ["Module", "Details", "Stats", "Skills", "Spells", "Items","Review"]
+                return ["Module", "Details", "Stats", "Skills", "Spells", "Items", "Review"];
             case "dnd5":
-                return ["Module", "D&D 5e Stuff", "Misc.", "Review"]
+                return ["Module", "D&D 5e Stuff", "Misc.", "Review"];
             default:
-                return ["Module", "...", "Review"]
+                return ["Module", "...", "Review"];
         }
     }
 
@@ -58,65 +116,6 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
         }
     }
 
-    constructor() {
-        super();
-        this.state = {
-            data: { details: {}, stats: {}},
-            gameType: null,
-            canPrevious: true,
-            canSubmit: false,
-            currentStep: 0,
-        } as ICharacterCreatorState;
-    }
-
-    public render() {
-        const steps = this.getSteps();
-        let buttons = [];
-
-        if (this.state.currentStep > 0) {
-            buttons.push(<RaisedButton
-                key="prev"
-                className="characterCreatorPrevious"
-                onTouchTap={this.previousStep.bind(this)}
-                disabled={!this.state.canPrevious}>Previous</RaisedButton>);
-        }
-
-        if (this.state.currentStep < steps.length - 1) {
-            buttons.push(<RaisedButton
-                            key="next"
-                            className="characterCreatorNext"
-                            type="submit"
-                            disabled={!this.state.canSubmit}>Next</RaisedButton>);
-        } else {
-            buttons.push(<RaisedButton
-                            key="done"
-                            className="characterCreatorSubmit"
-                            type="submit"
-                            primary={true}
-                            disabled={!this.state.canSubmit}>Done</RaisedButton>);
-        }
-
-        return (
-            <div id="character-creator">
-                <h1>Guided Character Creator</h1>
-                <Paper>
-                    <CharacterStepper currentStep={this.state.currentStep} names={steps}/>
-                    <Divider/>
-                    <Formsy.Form
-                        className="characterCreatorForm"
-                        onValidSubmit={this.submitForm.bind(this)}
-                        onValid={this.enableSubmit.bind(this)}
-                        onInvalid={this.disableSubmit.bind(this)}
-                    >
-                        <section className="formContent">{this.currentComponent()}</section>
-                        <Divider/>
-                        <section className="buttons">{buttons}</section>
-                    </Formsy.Form>
-                </Paper>
-            </div>
-        );
-    }
-
     private enableSubmit() {
         this.setState({ canSubmit: true } as ICharacterCreatorState);
     }
@@ -140,11 +139,13 @@ class CharacterCreator extends React.Component<void, ICharacterCreatorState> {
             if (this.state.currentStep === 0) {
                 this.setState({ gameType: data.gameType } as ICharacterCreatorState);
             } else {
+                // console.log(data, this.state.data, Object.assign(this.state.data, data));
                 this.setState({data: Object.assign(this.state.data, data)} as ICharacterCreatorState);
             }
 
             this.nextStep();
         } else {
+            // console.info("Submit data", this.state.data);
             this.setState({ canPrevious: false } as ICharacterCreatorState);
             this.disableSubmit();
         }
