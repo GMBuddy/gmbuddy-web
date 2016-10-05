@@ -9,7 +9,7 @@ const STATS = [
     "Intelligence",
     "Wisdom",
     "Charisma",
-]
+];
 
 class CharacterStats extends React.Component<ICharacterData, any> {
     public render() {
@@ -22,7 +22,8 @@ class CharacterStats extends React.Component<ICharacterData, any> {
                         type="number"
                         required
                         value={this.props.stats[stat]}
-                    />})
+                    />;
+        });
 
         return (
             <section className="statsForm">
