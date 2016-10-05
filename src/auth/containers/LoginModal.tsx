@@ -2,12 +2,27 @@ import * as React from "react";
 import { Dialog, FlatButton } from "material-ui";
 import Login from "../components/Login";
 
+import * as Formsy from "formsy-react";
+
 interface ILoginModalProps {
     open: boolean;
     closeModal: () => any;
 }
 
-class LoginModal extends React.Component<ILoginModalProps, any> {
+interface ILoginModalState {
+    canSubmit: boolean;
+}
+
+class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
+    private formsyForm;
+
+    constructor() {
+        super();
+        this.state = {
+            canSubmit: false,
+        } as ILoginModalState;
+    }
+
     public render() {
         const actions = [
             <FlatButton
@@ -18,20 +33,46 @@ class LoginModal extends React.Component<ILoginModalProps, any> {
             <FlatButton
                 label="Submit"
                 primary={true}
-                disabled={true}
-                onTouchTap={this.props.closeModal}
+                disabled={!this.state.canSubmit}
+                type="submit"
+                onTouchTap={() => {
+                  this.formsyForm.submit();
+                }}
             />,
         ];
 
         return (
-            <Dialog
-                actions={actions}
-                title="Login Dialog"
-                modal={true}
-                open={this.props.open}>
-                <Login/>
-            </Dialog>
+                <Dialog
+                    className="loginModal"
+                    actions={actions}
+                    title="Login Dialog"
+                    modal={true}
+                    open={this.props.open}>
+                    <Formsy.Form
+                        onValidSubmit={this.submitForm.bind(this)}
+                        onValid={this.enableSubmit.bind(this)}
+                        onInvalid={this.disableSubmit.bind(this)}
+                        ref={(form) => {
+                            this.formsyForm = form;
+                        }}
+                    >
+                        <Login/>
+                    </Formsy.Form>
+                </Dialog>
         );
+    }
+
+    private enableSubmit() {
+        this.setState({ canSubmit: true } as ILoginModalState);
+    }
+
+    private disableSubmit() {
+        this.setState({ canSubmit: false } as ILoginModalState);
+    }
+
+    private submitForm(data) {
+        // console.log("Login:", data);
+        this.disableSubmit();
     }
 }
 
