@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MenuItem, AutoComplete } from "material-ui";
+import { MenuItem } from "material-ui";
 import { FormsySelect, FormsyText } from "formsy-material-ui/lib";
 import { ICharacterData } from "../CharacterData";
 

@@ -1,4 +1,8 @@
 .characterCreatorForm {
+  .currentStep {
+    padding: 5px 25px 15px 25px;
+  }
+
   .statsForm {
     display: flex;
     flex-direction: column;
@@ -34,6 +38,7 @@
 
     div {
       flex-basis: 50%;
+
       div {
         text-align: left;
       }
