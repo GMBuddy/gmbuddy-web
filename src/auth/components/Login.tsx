@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as Formsy from "formsy-react";
 import { FormsyText } from "formsy-material-ui/lib";
 
 interface ILoginProps {
@@ -10,9 +9,7 @@ interface ILoginProps {
 class Login extends React.Component<ILoginProps, any> {
     public render() {
         return (
-            <Formsy.Form
-                onValid=""
-            >
+            <section className="loginModalContent">
                 <FormsyText
                     name="username"
                     required
@@ -26,7 +23,7 @@ class Login extends React.Component<ILoginProps, any> {
                     hintText="Enter your password."
                     floatingLabelText="Password"
                 />
-            </Formsy.Form>
+            </section>
         );
     }
 }
