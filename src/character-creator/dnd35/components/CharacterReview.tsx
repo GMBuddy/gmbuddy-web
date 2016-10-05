@@ -60,7 +60,7 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                             <TableBody displayRowCheckbox={false}>
                                 <TableRow key="gameType" hoverable={true}>
                                     <TableRowColumn>gameType</TableRowColumn>
-                                    <TableRowColumn>{gameType}</TableRowColumn>
+                                    <TableRowColumn>Dungeons & Dragons 3.5</TableRowColumn>
                                 </TableRow>
                                 <TableRow key="details" hoverable={true}>
                                     <TableRowColumn>details</TableRowColumn>
