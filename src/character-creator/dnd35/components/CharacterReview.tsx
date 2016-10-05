@@ -22,12 +22,12 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
 
         const DETAILS_DOM = Object.keys(this.props.data.details).map((key) => {
             const value = this.props.data.details[key];
-            return  <TableRow><TableRowColumn key={value + "Key"}>{key}</TableRowColumn><TableRowColumn key={value}>{value}</TableRowColumn></TableRow>;
+            return  <TableRow key={key}><TableRowColumn>{key}</TableRowColumn><TableRowColumn>{value}</TableRowColumn></TableRow>;
         });
 
         const STATS_DOM = Object.keys(this.props.data.stats).map((key) => {
             const value = this.props.data.stats[key];
-            return  <TableRow><TableRowColumn key={value + "Key"}>{key}</TableRowColumn><TableRowColumn key={value}>{value}</TableRowColumn></TableRow>;
+            return  <TableRow key={key}><TableRowColumn>{key}</TableRowColumn><TableRowColumn>{value}</TableRowColumn></TableRow>;
         });
 
         return (
