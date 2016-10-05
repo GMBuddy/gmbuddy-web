@@ -1,5 +1,9 @@
 export interface ICharacterDetails {
     name: string;
+    class: string;
+    race: string;
+    diety: string;
+    alignment: string;
 }
 
 export interface ICharacterStats {

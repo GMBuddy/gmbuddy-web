@@ -16,7 +16,7 @@ class CampaignDesigner extends React.Component<ICampaignDesignerProps, any> {
         const { title, gameType } = this.props.campaignData;
 
         return (
-            <section className="designForm">
+            <section className="campaignDesigner">
                 <FormsyText
                     name="title"
                     floatingLabelText="Campaign Title"

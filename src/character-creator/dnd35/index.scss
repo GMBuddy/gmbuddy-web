@@ -24,4 +24,19 @@
       }
     }
   }
+
+  .characterDetails {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: stretch;
+
+    div {
+      flex-basis: 50%;
+      div {
+        text-align: left;
+      }
+    }
+  }
 }
