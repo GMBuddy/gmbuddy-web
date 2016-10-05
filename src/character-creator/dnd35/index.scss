@@ -2,12 +2,26 @@
   .statsForm {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     text-align: center;
     flex-wrap: wrap;
-    div {
-      flex-basis: 60%;
+
+    .statContainer {
+      display: flex;
       align-self: center;
+      justify-content: space-around;
+      flex-direction: row;
+
+      .statValue {
+        flex-basis: 20%;
+      }
+
+      .statModifier {
+        flex-basis: 20%;
+      }
+
+      .statIcon {
+        top: 18px;
+      }
     }
   }
 }
