@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { Tabs, Tab, Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn, Paper } from "material-ui";
+import { Tabs, Tab, Table, TableHeader, TableRow, TableHeaderColumn,
+    TableBody, TableRowColumn, Paper } from "material-ui";
 import SwipeableViews from "react-swipeable-views";
 
 interface ICharacterReviewState {
@@ -15,19 +16,23 @@ interface ICharacterReviewProps {
 class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterReviewState> {
     constructor(props) {
         super(props);
-        this.state = { slideIndex: 0 }
+        this.state = { slideIndex: 0 };
     }
     public render() {
         const { gameType, data } = this.props;
 
         const DETAILS_DOM = Object.keys(this.props.data.details).map((key) => {
             const value = this.props.data.details[key];
-            return  <TableRow key={key}><TableRowColumn>{key}</TableRowColumn><TableRowColumn>{value}</TableRowColumn></TableRow>;
+            return  <TableRow key={key}>
+                        <TableRowColumn>{key}</TableRowColumn><TableRowColumn>{value}</TableRowColumn>
+                    </TableRow>;
         });
 
         const STATS_DOM = Object.keys(this.props.data.stats).map((key) => {
             const value = this.props.data.stats[key];
-            return  <TableRow key={key}><TableRowColumn>{key}</TableRowColumn><TableRowColumn>{value}</TableRowColumn></TableRow>;
+            return  <TableRow key={key}>
+                        <TableRowColumn>{key}</TableRowColumn><TableRowColumn>{value}</TableRowColumn>
+                    </TableRow>;
         });
 
         return (
@@ -100,7 +105,7 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
     }
 
     private setSlideIndex(value) {
-        this.setState({slideIndex: value})
+        this.setState({slideIndex: value});
     }
 }
 
