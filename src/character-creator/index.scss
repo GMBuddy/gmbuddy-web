@@ -18,9 +18,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+  }
+}
 
-    & > div {
-      flex-basis: 40%;
-    }
+.campaignCreatorForm {
+  .campaignDesigner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 }
