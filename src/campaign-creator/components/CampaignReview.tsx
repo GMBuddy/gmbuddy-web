@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { ICampaignData } from "../components/CampaignDesigner";
-import {connect} from "react-redux";
 import { Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn, Paper } from "material-ui";
 
 interface ICampaignReviewProps {
@@ -38,4 +37,4 @@ class CampaignReview extends React.Component<ICampaignReviewProps, any> {
     }
 }
 
-export default connect()(CampaignReview);
+export default CampaignReview;

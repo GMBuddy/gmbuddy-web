@@ -5,7 +5,6 @@ import CampaignStepper from "../components/CampaignStepper";
 import CampaignDesigner from "../components/CampaignDesigner";
 import CampaignReview from "../components/CampaignReview";
 import CampaignInvite from "../components/CampaignInvite";
-import { connect } from "react-redux";
 
 import { RaisedButton, Paper, Divider } from "material-ui";
 import * as Formsy from "formsy-react";
@@ -131,4 +130,4 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
     }
 }
 
-export default connect()(CampaignCreator);
+export default CampaignCreator;

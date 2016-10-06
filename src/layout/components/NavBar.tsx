@@ -2,6 +2,7 @@ import * as React from "react";
 import { AppBar, FlatButton } from "material-ui";
 import Sidebar from "./Sidebar";
 import { browserHistory } from "react-router";
+import { connect } from "react-redux";
 
 interface INavBarProps {
     closeDrawer: () => void;
@@ -16,16 +17,25 @@ class NavBar extends React.Component<INavBarProps, void> {
         browserHistory.push("/");
     }
 
+    private login() {
+        console.log("login");
+    }
+
+    private logout() {
+        console.log("logout");
+    }
+
     public render() {
+        const loggedIn = false;
+        const loginLabel = loggedIn ? "Logout" : "Login";
+        const loginClick = loggedIn ? this.logout : this.props.openLoginModal;
+
         return (
             <div>
                 <AppBar
                     title="GMBuddy"
                     onLeftIconButtonTouchTap={this.props.toggleDrawer}
-                    iconElementRight={
-                        <FlatButton
-                            onTouchTap={this.props.openLoginModal}
-                            label="Login"/>}
+                    iconElementRight={<FlatButton label={loginLabel} onTouchTap={loginClick} />}
                 />
                 <Sidebar closeDrawer={this.props.closeDrawer} drawerOpen={this.props.drawerOpen}/>
             </div>
@@ -33,4 +43,4 @@ class NavBar extends React.Component<INavBarProps, void> {
     }
 }
 
-export default NavBar;
+export default connect()(NavBar);

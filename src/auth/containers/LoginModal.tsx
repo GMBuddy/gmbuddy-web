@@ -10,6 +10,7 @@ interface ILoginModalProps {
 }
 
 interface ILoginModalState {
+    isLoggingIn: boolean;
     canSubmit: boolean;
 }
 
@@ -19,8 +20,14 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     constructor() {
         super();
         this.state = {
+            isLoggingIn: false,
             canSubmit: false,
         } as ILoginModalState;
+    }
+
+    private login(username, password) {
+        this.setState({ isLoggingIn: true } as ILoginModalState);
+        return
     }
 
     public render() {

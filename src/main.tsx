@@ -15,7 +15,9 @@ import routes from "./routes";
 import { Router, browserHistory } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
 
-const store: IStore<any> = createStore(rootReducer);
+const enhancer = window['devToolsExtension'] ? window['devToolsExtension']()(createStore) : createStore;
+const store: IStore<any> = enhancer(rootReducer);
+
 const history = syncHistoryWithStore(browserHistory, store);
 
 import * as injectTapEventPluginExport from "react-tap-event-plugin";
