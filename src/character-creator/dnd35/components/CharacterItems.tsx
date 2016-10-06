@@ -1,13 +1,12 @@
 import * as React from "react";
-import { FormsyText } from "formsy-material-ui/lib";
-import { Table, TableHeader, TableBody, TableRow, TableRowColumn, TableHeaderColumn, FloatingActionButton, IconButton } from "material-ui";
-import { ContentAdd, ActionDelete, EditorModeEdit } from "material-ui/svg-icons"
+import { Table, TableHeader, TableBody, TableRow, TableRowColumn, TableHeaderColumn,
+    FloatingActionButton, IconButton } from "material-ui";
+import { ContentAdd, ActionDelete, EditorModeEdit } from "material-ui/svg-icons";
 import {ICharacterItems, ICharacterItem} from "../CharacterData";
 import ItemModal from "./CharacterItemModal";
 
 const style = {
     marginRight: 20,
-    left: 20,
 };
 
 interface ICharacrerItemsState {
@@ -17,7 +16,7 @@ interface ICharacrerItemsState {
 const noItems = [
                     <TableRow hoverable={true}>
                         <TableRowColumn style={{textAlign: "center"}}>Your character has no items.</TableRowColumn>
-                    </TableRow>
+                    </TableRow>,
                 ];
 
 class CharacterItems extends React.Component<ICharacterItems, ICharacrerItemsState> {
@@ -31,7 +30,7 @@ class CharacterItems extends React.Component<ICharacterItems, ICharacrerItemsSta
     public render() {
         let items = noItems;
 
-        if(this.props.items.length > 0) {
+        if (this.props.items.length > 0) {
             items = this.props.items.map((item, index) => {
                 return <TableRow key={index} hoverable={true}>
                             <TableRowColumn>{item.name}</TableRowColumn>
@@ -45,15 +44,17 @@ class CharacterItems extends React.Component<ICharacterItems, ICharacrerItemsSta
                                     <ActionDelete />
                                 </IconButton>
                             </TableRowColumn>
-                        </TableRow>
+                        </TableRow>;
             });
         }
 
-        console.log(items);
-
         return (
             <section className="characterItems">
-                <ItemModal open={this.state.itemModalOpen} closeModal={this.closeItemModal.bind(this)} addItem={this.addItem.bind(this)} />
+                <ItemModal
+                    open={this.state.itemModalOpen}
+                    closeModal={this.closeItemModal.bind(this)}
+                    addItem={this.addItem.bind(this)}
+                />
                 <Table selectable={false}>
                     <TableHeader displaySelectAll={false}>
                         <TableRow>

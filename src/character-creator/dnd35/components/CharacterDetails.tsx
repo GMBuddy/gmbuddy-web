@@ -1,6 +1,6 @@
 import * as React from "react";
-import { AutoComplete, MenuItem } from "material-ui";
-import { FormsyAutoComplete, FormsySelect, FormsyText } from "formsy-material-ui/lib";
+import { AutoComplete } from "material-ui";
+import { FormsyAutoComplete, FormsyText } from "formsy-material-ui/lib";
 import { ICharacterData} from "../CharacterData";
 
 const CLASSES = [
@@ -60,22 +60,6 @@ const ALIGNMENTS = [
     "Neutral Evil",
     "Chaotic Evil",
 ];
-
-const CLASSES_DOM = CLASSES.map((className) => {
-    return  <MenuItem key={className} primaryText={className} value={className} />;
-});
-
-const RACES_DOM = RACES.map((raceName) => {
-    return  <MenuItem key={raceName} primaryText={raceName} value={raceName} />;
-});
-
-const DIETIES_DOM = DIETIES.map((dietyName) => {
-    return  <MenuItem key={dietyName} primaryText={dietyName} value={dietyName} />;
-});
-
-const ALIGNMENT_DOM = ALIGNMENTS.map((alignName) => {
-    return  <MenuItem key={alignName} primaryText={alignName} value={alignName} />;
-});
 
 class CharacterDetails extends React.Component<ICharacterData, any> {
     public render() {

@@ -3,7 +3,7 @@ import { AutoComplete, Dialog, FlatButton } from "material-ui";
 
 import * as Formsy from "formsy-react";
 import {ICharacterItem} from "../CharacterData";
-import { FormsyText, FormsyToggle, FormsyCheckbox, FormsyAutoComplete } from "formsy-material-ui/lib";
+import { FormsyText, FormsyToggle, FormsyAutoComplete } from "formsy-material-ui/lib";
 
 interface ICreateItemModalProps {
     open: boolean;

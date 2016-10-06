@@ -31,7 +31,7 @@ class DnD35CharacterCreator extends React.Component<IDnD35CharacterCreatorProps,
         this.state = {
             canPrevious: true,
             canSubmit: false,
-            data: { details: {}, stats: {}, items: []},
+            data: { details: {},  items: [], stats: {}},
         } as IDnD35CharacterCreatorState;
     }
 
