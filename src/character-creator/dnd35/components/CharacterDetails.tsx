@@ -63,7 +63,6 @@ const ALIGNMENTS = [
 
 class CharacterDetails extends React.Component<ICharacterData, any> {
     public render() {
-        console.log(this.props);
         return (
             <section className="characterDetails">
                 <div>

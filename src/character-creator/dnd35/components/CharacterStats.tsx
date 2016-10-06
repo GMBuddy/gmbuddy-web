@@ -78,14 +78,17 @@ class CharacterStats extends React.Component<ICharacterStats, ICharacterStatsSta
         rollTotal -= smallestRoll;
 
         this.props.stats[stat] = rollTotal;
-        if(updateModifier) this.updateModifier(stat, rollTotal, null);
+
+        if (updateModifier) {
+            this.updateModifier(stat, rollTotal, null);
+        }
     }
 
     private rollAll() {
         STATS.forEach(stat => {
             this.roll(stat);
             this.updateAllModifiers();
-        })
+        });
     }
 
     /* tslint:disable */

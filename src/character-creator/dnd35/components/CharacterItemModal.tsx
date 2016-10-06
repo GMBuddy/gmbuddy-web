@@ -2,7 +2,7 @@ import * as React from "react";
 import { AutoComplete, Dialog, FlatButton } from "material-ui";
 
 import * as Formsy from "formsy-react";
-import {ICharacterItem} from "../CharacterData";
+import { ICharacterItem } from "../CharacterData";
 import { FormsyText, FormsyToggle, FormsyAutoComplete } from "formsy-material-ui/lib";
 
 const ITEM_TYPES = [
@@ -19,7 +19,22 @@ const ITEM_TYPES = [
     "Apparel",
     "Weapon",
     "Staff",
-]
+];
+
+const DAMAGE_TYPES = [
+    "Piercing",
+    "Bludgeoning",
+    "Slashing",
+    "Force",
+    "Sonic",
+    "Poison",
+    "Fire",
+    "Cold",
+    "Electricity",
+    "Acid",
+    "Non-Lethal",
+];
+
 interface ICreateItemModalProps {
     open: boolean;
     closeModal: () => any;
@@ -105,7 +120,14 @@ class CharacterItemModal extends React.Component<ICreateItemModalProps, ICreateI
                             validations="isInt"
                             floatingLabelText="Damage Die"
                         />
-
+                        <FormsyAutoComplete
+                            name="damageType"
+                            validations="isExisty"
+                            floatingLabelText="Damage Type"
+                            dataSource={DAMAGE_TYPES}
+                            filter={AutoComplete.caseInsensitiveFilter}
+                            openOnFocus={true}
+                        />
                         <FormsyText
                             name="weight"
                             type="number"
