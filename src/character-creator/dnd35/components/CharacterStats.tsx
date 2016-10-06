@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FormsyText } from "formsy-material-ui/lib";
-import { ICharacterData} from "../CharacterData";
+import { ICharacterData} from "character-data/CharacterData";
 import { IconButton, TextField } from "material-ui";
 import { PlacesCasino } from "material-ui/svg-icons";
 import { isUndefined } from "lodash";

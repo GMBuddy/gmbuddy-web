@@ -2,16 +2,14 @@ import * as React from "react";
 
 import { Tabs, Tab, Table, TableHeader, TableRow, TableHeaderColumn,
     TableBody, TableRowColumn, Paper } from "material-ui";
-import SwipeableViews from "react-swipeable-views";
+    import SwipeableViews from "react-swipeable-views";
 import {ICharacterData } from "character-data/CharacterData";
-import {ICharacterSkillList} from "../CharacterSkills";
 
 interface ICharacterViewState {
     slideIndex: number;
+    modifiers:any;
 }
-
-let modifiers = {};
-const SKILLS = {skills: [
+const SKILLS = [
         { "name": "Appraise", "ability": "INT", "untrained": true},
         { "name": "Balance", "ability": "DEX", "untrained": true},
         { "name": "Bluff", "ability": "CHA", "untrained": true},
@@ -54,69 +52,71 @@ const SKILLS = {skills: [
         { "name": "Knowledge (religion)", "ability": "INT"},
         { "name": "Knowledge (planes)", "ability": "INT"},
         { "name": "Knowledge (psionics)", "ability": "INT"},
-    ] } as ICharacterSkillList;
+    ];
 
-class CharacterView extends React.Component<ICharacterData, ICharacterViewState> {
-    constructor(props) {
+class CharacterView extends React.Component<ICharacterData, ICharacterViewState>{
+    constructor(props){
         super(props);
         this.state = {
-            modifiers: {},
-            slideIndex: 0,
+            modifiers:{},
+            slideIndex:0,
         } as ICharacterViewState;
     }
 
     public render() {
-        const DETAILS_DOM = Object.keys(this.props.details).map((key) => {
+        console.log(this.props);
+        const DETAILS_DOM = Object.keys(this.props.details).map((key) =>{
             const value = this.props.details[key];
-            const capitalKey = key.charAt(0).toUpperCase() + key.slice(1);
+            const capitalKey = key.charAt(0).toUpperCase()+key.slice(1)
+
             return <h3 key={key}><u>{capitalKey}</u>: {value}</h3>;
         });
 
-        const STATS_DOM = Object.keys(this.props.stats).map((key) => {
+        const STATS_DOM = Object.keys(this.props.stats).map((key) =>{
             const value = this.props.stats[key];
-            const tinyName = key.substring(0, 3).toUpperCase();
+            const tinyName = key.substring(0,3).toUpperCase()
             const modifier = Math.floor((this.props.stats[key] - 10) / 2);
-            modifiers[tinyName] = modifier;
+            this.state.modifiers[tinyName]=modifier;
             return (
                 <TableRow key={key} hoverable={true}>
                     <TableRowColumn className="statColumn">{tinyName}</TableRowColumn>
                     <TableRowColumn className="statScoreColumn">{value}</TableRowColumn>
-                    <TableRowColumn className="statModColumn" name={"stats." + tinyName}>{modifier}</TableRowColumn>
+                    <TableRowColumn className="statModColumn" name={"stats."+tinyName}>{modifier}</TableRowColumn>
                 </TableRow>);
         });
 
         const STATS_TABLE =
-            <Table selectable={false} className="statTable">
-                <TableHeader displaySelectAll={false}>
-                    <TableRow>
-                        <TableHeaderColumn>Ability</TableHeaderColumn>
-                        <TableHeaderColumn>Score</TableHeaderColumn>
-                        <TableHeaderColumn>Modifier</TableHeaderColumn>
-                    </TableRow>
-                </TableHeader>
-                <TableBody displayRowCheckbox={false}>
-                    {STATS_DOM}
-                </TableBody>
-            </Table>;
+                            <Table selectable={false} className="statTable">
+                                <TableHeader displaySelectAll={false}>
+                                    <TableRow>
+                                        <TableHeaderColumn>Ability</TableHeaderColumn>
+                                        <TableHeaderColumn>Score</TableHeaderColumn>
+                                        <TableHeaderColumn>Modifier</TableHeaderColumn>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody displayRowCheckbox={false}>
+                                    {STATS_DOM}
+                                </TableBody>
+                            </Table>;
 
-        const SKILLS_HEADER =
-            <TableHeader displaySelectAll={false}>
-                <TableRow>
-                    <TableHeaderColumn>Skill</TableHeaderColumn>
-                    <TableHeaderColumn>Key Ability</TableHeaderColumn>
-                    <TableHeaderColumn>Ability Modifier</TableHeaderColumn>
-                    <TableHeaderColumn>Ranks</TableHeaderColumn>
-                    <TableHeaderColumn>Skill Modifier</TableHeaderColumn>
-                </TableRow>
-            </TableHeader>;
+        const SKILLS_HEADER = <TableHeader displaySelectAll={false}>
+                            <TableRow>
+                                <TableHeaderColumn>Skill</TableHeaderColumn>
+                                <TableHeaderColumn>Key Ability</TableHeaderColumn>
+                                <TableHeaderColumn>Ability Modifier</TableHeaderColumn>
+                                <TableHeaderColumn>Ranks</TableHeaderColumn>
+                                <TableHeaderColumn>Skill Modifier</TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>;
 
-        const SKILLS_DOM = SKILLS.skills.map((skill) => {
-            const skillName = skill.name;
-            const ability = skill.ability;
-            // const untrained = skill.untrained;
-            const abilityMod = modifiers[ability];
-            let ranks = this.props.skills[skillName];
-            if (ranks === undefined) {
+        const SKILLS_DOM = SKILLS.map((skill)=> {
+
+            const skillName = skill["name"];
+            const ability = skill["ability"];
+            const untrained = skill["untrained"];
+            const abilityMod = this.state.modifiers[ability];
+            var ranks = this.props.skills[skillName];
+            if(ranks === undefined){
                 ranks = 0;
             }
             // Name, Ability, Ability Mod, Ranks, Skill Mod
@@ -126,10 +126,12 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
                     <TableRowColumn>{ability}</TableRowColumn>
                     <TableRowColumn>{abilityMod}</TableRowColumn>
                     <TableRowColumn>{ranks}</TableRowColumn>
-                    <TableRowColumn>{ranks + abilityMod}</TableRowColumn>
+                    <TableRowColumn>{ranks+abilityMod}</TableRowColumn>
                 </TableRow>);
         });
-
+        console.log(this.props);
+        console.log("State");
+        console.log(this.state);
         const SKILLS_TABLE =
             <Table selectable={false} className="skillTable">
                {SKILLS_HEADER}
@@ -182,7 +184,7 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
         );
     }
     private setSlideIndex(value) {
-        this.setState({slideIndex: value});
+        this.setState({slideIndex: value, modifiers: this.state.modifiers});
     }
 }
 

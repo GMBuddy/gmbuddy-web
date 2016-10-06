@@ -1,7 +1,7 @@
 import * as React from "react";
 import { MenuItem } from "material-ui";
 import { FormsySelect, FormsyText } from "formsy-material-ui/lib";
-import { ICharacterData } from "../CharacterData";
+import { ICharacterData } from "character-data/CharacterData";
 
 const CLASSES = [
     "Barbarian",

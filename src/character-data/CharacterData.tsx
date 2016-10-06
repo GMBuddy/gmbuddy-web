@@ -7,14 +7,13 @@ export interface ICharacterDetails {
 }
 
 export interface ICharacterStats {
-    strength: number;
-    dexterity: number;
-    constitution: number;
-    intelligence: number;
-    wisdom: number;
-    charisma: number;
+    stats: Object;
 }
-
+export interface ICharacterSkills{
+	skills: Object;
+}
 export interface ICharacterData {
-    data: any;
+    details: ICharacterDetails;
+    stats: ICharacterStats;
+    skills: ICharacterSkills;
 }
