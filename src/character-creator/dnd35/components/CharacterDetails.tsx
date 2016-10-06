@@ -1,7 +1,7 @@
 import * as React from "react";
-import { MenuItem } from "material-ui";
-import { FormsySelect, FormsyText } from "formsy-material-ui/lib";
-import { ICharacterData } from "../CharacterData";
+import { AutoComplete } from "material-ui";
+import { FormsyAutoComplete, FormsyText } from "formsy-material-ui/lib";
+import { ICharacterData} from "../CharacterData";
 
 const CLASSES = [
     "Barbarian",
@@ -61,22 +61,6 @@ const ALIGNMENTS = [
     "Chaotic Evil",
 ];
 
-const CLASSES_DOM = CLASSES.map((className) => {
-    return  <MenuItem key={className} primaryText={className} value={className} />;
-});
-
-const RACES_DOM = RACES.map((raceName) => {
-    return  <MenuItem key={raceName} primaryText={raceName} value={raceName} />;
-});
-
-const DIETIES_DOM = DIETIES.map((dietyName) => {
-    return  <MenuItem key={dietyName} primaryText={dietyName} value={dietyName} />;
-});
-
-const ALIGNMENT_DOM = ALIGNMENTS.map((alignName) => {
-    return  <MenuItem key={alignName} primaryText={alignName} value={alignName} />;
-});
-
 class CharacterDetails extends React.Component<ICharacterData, any> {
     public render() {
         return (
@@ -85,55 +69,50 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     <FormsyText
                         autoComplete="off"
                         name="details.name"
-                        floatingLabelText="Character Name"
+                        floatingLabelText="Character Name (required)"
                         value={this.props.details.name}
                         required
                     />
                 </div>
-                <div>
-                    <FormsySelect
-                        name="details.class"
-                        floatingLabelText="Class"
-                        value={this.props.details.class}
-                        required
-                    >
-                        <MenuItem primaryText=" "/>
-                        {CLASSES_DOM}
-                    </FormsySelect>
-                </div>
-                <div>
-                    <FormsySelect
-                        name="details.race"
-                        floatingLabelText="Race"
-                        value={this.props.details.race}
-                        required
-                    >
-                        <MenuItem primaryText=" "/>
-                        {RACES_DOM}
-                    </FormsySelect>
-                </div>
-                <div>
-                    <FormsySelect
-                        name="details.diety"
-                        floatingLabelText="Diety"
-                        value={this.props.details.diety}
-                        required
-                    >
-                        <MenuItem primaryText=" "/>
-                        {DIETIES_DOM}
-                    </FormsySelect>
-                </div>
-                <div>
-                    <FormsySelect
-                        name="details.alignment"
-                        floatingLabelText="Alignment"
-                        value={this.props.details.alignment}
-                        required
-                    >
-                        <MenuItem primaryText=" "/>
-                        {ALIGNMENT_DOM}
-                    </FormsySelect>
-                </div>
+                <FormsyAutoComplete
+                    name="details.class"
+                    validations="isExisty"
+                    floatingLabelText="Class (required)"
+                    dataSource={CLASSES}
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    openOnFocus={true}
+                    value={this.props.details.class}
+                    required
+                />
+                <FormsyAutoComplete
+                    name="details.race"
+                    validations="isExisty"
+                    floatingLabelText="Race (required)"
+                    dataSource={RACES}
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    openOnFocus={true}
+                    value={this.props.details.race}
+                    required
+                />
+                <FormsyAutoComplete
+                    name="details.alignment"
+                    validations="isExisty"
+                    floatingLabelText="Alignment (required)"
+                    dataSource={ALIGNMENTS}
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    openOnFocus={true}
+                    value={this.props.details.alignment}
+                    required
+                />
+                <FormsyAutoComplete
+                    name="details.diety"
+                    validations="isExisty"
+                    floatingLabelText="Diety"
+                    dataSource={DIETIES}
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    value={this.props.details.diety}
+                    openOnFocus={true}
+                />
             </section>
         );
     }

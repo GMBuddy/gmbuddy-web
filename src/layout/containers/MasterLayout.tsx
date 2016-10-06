@@ -36,19 +36,19 @@ class MasterLayout extends React.Component<void, IMasterLayoutState> {
 
     protected openLoginModal() {
         this.closeDrawer();
-        this.setState({ drawerOpen: this.state.drawerOpen, loginModalOpen: true });
+        this.setState({ loginModalOpen: true } as IMasterLayoutState);
     }
 
     protected closeLoginModal() {
-        this.setState({ drawerOpen: this.state.drawerOpen, loginModalOpen: false });
+        this.setState({ loginModalOpen: false } as IMasterLayoutState);
     }
 
     protected toggleDrawer() {
-        this.setState({ drawerOpen: !this.state.drawerOpen, loginModalOpen: this.state.loginModalOpen });
+        this.setState({ drawerOpen: !this.state.drawerOpen } as IMasterLayoutState);
     }
 
     protected closeDrawer() {
-        this.setState({ drawerOpen: false, loginModalOpen: this.state.loginModalOpen });
+        this.setState({ drawerOpen: false } as IMasterLayoutState);
     }
 }
 

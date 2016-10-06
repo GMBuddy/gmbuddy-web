@@ -3,7 +3,7 @@
     padding: 5px 25px 15px 25px;
   }
 
-  .statsForm {
+  .characterStats {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -23,7 +23,7 @@
         flex-basis: 20%;
       }
 
-      .statIcon {
+      .rollButton {
         top: 18px;
       }
     }
@@ -43,6 +43,30 @@
       div {
         text-align: left;
       }
+    }
+  }
+
+  .characterItems {
+    .addItem {
+      padding-top: 15px;
+      text-align: right;
+    }
+  }
+}
+
+.itemModal {
+  .itemForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    div {
+      flex-basis: 40%;
+    }
+
+    .itemCheckbox {
+      align-self: center;
     }
   }
 }
