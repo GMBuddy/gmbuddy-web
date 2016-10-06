@@ -5,6 +5,21 @@ import * as Formsy from "formsy-react";
 import {ICharacterItem} from "../CharacterData";
 import { FormsyText, FormsyToggle, FormsyAutoComplete } from "formsy-material-ui/lib";
 
+const ITEM_TYPES = [
+    "Adventuring Gear",
+    "Armor",
+    "Tools",
+    "Food/Drink",
+    "Jewelry",
+    "Material",
+    "Poison",
+    "Potion",
+    "Ring",
+    "Shield",
+    "Apparel",
+    "Weapon",
+    "Staff",
+]
 interface ICreateItemModalProps {
     open: boolean;
     closeModal: () => any;
@@ -71,7 +86,7 @@ class CharacterItemModal extends React.Component<ICreateItemModalProps, ICreateI
                             name="type"
                             validations="isExisty"
                             floatingLabelText="Type (required)"
-                            dataSource={["Weapon", "Armor", "Misc."]}
+                            dataSource={ITEM_TYPES}
                             filter={AutoComplete.caseInsensitiveFilter}
                             openOnFocus={true}
                             required

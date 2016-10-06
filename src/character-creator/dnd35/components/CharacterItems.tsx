@@ -14,7 +14,7 @@ interface ICharacrerItemsState {
 }
 
 const noItems = [
-                    <TableRow hoverable={true}>
+                    <TableRow key="no-items" hoverable={true}>
                         <TableRowColumn style={{textAlign: "center"}}>Your character has no items.</TableRowColumn>
                     </TableRow>,
                 ];

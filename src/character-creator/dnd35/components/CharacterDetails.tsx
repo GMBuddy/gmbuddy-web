@@ -63,13 +63,14 @@ const ALIGNMENTS = [
 
 class CharacterDetails extends React.Component<ICharacterData, any> {
     public render() {
+        console.log(this.props);
         return (
             <section className="characterDetails">
                 <div>
                     <FormsyText
                         autoComplete="off"
                         name="details.name"
-                        floatingLabelText="Character Name"
+                        floatingLabelText="Character Name (required)"
                         value={this.props.details.name}
                         required
                     />
@@ -81,6 +82,7 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     dataSource={CLASSES}
                     filter={AutoComplete.caseInsensitiveFilter}
                     openOnFocus={true}
+                    value={this.props.details.class}
                     required
                 />
                 <FormsyAutoComplete
@@ -90,6 +92,7 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     dataSource={RACES}
                     filter={AutoComplete.caseInsensitiveFilter}
                     openOnFocus={true}
+                    value={this.props.details.race}
                     required
                 />
                 <FormsyAutoComplete
@@ -99,6 +102,7 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     dataSource={ALIGNMENTS}
                     filter={AutoComplete.caseInsensitiveFilter}
                     openOnFocus={true}
+                    value={this.props.details.alignment}
                     required
                 />
                 <FormsyAutoComplete
@@ -107,6 +111,7 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     floatingLabelText="Diety"
                     dataSource={DIETIES}
                     filter={AutoComplete.caseInsensitiveFilter}
+                    value={this.props.details.diety}
                     openOnFocus={true}
                 />
             </section>
