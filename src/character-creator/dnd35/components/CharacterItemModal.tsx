@@ -85,9 +85,7 @@ class CharacterItemModal extends React.Component<ICreateItemModalProps, ICreateI
                     onValidSubmit={this.submitForm.bind(this)}
                     onValid={this.enableSubmit.bind(this)}
                     onInvalid={this.disableSubmit.bind(this)}
-                    ref={(form) => {
-                            this.formsyForm = form;
-                        }}
+                    ref={ form => this.formsyForm = form }
                 >
                         <FormsyText
                             name="name"
@@ -145,7 +143,8 @@ class CharacterItemModal extends React.Component<ICreateItemModalProps, ICreateI
                         <div className="itemCheckbox">
                             <FormsyToggle
                                 name="twoHanded"
-                                label="Two Handed"/>
+                                label="Two Handed"
+                            />
                         </div>
                 </Formsy.Form>
             </Dialog>
