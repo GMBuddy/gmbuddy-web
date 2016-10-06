@@ -16,15 +16,16 @@ class DnD35CharacterViewer extends React.Component<IDnD35CharacterViewerProps, I
 		this.state = {
 			data:{ 
 				details : {"name":"Steve the Wizard","class":"Sorcerer", "level":"3","race":"Human","diety":"Kord","alignment":"Chaotic Neutral"}, 
-				stats:{"Strength":7,"Dexterity":14,"Constitution":16,"Intelligence":10,"Wisdom":15,"Charisma":"18"},
+				stats:{"Strength":7,"Dexterity":14,"Constitution":16,"Intelligence":10,"Wisdom":15,"Charisma":18},
+				skills:{},
 			},
 		} as IDnD35CharacterViewerState;
 	}
 
 	public render() {
-		let steps = <CharacterViewDnD35 gametype="DnD35" details = {this.state.data.details} stats = {this.state.data.stats}/>;
+		let steps = <CharacterViewDnD35 gametype="DnD35" data={this.state.data}/>;
 		return (
-			<div>
+			<div className="dnd35CharViewer">
 				{steps}
 			</div>
 		);

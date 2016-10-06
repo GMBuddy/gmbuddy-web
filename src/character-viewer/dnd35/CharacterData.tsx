@@ -16,6 +16,5 @@ export interface ICharacterStats {
 }
 
 export interface ICharacterData {
-    details: ICharacterDetails;
-    stats: ICharacterStats;
+    data: any;
 }
