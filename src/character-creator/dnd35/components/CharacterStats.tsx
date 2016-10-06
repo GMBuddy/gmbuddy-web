@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FormsyText } from "formsy-material-ui/lib";
-import { ICharacterData} from "../CharacterData";
+import { ICharacterStats} from "../CharacterData";
 import { IconButton, TextField } from "material-ui";
 import { PlacesCasino } from "material-ui/svg-icons";
 import { isUndefined } from "lodash";
@@ -18,7 +18,7 @@ interface ICharacterStatsState {
     modifiers: any;
 }
 
-class CharacterStats extends React.Component<ICharacterData, ICharacterStatsState> {
+class CharacterStats extends React.Component<ICharacterStats, ICharacterStatsState> {
     constructor(props: any) {
         super(props);
         this.state = { modifiers: {} };
@@ -26,7 +26,6 @@ class CharacterStats extends React.Component<ICharacterData, ICharacterStatsStat
 
     public render() {
         const stats = STATS.map((stat) => {
-
             return  <div className="statContainer" key={stat + "Container"}>
                 <FormsyText
                     className="statValue"

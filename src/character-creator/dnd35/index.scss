@@ -45,4 +45,28 @@
       }
     }
   }
+
+  .characterItems {
+    .addItem {
+      padding-top: 15px;
+      text-align: right;
+    }
+  }
+}
+
+.itemModal {
+  .itemForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    div {
+      flex-basis: 40%;
+    }
+
+    .itemCheckbox {
+      flex-basis: 200px;
+    }
+  }
 }

@@ -6,6 +6,7 @@ import CharacterStepButtons from "../components/CharacterStepButtons";
 
 import CharacterDetailsDnd35 from "../dnd35/components/CharacterDetails";
 import CharacterStatsDnd35 from "../dnd35/components/CharacterStats";
+import CharacterItemsDnd35 from "../dnd35/components/CharacterItems";
 import CharacterReviewDnd35 from "../dnd35/components/CharacterReview";
 
 import { Divider } from "material-ui";
@@ -30,7 +31,7 @@ class DnD35CharacterCreator extends React.Component<IDnD35CharacterCreatorProps,
         this.state = {
             canPrevious: true,
             canSubmit: false,
-            data: { details: {}, stats: {}},
+            data: { details: {}, stats: {}, items: []},
         } as IDnD35CharacterCreatorState;
     }
 
@@ -43,6 +44,9 @@ class DnD35CharacterCreator extends React.Component<IDnD35CharacterCreatorProps,
             Stats: <CharacterStatsDnd35
                 key="stats"
                 stats={this.state.data.stats} />,
+            Items: <CharacterItemsDnd35
+                key="stats"
+                items={this.state.data.items} />,
             Review: <CharacterReviewDnd35
                 key="review"
                 data={this.state.data} />,
