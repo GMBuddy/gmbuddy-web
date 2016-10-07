@@ -3,10 +3,14 @@ import { Dialog, FlatButton } from "material-ui";
 import Login from "../components/Login";
 
 import * as Formsy from "formsy-react";
+import { connect } from "react-redux";
+import { login } from "../thunks";
 
 interface ILoginModalProps {
+    dispatch: any;
     open: boolean;
     closeModal: () => any;
+    login: (username: string, password: string) => any;
 }
 
 interface ILoginModalState {
@@ -23,11 +27,6 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
             isLoggingIn: false,
             canSubmit: false,
         } as ILoginModalState;
-    }
-
-    private login(username, password) {
-        this.setState({ isLoggingIn: true } as ILoginModalState);
-        return
     }
 
     public render() {
@@ -47,6 +46,7 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
                 }}
             />,
         ];
+
 
         return (
                 <Dialog
@@ -78,9 +78,11 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     }
 
     private submitForm(data) {
-        // console.log("Login:", data);
+        console.log("Submit: ", data);
+        this.props.dispatch(login(data.username, data.password));
         this.disableSubmit();
     }
 }
 
-export default LoginModal;
+
+export default connect()(LoginModal);

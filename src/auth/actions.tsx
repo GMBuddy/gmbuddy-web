@@ -1,14 +1,20 @@
 import { createAction } from "redux-actions";
-import { LOGIN } from "./actionTypes";
+import {LOGIN, LOGIN_SUCCESS, LOGIN_INVALID} from "./actionTypes";
 
 const login = createAction(
-    LOGIN,
-    (username: string, password: string) => ({ username, password })
-)
+    LOGIN, () => ({})
+);
+
+const loginSuccess = createAction(
+    LOGIN_SUCCESS, (username: string, token: string) => ({ token })
+);
+
+const loginInvalid = createAction(
+    LOGIN_INVALID, (message: string) => ({ message })
+);
 
 const logout = createAction(
-    LOGIN,
-    () => ({})
-)
+    LOGIN, () => ({})
+);
 
-export { login, logout };
+export { login, loginSuccess, loginInvalid, logout };

@@ -4,8 +4,9 @@
 
 import * as React from "react";
 import { render } from "react-dom";
-import { IStore, createStore } from "redux";
+import { IStore, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 import "./main.scss";
 
@@ -16,7 +17,7 @@ import { Router, browserHistory } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
 
 const enhancer = window['devToolsExtension'] ? window['devToolsExtension']()(createStore) : createStore;
-const store: IStore<any> = enhancer(rootReducer);
+const store: IStore<any> = applyMiddleware(thunk)(enhancer)(rootReducer);
 
 const history = syncHistoryWithStore(browserHistory, store);
 

@@ -10,6 +10,7 @@ interface INavBarProps {
     openLoginModal: () => void;
     router: any;
     toggleDrawer: () => void;
+    authData: any;
 }
 
 class NavBar extends React.Component<INavBarProps, void> {
@@ -26,8 +27,8 @@ class NavBar extends React.Component<INavBarProps, void> {
     }
 
     public render() {
-        const loggedIn = false;
-        const loginLabel = loggedIn ? "Logout" : "Login";
+        const loggedIn = !!this.props.authData.token;
+        const loginLabel = loggedIn ? `Logout of ${this.props.authData.username}` : "Login";
         const loginClick = loggedIn ? this.logout : this.props.openLoginModal;
 
         return (
@@ -43,4 +44,8 @@ class NavBar extends React.Component<INavBarProps, void> {
     }
 }
 
-export default connect()(NavBar);
+function mapStateToProps(state) {
+    return { authData: state.auth.data };
+}
+
+export default connect(mapStateToProps)(NavBar);
