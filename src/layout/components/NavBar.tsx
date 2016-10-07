@@ -1,8 +1,8 @@
 import * as React from "react";
 import { AppBar, FlatButton } from "material-ui";
 import Sidebar from "./Sidebar";
-import { browserHistory } from "react-router";
 import { connect } from "react-redux";
+import { logout } from "../../auth/thunks";
 
 interface INavBarProps {
     closeDrawer: () => void;
@@ -10,26 +10,16 @@ interface INavBarProps {
     openLoginModal: () => void;
     router: any;
     toggleDrawer: () => void;
-    authData: any;
+    auth: any;
+    dispatch: any;
 }
 
 class NavBar extends React.Component<INavBarProps, void> {
-    public goHome() {
-        browserHistory.push("/");
-    }
-
-    private login() {
-        console.log("login");
-    }
-
-    private logout() {
-        console.log("logout");
-    }
-
     public render() {
-        const loggedIn = !!this.props.authData.token;
-        const loginLabel = loggedIn ? `Logout of ${this.props.authData.username}` : "Login";
-        const loginClick = loggedIn ? this.logout : this.props.openLoginModal;
+        const { auth } = this.props;
+        const loggedIn =  !auth.isRunning && auth.error === null && !!auth.data.token;
+        const loginLabel = loggedIn ? `Logout of ${auth.data.username}` : "Login";
+        const loginClick = loggedIn ? this.logout.bind(this) : this.props.openLoginModal;
 
         return (
             <div>
@@ -42,10 +32,14 @@ class NavBar extends React.Component<INavBarProps, void> {
             </div>
         );
     }
+
+    private logout() {
+        this.props.dispatch(logout());
+    }
 }
 
 function mapStateToProps(state) {
-    return { authData: state.auth.data };
+    return { auth: state.auth };
 }
 
 export default connect(mapStateToProps)(NavBar);

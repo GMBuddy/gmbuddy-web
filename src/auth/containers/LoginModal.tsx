@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dialog, FlatButton } from "material-ui";
+import { Dialog, FlatButton, CircularProgress } from "material-ui";
 import Login from "../components/Login";
 
 import * as Formsy from "formsy-react";
@@ -11,10 +11,10 @@ interface ILoginModalProps {
     open: boolean;
     closeModal: () => any;
     login: (username: string, password: string) => any;
+    auth: any;
 }
 
 interface ILoginModalState {
-    isLoggingIn: boolean;
     canSubmit: boolean;
 }
 
@@ -24,7 +24,7 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     constructor() {
         super();
         this.state = {
-            isLoggingIn: false,
+            auth: {},
             canSubmit: false,
         } as ILoginModalState;
     }
@@ -47,15 +47,10 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
             />,
         ];
 
+        let form = <CircularProgress />;
 
-        return (
-                <Dialog
-                    className="loginModal"
-                    actions={actions}
-                    title="Login Dialog"
-                    modal={true}
-                    open={this.props.open}>
-                    <Formsy.Form
+        if (!this.props.auth.isRunning) {
+            form = <Formsy.Form
                         onValidSubmit={this.submitForm.bind(this)}
                         onValid={this.enableSubmit.bind(this)}
                         onInvalid={this.disableSubmit.bind(this)}
@@ -64,7 +59,18 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
                         }}
                     >
                         <Login/>
-                    </Formsy.Form>
+                    </Formsy.Form>;
+        }
+
+        return (
+                <Dialog
+                    className="loginModal"
+                    actions={actions}
+                    title="Login Dialog"
+                    modal={true}
+                    open={this.props.open}>
+                    {JSON.stringify(this.props.auth)}>
+                    {form}
                 </Dialog>
         );
     }
@@ -85,4 +91,14 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
 }
 
 
-export default connect()(LoginModal);
+function mapStateToProps(state) {
+    const { auth } = state;
+
+    // Close the modal if the user is logged in.
+    if (auth.data.token) {
+        this.props.closeModal();
+    }
+
+    return { auth };
+}
+export default connect(mapStateToProps)(LoginModal);
