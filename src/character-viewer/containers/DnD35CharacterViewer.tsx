@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import CharacterViewDnD35 from "../dnd35/components/CharacterView";
+import CharacterViewDnD35 from "../dnd35/containers/CharacterView";
 interface IDnD35CharacterViewerProps {
     details: any;
     stats: any;
