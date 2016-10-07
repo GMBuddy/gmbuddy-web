@@ -6,6 +6,7 @@ declare module "formsy-react" {
 declare module "formsy-material-ui/lib" {
     import * as React from "react";
 
+    export class FormsyAutoComplete extends React.Component<any, any> {}
     export class FormsyCheckbox extends React.Component<any, any> {}
     export class FormsyDate extends React.Component<any, any> {}
     export class FormsyRadio extends React.Component<any, any> {}

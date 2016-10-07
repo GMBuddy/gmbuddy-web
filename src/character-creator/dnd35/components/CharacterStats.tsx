@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormsyText } from "formsy-material-ui/lib";
-import { ICharacterData} from "../CharacterData";
-import { IconButton, TextField } from "material-ui";
+import { ICharacterStats} from "../CharacterData";
+import { FlatButton, IconButton, TextField } from "material-ui";
 import { PlacesCasino } from "material-ui/svg-icons";
 import { isUndefined } from "lodash";
 
@@ -18,7 +18,7 @@ interface ICharacterStatsState {
     modifiers: any;
 }
 
-class CharacterStats extends React.Component<ICharacterData, ICharacterStatsState> {
+class CharacterStats extends React.Component<ICharacterStats, ICharacterStatsState> {
     constructor(props: any) {
         super(props);
         this.state = { modifiers: {} };
@@ -26,43 +26,46 @@ class CharacterStats extends React.Component<ICharacterData, ICharacterStatsStat
 
     public render() {
         const stats = STATS.map((stat) => {
-
             return  <div className="statContainer" key={stat + "Container"}>
-                <FormsyText
-                    className="statValue"
-                    key={stat}
-                    name={"stats." + stat}
-                    floatingLabelText={stat}
-                    type="number"
-                    required
-                    value={this.props.stats[stat]}
-                    validations="isInt"
-                    onChange={this.updateModifier.bind(this, stat, null)}
-                />
-                <TextField
-                    key={stat + "Mod"}
-                    className="statModifier"
-                    disabled={true}
-                    floatingLabelFixed={true}
-                    value={this.state.modifiers[stat]}
-                    floatingLabelText={stat.substring(0, 3).toUpperCase() + " Modifier"}
-                />
-                <IconButton
-                    onClick={this.roll.bind(this, stat)}
-                    className="statIcon"
-                    tooltip={"Roll " + stat}
-                ><PlacesCasino/></IconButton>
-            </div>;
+                        <FormsyText
+                            className="statValue"
+                            key={stat}
+                            name={"stats." + stat}
+                            floatingLabelText={stat}
+                            type="number"
+                            required
+                            value={this.props.stats[stat]}
+                            validations="isInt"
+                            onChange={this.updateModifier.bind(this, stat, null)}
+                        />
+                        <TextField
+                            key={stat + "Mod"}
+                            className="statModifier"
+                            disabled={true}
+                            floatingLabelFixed={true}
+                            value={this.state.modifiers[stat]}
+                            floatingLabelText={stat.substring(0, 3).toUpperCase() + " Modifier"}
+                        />
+                        <IconButton
+                            className="rollButton"
+                            onClick={this.roll.bind(this, stat)}
+                            tooltip={"Roll " + stat}
+                        ><PlacesCasino/></IconButton>
+                    </div>;
         });
 
         return (
-            <section className="statsForm">
+            <section className="characterStats">
                 {stats}
+
+                <FlatButton onTouchTap={this.rollAll.bind(this)}>
+                    <PlacesCasino className="rollAllIcon"/> Roll All
+                </FlatButton>
             </section>
         );
     }
 
-    private roll(stat, event) {
+    private roll(stat, updateModifier = true) {
         // Roll 4d6 and discard the lowest die.
         let rollTotal = 0;
         let smallestRoll = 6;
@@ -75,7 +78,17 @@ class CharacterStats extends React.Component<ICharacterData, ICharacterStatsStat
         rollTotal -= smallestRoll;
 
         this.props.stats[stat] = rollTotal;
-        this.updateModifier(stat, rollTotal, null);
+
+        if (updateModifier) {
+            this.updateModifier(stat, rollTotal, null);
+        }
+    }
+
+    private rollAll() {
+        STATS.forEach(stat => {
+            this.roll(stat);
+            this.updateAllModifiers();
+        });
     }
 
     /* tslint:disable */
