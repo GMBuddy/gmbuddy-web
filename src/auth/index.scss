@@ -1,9 +1,17 @@
-.loginModalContent {
-  display: flex;
-  flex-direction: column;
+.loginModal {
+  .loginModalContent {
+    display: flex;
+    flex-direction: column;
 
-  div {
-    width: 100%;
-   align-self: center;
+    div {
+      width: 100%;
+      align-self: center;
+    }
+  }
+
+  .loginFormButtons {
+    margin-top: 20px;
+    right: 0px;
+    text-align: right;
   }
 }

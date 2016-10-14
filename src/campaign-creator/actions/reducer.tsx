@@ -2,17 +2,17 @@ import { handleActions } from "redux-actions";
 import { CREATE_CAMPAIGN, CREATE_CAMPAIGN_INVALID, CREATE_CAMPAIGN_SUCCESS } from "./actionTypes";
 
 interface ICampaignState {
-    gameType?: string;
-    name?: string;
-    isRunning?: boolean;
     error?: string;
+    gameType?: string;
+    isRunning?: boolean;
+    title?: string;
 }
 
 const initialCampaignState: ICampaignState = {
-    gameType: null,
-    name: null,
-    isRunning: false,
     error: null,
+    gameType: null,
+    isRunning: false,
+    title: null,
 };
 
 const setCampaignState = (state: ICampaignState, newState: ICampaignState) => {

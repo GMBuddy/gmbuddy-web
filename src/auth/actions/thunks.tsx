@@ -1,4 +1,5 @@
-import {LOGIN, LOGIN_SUCCESS, LOGOUT} from "./actionTypes";
+import { LOGIN, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
+import { push } from "react-router-redux";
 
 const login = (username, password) => {
     return (dispatch) => {
@@ -12,6 +13,7 @@ const login = (username, password) => {
 
 const logout = () => {
     return (dispatch) => {
+        dispatch(push("/"));
         dispatch({type: LOGOUT});
     };
 };

@@ -1,12 +1,12 @@
-import { CREATE_CAMPAIGN, CREATE_CAMPAIGN_SUCCESS, CREATE_CAMPAIGN_INVALID } from "./actionTypes";
+import { CREATE_CAMPAIGN, CREATE_CAMPAIGN_SUCCESS } from "./actionTypes";
 import { ICampaignData } from "../containers/CampaignCreator";
 
 const createCampaign = (campaignData: ICampaignData) => {
     return (dispatch) => {
-        const { gameType, name } = campaignData;
+        const { gameType, title } = campaignData;
         dispatch({type: CREATE_CAMPAIGN});
         return setTimeout(() => {
-            dispatch({type: CREATE_CAMPAIGN_SUCCESS, gameType, name});
+            dispatch({type: CREATE_CAMPAIGN_SUCCESS, gameType, title});
         }, 1000);
     };
 };

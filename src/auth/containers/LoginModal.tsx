@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Dialog, FlatButton, CircularProgress } from "material-ui";
+import { Dialog, FlatButton } from "material-ui";
 import Login from "../components/Login";
 
 import * as Formsy from "formsy-react";
 import { connect } from "react-redux";
 import { login } from "../actions/thunks";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 interface ILoginModalProps {
     dispatch: any;
@@ -47,27 +48,27 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
             />,
         ];
 
-        let form = <CircularProgress />;
+        let loginForm = <LoadingSpinner />;
 
         if (!this.props.auth.isRunning) {
-            form = <Formsy.Form
+            loginForm = <Formsy.Form
                         onValidSubmit={this.submitForm.bind(this)}
                         onValid={this.enableSubmit.bind(this)}
                         onInvalid={this.disableSubmit.bind(this)}
                         ref={ form => this.formsyForm = form }
                     >
                         <Login/>
+                        <section className="loginFormButtons">{actions}</section>
                     </Formsy.Form>;
         }
 
         return (
                 <Dialog
                     className="loginModal"
-                    actions={actions}
                     title="Login Dialog"
                     modal={true}
                     open={this.props.open}>
-                    {form}
+                    {loginForm}
                 </Dialog>
         );
     }
