@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 
-import authReducer from "./auth/reducer";
+import authReducer from "./auth/actions/reducer";
+import campaignReducer from "./campaign-creator/actions/reducer";
 
 const rootReducer = combineReducers({
-    routing: routerReducer,
     auth: authReducer,
+    campaign: campaignReducer,
+    routing: routerReducer,
 });
 
 export default rootReducer;

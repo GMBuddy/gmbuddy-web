@@ -2,7 +2,7 @@ import * as React from "react";
 import { AppBar, FlatButton } from "material-ui";
 import Sidebar from "./Sidebar";
 import { connect } from "react-redux";
-import { logout } from "../../auth/thunks";
+import { logout } from "../../auth/actions/thunks";
 
 interface INavBarProps {
     closeDrawer: () => void;

@@ -9,8 +9,12 @@ import CampaignInvite from "../components/CampaignInvite";
 import { RaisedButton, Paper, Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 
-import { ICampaignData } from "../components/CampaignDesigner";
 import NotFound from "../../layout/components/NotFound";
+
+export interface ICampaignData {
+    gameType: string;
+    title: string;
+}
 
 interface ICampaignCreatorState {
     campaignData: ICampaignData;

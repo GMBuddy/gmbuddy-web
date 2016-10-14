@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { ICampaignData } from "../components/CampaignDesigner";
+import { ICampaignData } from "../containers/CampaignCreator";
 import { Table, TableHeader, TableRow, TableHeaderColumn, TableBody, TableRowColumn, Paper } from "material-ui";
 
 interface ICampaignReviewProps {

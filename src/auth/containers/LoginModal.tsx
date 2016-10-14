@@ -4,7 +4,7 @@ import Login from "../components/Login";
 
 import * as Formsy from "formsy-react";
 import { connect } from "react-redux";
-import { login } from "../thunks";
+import { login } from "../actions/thunks";
 
 interface ILoginModalProps {
     dispatch: any;
@@ -54,9 +54,7 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
                         onValidSubmit={this.submitForm.bind(this)}
                         onValid={this.enableSubmit.bind(this)}
                         onInvalid={this.disableSubmit.bind(this)}
-                        ref={(form) => {
-                            this.formsyForm = form;
-                        }}
+                        ref={ form => this.formsyForm = form }
                     >
                         <Login/>
                     </Formsy.Form>;
@@ -69,7 +67,6 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
                     title="Login Dialog"
                     modal={true}
                     open={this.props.open}>
-                    {JSON.stringify(this.props.auth)}>
                     {form}
                 </Dialog>
         );
@@ -84,12 +81,11 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     }
 
     private submitForm(data) {
-        console.log("Submit: ", data);
+        // console.log("Submit: ", data);
         this.props.dispatch(login(data.username, data.password));
         this.disableSubmit();
     }
 }
-
 
 function mapStateToProps(state) {
     const { auth } = state;

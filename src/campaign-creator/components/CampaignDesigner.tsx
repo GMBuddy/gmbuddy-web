@@ -1,11 +1,7 @@
 import * as React from "react";
 import { FormsySelect, FormsyText } from "formsy-material-ui/lib";
 import { MenuItem, Divider } from "material-ui";
-
-export interface ICampaignData {
-    gameType: string;
-    title: string;
-}
+import { ICampaignData } from "../containers/CampaignCreator";
 
 interface ICampaignDesignerProps {
     campaignData: ICampaignData;
