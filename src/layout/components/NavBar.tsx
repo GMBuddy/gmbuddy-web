@@ -2,7 +2,7 @@ import * as React from "react";
 import { AppBar, FlatButton } from "material-ui";
 import Sidebar from "./Sidebar";
 import { connect } from "react-redux";
-import { logout } from "../../auth/actions/thunks";
+import { logout, loginWithData } from "../../auth/actions/thunks";
 
 interface INavBarProps {
     closeDrawer: () => void;
@@ -15,6 +15,14 @@ interface INavBarProps {
 }
 
 class NavBar extends React.Component<INavBarProps, void> {
+    componentDidMount() {
+        const { username, token } = JSON.parse(localStorage.getItem('authData'));
+
+        if(username && token) {
+            this.props.dispatch(loginWithData(username, token))
+        }
+    }
+
     public render() {
         const { auth } = this.props;
         const loggedIn =  !auth.isRunning && auth.error === null && !!auth.data.token;
