@@ -7,7 +7,7 @@ interface IAuthData {
 }
 
 interface IAuthState {
-    isRunning: boolean;
+    isFetching: boolean;
     error: string;
     data: IAuthData;
 }
@@ -18,7 +18,7 @@ const initialState: IAuthState = {
         username: null,
     },
     error: null,
-    isRunning: false,
+    isFetching: false,
 };
 
 const setState = (state: IAuthState, newState: IAuthState) => {
@@ -27,23 +27,25 @@ const setState = (state: IAuthState, newState: IAuthState) => {
 
 export default handleActions({
     [LOGIN]: (state: IAuthState) => {
-        return setState(state, {error: null, isRunning: true} as IAuthState);
+        return setState(state, {error: null, isFetching: true} as IAuthState);
     },
 
     [LOGIN_INVALID]: (state: IAuthState, action: any) => {
-        return setState(state, { error: action.message, isRunning: false } as IAuthState);
+        return setState(state, { error: action.payload, isFetching: false } as IAuthState);
     },
 
     [LOGIN_SUCCESS]: (state: IAuthState, action: any) => {
+        const { token, username } = action.payload;
+
         return setState(
             state,
             {
                 data: {
-                    token: action.token,
-                    username: action.username,
+                    token,
+                    username,
                 },
                 error: null,
-                isRunning: false,
+                isFetching: false,
             },
         );
     },

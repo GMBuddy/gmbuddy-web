@@ -4,19 +4,20 @@ import Sidebar from "./Sidebar";
 import { logout } from "../../auth/actions/thunks";
 
 interface INavBarProps {
+    auth: any;
     closeDrawer: () => void;
     drawerOpen: boolean;
+    logout: () => void;
     openLoginModal: () => void;
     router: any;
     toggleDrawer: () => void;
-    auth: any;
     dispatch: any;
 }
 
 class NavBar extends React.Component<INavBarProps, void> {
     public render() {
         const { auth } = this.props;
-        const loggedIn =  !auth.isRunning && auth.error === null && !!auth.data.token;
+        const loggedIn =  !auth.isFetching && auth.error === null && !!auth.data.token;
         const loginLabel = loggedIn ? `Logout of ${auth.data.username}` : "Login";
         const loginClick = loggedIn ? this.logout.bind(this) : this.props.openLoginModal;
 
@@ -33,7 +34,7 @@ class NavBar extends React.Component<INavBarProps, void> {
     }
 
     private logout() {
-        this.props.dispatch(logout());
+        this.props.logout();
     }
 }
 

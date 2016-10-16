@@ -33,11 +33,13 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     public render() {
         const actions = [
             <FlatButton
+                key="cancel"
                 label="Cancel"
                 primary={true}
                 onTouchTap={this.props.closeModal}
             />,
             <FlatButton
+                key="submit"
                 label="Submit"
                 primary={true}
                 disabled={!this.state.canSubmit}
@@ -50,14 +52,14 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
 
         let loginForm = <LoadingSpinner />;
 
-        if (!this.props.auth.isRunning) {
+        if (!this.props.auth.isFetching) {
             loginForm = <Formsy.Form
                         onValidSubmit={this.submitForm.bind(this)}
                         onValid={this.enableSubmit.bind(this)}
                         onInvalid={this.disableSubmit.bind(this)}
                         ref={ form => this.formsyForm = form }
                     >
-                        <Login/>
+                        <Login error={this.props.auth.error} />
                         <section className="loginFormButtons">{actions}</section>
                     </Formsy.Form>;
         }
