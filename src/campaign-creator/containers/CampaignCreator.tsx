@@ -4,16 +4,23 @@ import CampaignStepper from "../components/CampaignStepper";
 
 import CampaignDesigner from "../components/CampaignDesigner";
 import CampaignReview from "../components/CampaignReview";
-import CampaignInvite from "../components/CampaignInvite";
 
 import { RaisedButton, Paper, Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 
 import NotFound from "../../layout/components/NotFound";
 
+import { createCampaign } from "../actions/thunks";
+import { IDispatch } from "~redux-thunk~redux";
+import { connect } from "react-redux";
+
 export interface ICampaignData {
     gameType: string;
     title: string;
+}
+
+interface ICampaignCreatorProps {
+    dispatch: IDispatch;
 }
 
 interface ICampaignCreatorState {
@@ -23,11 +30,10 @@ interface ICampaignCreatorState {
     currentStep: number;
 }
 
-class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
+class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCreatorState> {
     private  steps = [
             "Design Campaign",
             "Review Campaign",
-            "Invite Friends",
         ];
 
     constructor() {
@@ -73,9 +79,6 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
                 break;
             case 1:
                 campaignStep = <CampaignReview campaignData={this.state.campaignData}/>;
-                break;
-            case 2:
-                campaignStep = <CampaignInvite/>;
                 break;
             default:
                 campaignStep = <NotFound/>;
@@ -124,14 +127,14 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
             if (this.state.currentStep === 0) {
                 this.setState({ campaignData: data } as ICampaignCreatorState);
             }
-
             this.nextStep();
         } else {
-            // console.info("Submit data", this.state.campaignData);
+            this.nextStep();
+            this.props.dispatch(createCampaign(this.state.campaignData));
             this.setState({ canPrevious: false } as ICampaignCreatorState);
             this.disableSubmit();
         }
     }
 }
 
-export default CampaignCreator;
+export default connect()(CampaignCreator);
