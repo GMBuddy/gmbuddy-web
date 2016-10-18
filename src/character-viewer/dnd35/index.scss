@@ -12,3 +12,16 @@
 		}
 	}
 }
+
+.charOverviewTab{
+	display: flex;
+	flex-direction: column;
+    text-align: center;
+
+	.details{
+		h3 {
+			flex-direction: row;
+			flex-basis: 33%;
+		}
+	}
+}
