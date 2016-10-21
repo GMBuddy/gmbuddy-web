@@ -6,7 +6,7 @@ const createCampaign = (campaignData: ICampaignData) => {
         const { gameType, title } = campaignData;
         return setTimeout(() => {
             dispatch({ data: { gameType, title }, type: CREATE_CAMPAIGN_SUCCESS });
-        }, 10000);
+        }, 500);
     };
 };
 

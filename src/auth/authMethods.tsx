@@ -11,3 +11,10 @@ export function simpleAuth (nextState, transition) {
         transition("/");
     }
 }
+
+export function authLoggedOut(nextState, transition) {
+    const state = store.getState();
+    if (isLoggedIn(state)) {
+        transition("/");
+    }
+}

@@ -3,7 +3,9 @@
     "assertion-error": "github:DefinitelyTyped/DefinitelyTyped/assertion-error/assertion-error.d.ts#ba257a9b91bc0de1bdd9091b6723194c905a902a",
     "classnames": "github:DefinitelyTyped/DefinitelyTyped/classnames/classnames.d.ts#ba257a9b91bc0de1bdd9091b6723194c905a902a",
     "react-tap-event-plugin": "registry:dt/react-tap-event-plugin#0.0.0+20160602142434",
-    "redux-actions": "github:DefinitelyTyped/DefinitelyTyped/redux-actions/redux-actions.d.ts#ba257a9b91bc0de1bdd9091b6723194c905a902a"
+    "redux-actions": "github:DefinitelyTyped/DefinitelyTyped/redux-actions/redux-actions.d.ts#ba257a9b91bc0de1bdd9091b6723194c905a902a",
+    "whatwg-fetch": "registry:dt/whatwg-fetch#0.0.0+20161004182750",
+    "whatwg-streams": "registry:dt/whatwg-streams#0.0.0+20160829180742"
   },
   "dependencies": {
     "lodash": "registry:npm/lodash#4.0.0+20160305082308",
