@@ -44,24 +44,24 @@ class MasterLayout extends React.Component<IMasterLayoutProps, IMasterLayoutStat
         );
     }
 
-    openLoginModal() {
+    private openLoginModal() {
         this.closeDrawer();
         this.setState({ loginModalOpen: true } as IMasterLayoutState);
     }
 
-    closeLoginModal() {
+    private closeLoginModal() {
         this.setState({ loginModalOpen: false } as IMasterLayoutState);
     }
 
-    logout() {
+    private logout() {
         this.props.dispatch(logout());
     }
 
-    toggleDrawer() {
+    private toggleDrawer() {
         this.setState({ drawerOpen: !this.state.drawerOpen } as IMasterLayoutState);
     }
 
-    closeDrawer() {
+    private closeDrawer() {
         this.setState({ drawerOpen: false } as IMasterLayoutState);
     }
 }
@@ -69,6 +69,5 @@ class MasterLayout extends React.Component<IMasterLayoutProps, IMasterLayoutStat
 function mapStateToProps(state) {
     return { auth: state.auth };
 }
-
 
 export default connect(mapStateToProps)(MasterLayout);

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { AppBar, FlatButton } from "material-ui";
 import Sidebar from "./Sidebar";
-import { logout } from "../../auth/actions/thunks";
 
 interface INavBarProps {
     auth: any;

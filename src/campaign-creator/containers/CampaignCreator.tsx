@@ -129,7 +129,6 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
             }
             this.nextStep();
         } else {
-            this.nextStep();
             this.props.dispatch(createCampaign(this.state.campaignData));
             this.setState({ canPrevious: false } as ICampaignCreatorState);
             this.disableSubmit();

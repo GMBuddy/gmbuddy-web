@@ -13,17 +13,11 @@ const createCampaignInvalid = createAction(
 
 const createCampaignSuccess = createAction(
     CREATE_CAMPAIGN_SUCCESS,
-    (authData: string[]) => authData,
+    () => {},
 );
 
-const authLogout = createAction(
-    LOGOUT,
-    () => {},
-)
-
 export {
-    requestAuth,
-    authInvalid,
-    authSuccess,
-    authLogout,
+    requestCreateCampaign,
+    createCampaignInvalid,
+    createCampaignSuccess,
 };

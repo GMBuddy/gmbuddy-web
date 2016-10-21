@@ -3,7 +3,6 @@ import { LOGIN, LOGIN_INVALID, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
 
 const requestAuth = createAction(
     LOGIN,
-    () => {},
 );
 
 const authInvalid = createAction(
@@ -18,8 +17,7 @@ const authSuccess = createAction(
 
 const authLogout = createAction(
     LOGOUT,
-    () => {},
-)
+);
 
 export {
     requestAuth,

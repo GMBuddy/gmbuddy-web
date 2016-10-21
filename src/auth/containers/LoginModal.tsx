@@ -90,12 +90,12 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     const { auth } = state;
 
     // Close the modal if the user is logged in.
-    if (auth.data.token) {
-        this.props.closeModal();
+    if (ownProps.open && auth.data.token) {
+        ownProps.closeModal();
     }
 
     return { auth };
