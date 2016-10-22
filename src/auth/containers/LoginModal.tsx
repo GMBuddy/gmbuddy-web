@@ -17,6 +17,7 @@ interface ILoginModalProps {
 
 interface ILoginModalState {
     canSubmit: boolean;
+    error: string;
 }
 
 class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
@@ -25,8 +26,8 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     constructor() {
         super();
         this.state = {
-            auth: {},
             canSubmit: false,
+            error: null,
         } as ILoginModalState;
     }
 
@@ -59,7 +60,7 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
                         onInvalid={this.disableSubmit.bind(this)}
                         ref={ form => this.formsyForm = form }
                     >
-                        <Login error={this.props.auth.error} />
+                        <Login error={this.state.error} />
                         <section className="loginFormButtons">{actions}</section>
                     </Formsy.Form>;
         }
@@ -75,6 +76,12 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
         );
     }
 
+    private componentWillUpdate(nextProps) {
+        if (nextProps.open && nextProps.auth.data && nextProps.auth.data.token) {
+            nextProps.closeModal();
+        }
+    }
+
     private enableSubmit() {
         this.setState({ canSubmit: true } as ILoginModalState);
     }
@@ -84,20 +91,15 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
     }
 
     private submitForm(data) {
-        // console.log("Submit: ", data);
-        this.props.dispatch(login(data.username, data.password));
+        this.props.dispatch(login(data.username, data.password,
+                             null,
+                            (error) => this.setState({ error } as ILoginModalState)));
         this.disableSubmit();
     }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     const { auth } = state;
-
-    // Close the modal if the user is logged in.
-    if (ownProps.open && auth.data.token) {
-        ownProps.closeModal();
-    }
-
     return { auth };
 }
 export default connect(mapStateToProps)(LoginModal);

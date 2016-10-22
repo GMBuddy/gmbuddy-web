@@ -6,13 +6,13 @@ export default {
     childRoutes: [
         {
             component: LoginPage,
-            path: "/login",
             onEnter: authLoggedOut,
+            path: "/login",
         },
         {
             component: Register,
-            path: "/register",
             onEnter: authLoggedOut,
+            path: "/register",
         },
-    ]
+    ],
 };

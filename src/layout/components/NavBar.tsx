@@ -21,7 +21,11 @@ class NavBar extends React.Component<INavBarProps, void> {
         const loggedIn =  !auth.isFetching && auth.error === null && !!auth.data.token;
         const loginClick = loggedIn ? this.logout.bind(this) : this.props.openLoginModal;
 
-        let buttons = <FlatButton className="navbarButton" label={`Logout of ${auth.data.username}`} onTouchTap={loginClick}/>;
+        let buttons = <FlatButton
+                            className="navbarButton"
+                            label={`Logout of ${auth.data.username}`}
+                            onTouchTap={loginClick}
+                        />;
 
         if (!loggedIn) {
             buttons = <section>

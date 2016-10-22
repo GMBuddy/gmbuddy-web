@@ -18,32 +18,45 @@ interface ILoginPageProps {
 
 interface ILoginPageState {
     canSubmit: boolean;
+    error: string;
 }
 
 class LoginPage extends React.Component<ILoginPageProps, ILoginPageState> {
     constructor() {
         super();
         this.state = {
-            auth: {},
             canSubmit: false,
+            error: null,
         } as ILoginPageState;
     }
 
     public render() {
-        let loginForm = <LoadingSpinner />;
-        let errorMessage;
+        const errorMessage = () => {
+            if (!this.state.error) {
+                return null;
+            }
 
-        if (this.props.auth.error) {
-            errorMessage = <p style={{color: "red"}}>ERROR: {this.props.auth.error}</p>;
-        }
+            return <p style={{color: "red"}}>ERROR: {this.state.error}</p>;
+        };
 
-        if (!this.props.auth.isFetching) {
-            loginForm = <Formsy.Form
-                            onValidSubmit={this.submitForm.bind(this)}
-                            onValid={this.enableSubmit.bind(this)}
-                            onInvalid={this.disableSubmit.bind(this)}
-                        >
-                            {errorMessage}
+        const spinner = () => {
+            if (!this.props.auth.isFetching) {
+                return null;
+            }
+
+            return <LoadingSpinner />;
+        };
+
+        return (<section className="loginPage">
+                    {spinner()}
+                    <Formsy.Form
+                        onValidSubmit={this.submitForm.bind(this)}
+                        onValid={this.enableSubmit.bind(this)}
+                        onInvalid={this.disableSubmit.bind(this)}
+                        className={this.props.auth.isFetching ? "hidden" : ""}
+                    >
+                        {errorMessage()}
+                        <div className="loginForm">
                             <FormsyText
                                 name="username"
                                 required
@@ -64,11 +77,8 @@ class LoginPage extends React.Component<ILoginPageProps, ILoginPageState> {
                                 disabled={!this.state.canSubmit}
                                 type="submit"
                             />
-                        </Formsy.Form>;
-        }
-
-        return (<section className="loginPage">
-                    {loginForm}
+                        </div>
+                    </Formsy.Form>
                 </section>);
     }
 
@@ -81,9 +91,9 @@ class LoginPage extends React.Component<ILoginPageProps, ILoginPageState> {
     }
 
     private submitForm(data) {
-        console.log("LoginPage: ", data);
-        // Redirect to home on successful login
-        this.props.dispatch(login(data.username, data.password, () => browserHistory.push("/")));
+        this.props.dispatch(login(data.username, data.password,
+                            () => browserHistory.push("/"),
+                            (error) => this.setState({ error } as ILoginPageState)));
         this.disableSubmit();
     }
 }

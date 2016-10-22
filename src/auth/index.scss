@@ -16,7 +16,7 @@
   }
 }
 
-.registerContainer > form, .loginPage > form {
+.registerForm, .loginForm {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

@@ -1,5 +1,5 @@
 import { push } from "react-router-redux";
-import {requestAuth, authSuccess, authLogout } from "./actions";
+import {requestAuth, authSuccess, authLogout, authInvalid} from "./actions";
 import "isomorphic-fetch";
 import { API_URL } from "../../constants";
 
@@ -7,39 +7,51 @@ function storeAuthInLocalStorage(username, token) {
     localStorage.setItem("authData", JSON.stringify({username, token}));
 }
 
-const login = (username, password, successCb = () => {}) => {
+const login = (username, password, successCb = null, failCb = null) => {
     return (dispatch) => {
-        dispatch(requestAuth());
-
         let formData = new FormData();
         formData.append("email", username);
         formData.append("password", password);
 
-        fetch(`${API_URL}/account/login`, {
-            method: "POST",
-            mode: "cors",
-            headers: new Headers({
-                "content-type": "application/x-www-form-urlencoded; charset=utf-8",
-                'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-            }),
-            body: formData
-        }).then(response => {
-            console.log("SUCCESS LOG", response);
-        }).catch(error => {
-            console.error("ERR LOG", error);
-        });
+        dispatch(requestAuth());
 
-        // Fake API request
-        return setTimeout(() => {
-            const token = "c842ca73-8fea-4dbb-bf87-4f843b6aa311";
-            dispatch(authSuccess({ username, token }));
-            storeAuthInLocalStorage(username, token);
-            successCb();
-        }, 500);
+        fetch(`${API_URL}/account/login`, {
+            body: formData,
+            method: "POST",
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return response.json();
+            }
+
+            throw "Invalid username or password.";
+        })
+        .then(data => {
+            const { accessToken } = data;
+
+            if (accessToken) {
+                dispatch(authSuccess({username, token: accessToken}));
+
+                storeAuthInLocalStorage(username, accessToken);
+                if (typeof successCb === "function") {
+                    successCb();
+                }
+            } else {
+                throw "Error loading user token.";
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            dispatch(authInvalid(err));
+
+            if (typeof failCb === "function") {
+                failCb(err);
+            }
+        });
     };
 };
 
-const register = (data, successCb = () => {}) => {
+const register = (data, successCb = null, failCb = null) => {
     const { firstname, lastname, username, password } = data;
 
     return (dispatch) => {
@@ -52,28 +64,38 @@ const register = (data, successCb = () => {}) => {
         formData.append("password", password);
 
         fetch(`${API_URL}/account/register`, {
+            body: formData,
             method: "POST",
-            mode: "cors",
-            headers: new Headers({
-                "content-type": "application/x-www-form-urlencoded; charset=utf-8",
-                'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-            }),
-            body: formData
-        }).then(response => {
-            console.log("SUCCESS REG", response);
-        }).catch(error => {
-            console.error("ERR REG", error);
-        });
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                }
 
-        // Fake API request
-        return setTimeout(() => {
-            const token = "c842ca73-8fea-4dbb-bf87-4f843b6aa311";
+                throw "Error creating user.";
+            })
+            .then(json => {
+                const { accessToken } = json;
 
-            // Login using new user
-            dispatch(authSuccess({ username, token }));
-            storeAuthInLocalStorage(username, token);
-            successCb();
-        }, 500);
+                if (accessToken) {
+                    dispatch(authSuccess({username, token: accessToken}));
+
+                    storeAuthInLocalStorage(username, accessToken);
+                    if (typeof successCb === "function") {
+                        successCb();
+                    }
+                } else {
+                    throw "Error loading user token.";
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                dispatch(authInvalid(err));
+
+                if (typeof failCb === "function") {
+                    failCb(err);
+                }
+            });
     };
 };
 
