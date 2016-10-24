@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Tabs, Tab, Paper } from "material-ui";
     import SwipeableViews from "react-swipeable-views";
-import {ICharacterData } from "character-data/CharacterData";
+import {ICharacterData } from "character-data/dnd35/CharacterData";
 import CharacterSkills from "../components/SkillsPage";
 import CharacterStats from  "../components/StatsPage";
 import CharacterDetails from  "../components/DetailsPage";
@@ -54,24 +54,26 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
                             index={this.state.slideIndex}
                             onChangeIndex={this.setSlideIndex.bind(this)}
                         >
-                        <div className="charOverviewTab">
-                            <div>
-                                <h1><u>Details</u></h1>
+                        <section className="charOverviewTab">
+                            <div className="detailsOverview">
                                 {steps.Details}
+                                <div className="imageDiv">
+                                    <img src="http://www.albinjohnson.com/d&d/resources/graphics/dnd-logo.gif"/>
+                                </div>
                             </div>
-                            <div>
+                            <div className="statsOverview">
                                 <h1><u>Stats</u></h1>
                                 {steps.Stats}
                             </div>
-                            <div>
+                            <div className="skillsOverview">
                                 <h1><u>Skills</u></h1>
                                 {steps.Skills}
                             </div>
-                            <div>
+                            <div className="itemsOverview">
                                 <h1><u>Items</u></h1>
                                 {steps.Items}
                             </div>
-                        </div>
+                        </section>
                         <div className="charDetailsTab">
                             {steps.Details}
                         </div>

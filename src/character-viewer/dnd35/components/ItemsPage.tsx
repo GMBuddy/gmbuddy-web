@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Table, TableHeader, TableRow, TableHeaderColumn,
     TableBody, TableRowColumn } from "material-ui";
-import { ICharacterItems } from "character-data/CharacterData";
+import { ICharacterItems } from "character-data/dnd35/CharacterData";
 
 const ITEM_ATTR = ["Name", "Type", "Damage Die Amount", "Damage Die", "Damage Type", "Weight", "Range", "Two Handed"];
 class ItemsPage extends React.Component<ICharacterItems, any> {

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { AutoComplete } from "material-ui";
 import { FormsyAutoComplete, FormsyText } from "formsy-material-ui/lib";
-import { ICharacterData } from "character-data/CharacterData";
+import { ICharacterData } from "character-data/dnd35/CharacterData";
 
 const CLASSES = [
     "Barbarian",
@@ -28,7 +28,7 @@ const RACES = [
     "Human",
 ];
 
-const DIETIES = [
+const DEITIES = [
     "Baccob",
     "Corellon Larethian",
     "Ehlonna",
@@ -106,12 +106,12 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     required
                 />
                 <FormsyAutoComplete
-                    name="details.diety"
+                    name="details.deity"
                     validations="isExisty"
-                    floatingLabelText="Diety"
-                    dataSource={DIETIES}
+                    floatingLabelText="Deity"
+                    dataSource={DEITIES}
                     filter={AutoComplete.caseInsensitiveFilter}
-                    value={this.props.details.diety}
+                    value={this.props.details.deity}
                     openOnFocus={true}
                 />
             </section>

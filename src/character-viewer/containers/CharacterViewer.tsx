@@ -7,6 +7,24 @@ interface ICharacterViewerState {
     step: number;
 };
 
+const CHAR_DETAILS = {
+                "player": "Stephen",
+                "name": "Steve the Wizard",
+                "class": "Sorcerer",
+                "level": "3",
+                "race": "Human",
+                "alignment": "Chaotic Neutral",
+                "deity": "Kord",
+                "size": "M",
+                "age": "21",
+                "gender": "M",
+                "height": "6\'1\"",
+                "weight": "165",
+                "eyes": "hazel",
+                "hair": "brown",
+                "skin": "tan",
+            };
+
 class CharacterViewer extends React.Component<void, ICharacterViewerState> {
     constructor() {
         super();
@@ -14,10 +32,7 @@ class CharacterViewer extends React.Component<void, ICharacterViewerState> {
     }
     public render() {
         let data = {
-            details : {
-                "name": "Steve the Wizard", "class": "Sorcerer", "level": "3",
-                "race": "Human", "diety": "Kord", "alignment": "Chaotic Neutral",
-            },
+            details : CHAR_DETAILS,
             items: [
                 {
                     "name": "asdf", "type": "Armor", "damageDieAmount": "2",

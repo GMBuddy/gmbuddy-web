@@ -2,7 +2,7 @@ import * as React from "react";
 import { Table, TableHeader, TableBody, TableRow, TableRowColumn, TableHeaderColumn,
     FloatingActionButton, IconButton } from "material-ui";
 import { ContentAdd, ActionDelete, EditorModeEdit } from "material-ui/svg-icons";
-import {ICharacterItems, ICharacterItem} from "character-data/CharacterData";
+import {ICharacterItems, ICharacterItem} from "character-data/dnd35/CharacterData";
 
 import ItemModal from "./CharacterItemModal";
 

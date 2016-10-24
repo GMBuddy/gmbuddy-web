@@ -2,8 +2,16 @@ export interface ICharacterDetails {
     name: string;
     class: string;
     race: string;
-    diety: string;
     alignment: string;
+    deity: string;
+    size: string;
+    age: string;
+    gender: string;
+    height: string;
+    weight: string;
+    eyes: string;
+    hair: string;
+    skin: string;
 }
 
 export interface ICharacterStats {
