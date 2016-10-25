@@ -1,3 +1,5 @@
+@import './styles/detailsOverview';
+@import './styles/statsOverview';
 .dnd35CharViewer{
 	
 	.charViewerInfo{
@@ -6,99 +8,7 @@
 			display: flex;
 			flex-direction: column;
 		    text-align: center;
-   			flex-wrap: wrap;
-
-   			.detailsOverview{
-   				display: flex;
-				flex-direction: column;
-			    text-align: center;
-	   			padding-top: 20px;
-	   			flex-flow: row nowrap;
-
-				.details{
-					display: flex;
-	      			align-self: center;
-				    justify-content: space-around;
-					flex-wrap: wrap;
-					flex-basis: 60%;
-					padding-left: 5px;
-
-					div{
-						flex-basis: 33%;
-						h3{
-							margin: 0;
-							border-bottom: 1px solid black;
-							text-align: center;
-						}
-						p{
-							text-align: left;
-							margin: 0;
-						}
-					}
-
-					.detailDivPlayer{
-						flex-basis: 49%;
-					}
-
-					.detailDivName{
-						flex-basis: 49%;
-					}
-
-					.detailDivClass{
-						flex-basis: 15%;
-					}
-
-					.detailDivLevel{
-						flex-basis: 10%;
-					}
-
-					.detailDivRace{
-						flex-basis: 25%;
-					}
-
-					.detailDivAlignment{
-						flex-basis: 25%;
-					}
-
-					.detailDivDeity{
-						flex-basis: 20%;
-					}
-
-					.detailDivSize{
-						flex-basis: 8%;
-					}
-					.detailDivAge{
-						flex-basis: 8%;
-					}
-					.detailDivGender{
-						flex-basis: 8%;
-					}
-					.detailDivHeight{
-						flex-basis: 8%;
-					}
-					.detailDivWeight{
-						flex-basis: 15%;
-					}
-					.detailDivEyes{
-						flex-basis: 15%;
-					}
-					.detailDivHair{
-						flex-basis: 15%;
-					}
-					.detailDivSkin{
-						flex-basis: 15%;
-					}
-				}
-
-				.imageDiv{
-					padding-right: 3px;
-					flex-basis: 38%;
-					img{
-						height: 100%;
-						width: 100%;
-					}
-				}
-			}
+   			flex-wrap: wrap;	
 		}
 	}
 }

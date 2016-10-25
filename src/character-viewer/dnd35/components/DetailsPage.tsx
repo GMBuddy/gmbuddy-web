@@ -10,8 +10,8 @@ class DetailsPage extends React.Component<ICharacterData, any> {
             const capitalKey = key.charAt(0).toUpperCase() + key.slice(1);
             let className = "detailDiv" + capitalKey;
             return (<div className={className} key={key}>
-                        <h3>{value}</h3>
-                        <p>{capitalKey}</p>
+                        <p>{value}</p>
+                        <p className="detailLabel">{capitalKey}</p>
                     </div>);
         });
         return(

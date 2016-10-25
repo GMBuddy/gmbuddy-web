@@ -1,6 +1,4 @@
 import * as React from "react";
-import { Table, TableHeader, TableRow, TableHeaderColumn,
-    TableBody, TableRowColumn } from "material-ui";
 
 class StatsPage extends React.Component<any, any> {
 
@@ -11,27 +9,40 @@ class StatsPage extends React.Component<any, any> {
             const modifier = Math.floor((this.props.stats[key] - 10) / 2);
             this.props.modifiers[tinyName] = modifier;
             return (
-                <TableRow key={key} hoverable={true}>
-                    <TableRowColumn className="statColumn">{tinyName}</TableRowColumn>
-                    <TableRowColumn className="statScoreColumn">{value}</TableRowColumn>
-                    <TableRowColumn className="statModColumn" name={"stats." + tinyName}>{modifier}</TableRowColumn>
-                </TableRow>);
+                <div className="abilityBox" key={key}>
+                    <div className="abilityNameBox">
+                        <div>
+                            <p className="shortStatName">{tinyName}</p>
+                            <p className="fullStatName">{key}</p>
+                        </div>
+                    </div>
+                    <div className="abilityScoreBox">
+                        <div><p>{value}</p></div>
+                    </div>
+                    <div className="abilityModBox">
+                        <div><p>{modifier}</p></div>
+                    </div>
+                    <div className="abilityTempScore">
+                        <div/>
+                    </div>
+                    <div className="abilityTempMod">
+                        <div/>
+                    </div>
+                </div>);
         });
 
         return(
-            <div>
-                <Table selectable={false} className="statTable">
-                    <TableHeader displaySelectAll={false}>
-                        <TableRow>
-                            <TableHeaderColumn>Ability</TableHeaderColumn>
-                            <TableHeaderColumn>Score</TableHeaderColumn>
-                            <TableHeaderColumn>Modifier</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
-                        {STATS_DOM}
-                    </TableBody>
-                </Table>
+            <div className="stats">
+                <div className="abilityHeaders">
+                    <p className="abilityName">Ability Name</p>
+                    <p>Ability<br/>Score</p>
+                    <p>Ability<br/>Modifier</p>
+                    <p>Temporary<br/>Score</p>
+                    <p>Temporary<br/>Modifier</p>
+                </div>
+                <div className="abilityRows">
+                    {STATS_DOM}
+                </div>
             </div>
         );
     }

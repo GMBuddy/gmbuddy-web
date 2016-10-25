@@ -1,0 +1,167 @@
+.statsOverview{
+	display: flex;
+	flex-direction: column;
+    text-align: center;
+	padding-top: 20px;
+	flex-flow: row nowrap;
+	
+	.stats{
+		display: flex;
+		flex-direction: column;
+		align-self: center;
+		flex-wrap: wrap;
+		flex-basis: 33%;
+		padding-left: 0px;
+		
+		.abilityHeaders{
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			flex-flow: row nowrap;
+			align-items: center; 
+			flex-basis: 33%;
+			p{
+				flex-basis: 20%;
+				font-size: 70%;
+				min-width: 64px;
+				margin: 0px;
+				font-weight: bold;
+				font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+			}
+			.abilityName{
+				flex-basis: 33%;
+			}
+		}
+
+		.abilityRows{
+			flex-basis: 100%;
+			display: flex;
+			flex-direction: row;
+			align-self: center;
+			flex-wrap: wrap;
+			
+			.abilityBox{
+				flex-basis: 100%;
+				display: flex;
+				flex-direction: column;
+			    text-align: center;
+				flex-flow: row nowrap;
+
+				p{
+					font-size: 70%;
+					margin: 2px;
+					font-weight: bold;
+					font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+				}
+
+				.abilityNameBox{
+					flex-basis: 33%;
+					div{
+						display: inline-block;
+						background-color: black;
+						padding: 3px;
+						margin: 1px;
+						min-width: 60px;
+						width: 60%;
+					}
+					p{
+						margin: 0px;
+						color: white;
+						text-align: center;
+					}
+
+					.shortStatName{
+						font-size: 100%;
+						font-weight: bold;
+					}
+
+					.fullStatName{
+						line-height: .1;
+						margin: 0px;
+						padding-bottom: 3px;
+						color: white;
+						font-size: 60%;
+					}
+				}
+
+				.abilityScoreBox{
+					flex-basis: 20%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					
+					div{
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						border: 1px solid black;
+						min-width: 36px;
+						width: 20%;
+						height: 80%;
+						
+						p{
+							vertical-align:middle;
+							align: center;
+						}
+					}
+				}
+				.abilityModBox{
+					flex-basis: 20%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					
+					div{
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						border: 1px solid black;
+						min-width: 36px;
+						width: 20%;
+						height: 80%;
+						
+						p{
+							vertical-align:middle;
+							align: center;
+						}
+					}
+				}
+
+				.abilityTempScore{
+					flex-basis: 20%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					background-color: lightgray;
+					border: 1px solid lightgray;
+					div{
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						background-color: white;
+						min-width: 36px;
+						width: 20%;
+						height: 80%;
+					}
+				}
+				.abilityTempMod{
+					flex-basis: 20%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					background-color: lightgray;
+					border: 1px solid lightgray;
+					div{
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						background-color: white;
+						min-width: 36px;
+						width: 20%;
+						height: 80%;
+					}
+				}
+			}
+		}	
+	}
+}

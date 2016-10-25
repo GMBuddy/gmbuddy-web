@@ -90,7 +90,7 @@ class SkillsPage extends React.Component<any, any> {
             );
         });
         return (
-            <div>
+            <div className="skills">
                 <Table selectable={false} className="skillTable">
                    {SKILLS_HEADER}
                     <TableBody displayRowCheckbox={false}>
