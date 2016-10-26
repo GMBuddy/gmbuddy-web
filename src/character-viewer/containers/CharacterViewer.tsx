@@ -47,10 +47,7 @@ class CharacterViewer extends React.Component<void, ICharacterViewerState> {
             },
         };
         let currentCharacter = <DnD35CharacterViewer
-            details={data.details}
-            stats={data.stats}
-            skills={data.skills}
-            items={data.items}/>;
+            data={data}/>;
 
         return(
             <section>

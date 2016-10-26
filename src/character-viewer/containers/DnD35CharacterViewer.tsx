@@ -2,27 +2,20 @@ import * as React from "react";
 
 import CharacterViewDnD35 from "../dnd35/containers/CharacterView";
 interface IDnD35CharacterViewerProps {
-    details: any;
-    stats: any;
-    skills: any;
-    items: any;
+    data: any;
 }
 
 interface IDnD35CharacterViewerState {}
 
 class DnD35CharacterViewer extends React.Component<IDnD35CharacterViewerProps, IDnD35CharacterViewerState> {
-    constructor() {
-        super();
-    }
-
     public render() {
         return (
             <section className="dnd35CharViewer">
                 <CharacterViewDnD35 gametype="DnD35"
-                    details={this.props.details}
-                    stats={this.props.stats}
-                    skills={this.props.skills}
-                    items={this.props.items}/>
+                    details={this.props.data.details}
+                    stats={this.props.data.stats}
+                    skills={this.props.data.skills}
+                    items={this.props.data.items}/>
             </section>
         );
     }

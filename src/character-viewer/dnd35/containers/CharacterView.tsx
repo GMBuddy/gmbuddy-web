@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Tabs, Tab, Paper } from "material-ui";
-    import SwipeableViews from "react-swipeable-views";
+import SwipeableViews from "react-swipeable-views";
 import {ICharacterData } from "character-data/dnd35/CharacterData";
 import CharacterSkills from "../components/SkillsPage";
 import CharacterStats from  "../components/StatsPage";
@@ -88,7 +88,6 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
                     </SwipeableViews>
                 </Paper>
             </section>
-
         );
     }
     private setSlideIndex(value) {

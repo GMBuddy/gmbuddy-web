@@ -21,6 +21,17 @@ const SKILLS = [
         { "name": "Hide", "ability": "DEX", "untrained": true, "acp": true},
         { "name": "Intimidate", "ability": "CHA", "untrained": true },
         { "name": "Jump", "ability": "STR", "untrained": true},
+        { "name": "Knowledge (arcana)", "ability": "INT"},
+        { "name": "Knowledge (dungeoneering)", "ability": "INT"},
+        { "name": "Knowledge (engineering)", "ability": "INT"},
+        { "name": "Knowledge (geography)", "ability": "INT"},
+        { "name": "Knowledge (history)", "ability": "INT"},
+        { "name": "Knowledge (local)", "ability": "INT"},
+        { "name": "Knowledge (nature)", "ability": "INT"},
+        { "name": "Knowledge (nobility)", "ability": "INT"},
+        { "name": "Knowledge (religion)", "ability": "INT"},
+        { "name": "Knowledge (planes)", "ability": "INT"},
+        { "name": "Knowledge (psionics)", "ability": "INT"},
         { "name": "Listen", "ability": "WIS", "untrained": true },
         { "name": "Move Silently", "ability": "DEX", "untrained": true, "acp": true},
         { "name": "Open Lock", "ability": "DEX"},
@@ -35,17 +46,6 @@ const SKILLS = [
         { "name": "Tumble", "ability": "DEX"},
         { "name": "Use Magic Device", "ability": "CHA"},
         { "name": "Use Rope", "ability": "DEX", "untrained": true},
-        { "name": "Knowledge (arcana)", "ability": "INT"},
-        { "name": "Knowledge (dungeoneering)", "ability": "INT"},
-        { "name": "Knowledge (engineering)", "ability": "INT"},
-        { "name": "Knowledge (geography)", "ability": "INT"},
-        { "name": "Knowledge (history)", "ability": "INT"},
-        { "name": "Knowledge (local)", "ability": "INT"},
-        { "name": "Knowledge (nature)", "ability": "INT"},
-        { "name": "Knowledge (nobility)", "ability": "INT"},
-        { "name": "Knowledge (religion)", "ability": "INT"},
-        { "name": "Knowledge (planes)", "ability": "INT"},
-        { "name": "Knowledge (psionics)", "ability": "INT"},
     ];
 
 const SKILLS_HEADER = <TableHeader displaySelectAll={false}>
@@ -60,15 +60,6 @@ const SKILLS_HEADER = <TableHeader displaySelectAll={false}>
 
 class SkillsPage extends React.Component<any, any> {
     public render() {
-        SKILLS.sort((n1, n2) => {
-            if (n1.name > n2.name) {
-                return 1;
-            }
-            if (n1.name < n2.name) {
-                return -1;
-            }
-            return 0;
-        });
         const SKILLS_DOM = SKILLS.map((skill) => {
             const skillName = skill.name;
             const ability = skill.ability;

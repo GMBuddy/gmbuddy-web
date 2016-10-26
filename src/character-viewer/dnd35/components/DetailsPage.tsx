@@ -4,7 +4,7 @@ import {ICharacterData } from "character-data/dnd35/CharacterData";
 
 class DetailsPage extends React.Component<ICharacterData, any> {
     public render() {
-        let DETAILS_DOM = Object.keys(this.props.details).map((key) => {
+        let details = Object.keys(this.props.details).map((key) => {
             let value = this.props.details[key];
             value = value.charAt(0).toUpperCase() + value.slice(1);
             const capitalKey = key.charAt(0).toUpperCase() + key.slice(1);
@@ -16,7 +16,7 @@ class DetailsPage extends React.Component<ICharacterData, any> {
         });
         return(
             <div className="details">
-                {DETAILS_DOM}
+                {details}
             </div>
         );
     }

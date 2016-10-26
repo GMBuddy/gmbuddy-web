@@ -1,98 +1,98 @@
-.detailsOverview{
-	display: flex;
-	flex-direction: column;
+.detailsOverview {
+    display: flex;
+    flex-direction: column;
     text-align: center;
-	padding-top: 20px;
-	flex-flow: row nowrap;
+    padding-top: 20px;
+    flex-flow: row nowrap;
 
-	.details{
-		display: flex;
-		align-self: center;
-	    justify-content: space-around;
-		flex-wrap: wrap;
-		flex-basis: 60%;
-		padding-left: 5px;
+    .details {
+        display: flex;
+        align-self: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-basis: 65%;
+        padding-left: 5px;
 
-		div{
-			flex-basis: 33%;
-			padding-top: 12px;
-			p{
-				margin: 0;
-				border-bottom: 1px solid black;
-				text-align: center;
-				font-size: 100%;
-				font-weight: bold;
-			}
-		}
-		.detailLabel{
-			border-bottom: 0px;
-			font-weight: normal;
-			font-size: 85%;
-			text-align: left;
-		}
-		.detailDivPlayer{
-			flex-basis: 49%;
-		}
+        div {
+            flex-basis: 33%;
+            padding-top: 12px;
+            p{
+                margin: 0;
+                border-bottom: 1px solid black;
+                text-align: center;
+                font-size: 100%;
+                font-weight: bold;
+            }
+        }
+        .detailLabel {
+            border-bottom: 0px;
+            font-weight: normal;
+            font-size: 85%;
+            text-align: left;
+        }
+        .detailDivPlayer {
+            flex-basis: 49%;
+        }
 
-		.detailDivName{
-			flex-basis: 49%;
-		}
+        .detailDivName {
+            flex-basis: 49%;
+        }
 
-		.detailDivClass{
-			flex-basis: 15%;
-		}
+        .detailDivClass {
+            flex-basis: 15%;
+        }
 
-		.detailDivLevel{
-			flex-basis: 10%;
-		}
+        .detailDivLevel {
+            flex-basis: 10%;
+        }
 
-		.detailDivRace{
-			flex-basis: 25%;
-		}
+        .detailDivRace {
+            flex-basis: 25%;
+        }
 
-		.detailDivAlignment{
-			flex-basis: 25%;
-			min-width: 115px;
-		}
+        .detailDivAlignment {
+            flex-basis: 25%;
+            min-width: 115px;
+        }
 
-		.detailDivDeity{
-			flex-basis: 20%;
-		}
+        .detailDivDeity {
+            flex-basis: 20%;
+        }
 
-		.detailDivSize{
-			flex-basis: 8%;
-		}
-		.detailDivAge{
-			flex-basis: 8%;
-		}
-		.detailDivGender{
-			flex-basis: 8%;
-		}
-		.detailDivHeight{
-			flex-basis: 8%;
-		}
-		.detailDivWeight{
-			flex-basis: 15%;
-		}
-		.detailDivEyes{
-			flex-basis: 15%;
-		}
-		.detailDivHair{
-			flex-basis: 15%;
-		}
-		.detailDivSkin{
-			flex-basis: 15%;
-		}
-	}
+        .detailDivSize {
+            flex-basis: 8%;
+        }
+        .detailDivAge {
+            flex-basis: 8%;
+        }
+        .detailDivGender {
+            flex-basis: 8%;
+        }
+        .detailDivHeight {
+            flex-basis: 8%;
+        }
+        .detailDivWeight {
+            flex-basis: 15%;
+        }
+        .detailDivEyes {
+            flex-basis: 15%;
+        }
+        .detailDivHair {
+            flex-basis: 15%;
+        }
+        .detailDivSkin {
+            flex-basis: 15%;
+        }
+    }
 
-	.imageDiv{
-		padding-right: 3px;
-		flex-basis: 38%;
-		img{
-			max-width: 100%;
-			min-height: 80%;
-			height: auto;
-			width: 100%;
-		}
-	}
+    .imageDiv {
+        padding-right: 3px;
+        flex-basis: 35%;
+        img {
+            max-width: 100%;
+            min-height: 80%;
+            height: auto;
+            width: 100%;
+        }
+    }
 }
