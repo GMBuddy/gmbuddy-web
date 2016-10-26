@@ -10,9 +10,6 @@ import {browserHistory} from "react-router";
 
 interface ILoginPageProps {
     dispatch: any;
-    open: boolean;
-    closeModal: () => any;
-    login: (username: string, password: string) => any;
     auth: any;
 }
 
@@ -93,7 +90,8 @@ class LoginPage extends React.Component<ILoginPageProps, ILoginPageState> {
     private submitForm(data) {
         this.props.dispatch(login(data.username, data.password,
                             () => browserHistory.push("/"),
-                            (error) => this.setState({ error } as ILoginPageState)));
+                            (error) => this.setState({ error } as ILoginPageState))
+        );
         this.disableSubmit();
     }
 }

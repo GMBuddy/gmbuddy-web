@@ -1,3 +1,3 @@
-export const CREATE_CAMPAIGN_REQUEST = "campaign/CREATE";
-export const CREATE_CAMPAIGN_SUCCESS = "campaign/CREATE_SUCCESS";
-export const CREATE_CAMPAIGN_INVALID = "campaign/CREATE_INVALID";
+export const FETCH_CAMPAIGN_REQUEST = "campaign/FETCH";
+export const FETCH_CAMPAIGN_SUCCESS = "campaign/FETCH_SUCCESS";
+export const FETCH_CAMPAIGN_INVALID = "campaign/FETCH_INVALID";

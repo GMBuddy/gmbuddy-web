@@ -1,7 +1,7 @@
 import { push } from "react-router-redux";
 import {requestAuth, authSuccess, authLogout, authInvalid} from "./actions";
 import "isomorphic-fetch";
-import { API_URL } from "../../constants";
+import { AUTH_API_URL } from "../../constants";
 
 function storeAuthInLocalStorage(username, token) {
     localStorage.setItem("authData", JSON.stringify({username, token}));
@@ -15,7 +15,7 @@ const login = (username, password, successCb = null, failCb = null) => {
 
         dispatch(requestAuth());
 
-        fetch(`${API_URL}/account/login`, {
+        fetch(`${AUTH_API_URL}/account/login`, {
             body: formData,
             method: "POST",
         })
@@ -42,6 +42,11 @@ const login = (username, password, successCb = null, failCb = null) => {
         })
         .catch((err) => {
             console.error(err);
+
+            if (typeof err !== "string") {
+                err = "Error connecting to server.";
+            }
+
             dispatch(authInvalid(err));
 
             if (typeof failCb === "function") {
@@ -63,7 +68,7 @@ const register = (data, successCb = null, failCb = null) => {
         formData.append("email", username);
         formData.append("password", password);
 
-        fetch(`${API_URL}/account/register`, {
+        fetch(`${AUTH_API_URL}/account/register`, {
             body: formData,
             method: "POST",
         })
@@ -90,6 +95,11 @@ const register = (data, successCb = null, failCb = null) => {
             })
             .catch((err) => {
                 console.error(err);
+
+                if (typeof err !== "string") {
+                    err = "Error connecting to server.";
+                }
+
                 dispatch(authInvalid(err));
 
                 if (typeof failCb === "function") {

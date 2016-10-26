@@ -51,36 +51,43 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
             />,
         ];
 
-        let loginForm = <LoadingSpinner />;
+        const spinner = () => {
+            if (!this.props.auth.isFetching) {
+                return null;
+            }
 
-        if (!this.props.auth.isFetching) {
-            loginForm = <Formsy.Form
-                        onValidSubmit={this.submitForm.bind(this)}
-                        onValid={this.enableSubmit.bind(this)}
-                        onInvalid={this.disableSubmit.bind(this)}
-                        ref={ form => this.formsyForm = form }
-                    >
-                        <Login error={this.state.error} />
-                        <section className="loginFormButtons">{actions}</section>
-                    </Formsy.Form>;
-        }
+            return <LoadingSpinner />;
+        };
 
         return (
                 <Dialog
                     className="loginModal"
                     title="Login Dialog"
                     modal={true}
-                    open={this.props.open}>
-                    {loginForm}
+                    open={this.props.open}
+                >
+                    {spinner()}
+                    <Formsy.Form
+                        onValidSubmit={this.submitForm.bind(this)}
+                        onValid={this.enableSubmit.bind(this)}
+                        onInvalid={this.disableSubmit.bind(this)}
+                        ref={ form => this.formsyForm = form }
+                        className={this.props.auth.isFetching ? "hidden" : ""}
+                    >
+                        <Login error={this.state.error} />
+                        <section className="loginFormButtons">{actions}</section>
+                    </Formsy.Form>;
                 </Dialog>
         );
     }
 
+    /* tslint:disable */
     private componentWillUpdate(nextProps) {
         if (nextProps.open && nextProps.auth.data && nextProps.auth.data.token) {
             nextProps.closeModal();
         }
     }
+    /* tslint: enable */
 
     private enableSubmit() {
         this.setState({ canSubmit: true } as ILoginModalState);

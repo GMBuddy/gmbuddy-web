@@ -1,5 +1,6 @@
 import { handleActions } from "redux-actions";
 import { LOGIN, LOGIN_INVALID, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
+import { merge } from "lodash";
 
 interface IAuthData {
     username: string;
@@ -22,7 +23,7 @@ const initialState: IAuthState = {
 };
 
 const setState = (state: IAuthState, newState: IAuthState) => {
-    return Object.assign({}, state, newState);
+    return merge({}, state, newState);
 };
 
 export default handleActions({

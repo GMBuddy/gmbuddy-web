@@ -10,9 +10,6 @@ import { browserHistory } from "react-router";
 
 interface IRegisterProps {
     dispatch: any;
-    open: boolean;
-    closeModal: () => any;
-    login: (username: string, password: string) => any;
     auth: any;
 }
 
@@ -80,7 +77,6 @@ class Register extends React.Component<IRegisterProps, IRegisterState> {
                         <FormsyText
                             name="password"
                             type="password"
-                            required
                             hintText="Enter your password."
                             floatingLabelText="Password"
                         />

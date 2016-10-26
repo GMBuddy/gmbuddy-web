@@ -1,21 +1,21 @@
 import { createAction } from "redux-actions";
-import { CREATE_CAMPAIGN_REQUEST, CREATE_CAMPAIGN_SUCCESS, CREATE_CAMPAIGN_INVALID } from "./actionTypes";
+import { FETCH_CAMPAIGN_REQUEST, FETCH_CAMPAIGN_SUCCESS, FETCH_CAMPAIGN_INVALID } from "./actionTypes";
 
-const requestCreateCampaign = createAction(
-    CREATE_CAMPAIGN_REQUEST,
+const requestFetchCampaign = createAction(
+    FETCH_CAMPAIGN_REQUEST,
 );
 
-const createCampaignInvalid = createAction(
-    CREATE_CAMPAIGN_INVALID,
+const fetchCampaignInvalid = createAction(
+    FETCH_CAMPAIGN_INVALID,
     (message: string) => message,
 );
 
-const createCampaignSuccess = createAction(
-    CREATE_CAMPAIGN_SUCCESS,
+const fetchCampaignSuccess = createAction(
+    FETCH_CAMPAIGN_SUCCESS,
 );
 
 export {
-    requestCreateCampaign,
-    createCampaignInvalid,
-    createCampaignSuccess,
+    requestFetchCampaign,
+    fetchCampaignInvalid,
+    fetchCampaignSuccess,
 };

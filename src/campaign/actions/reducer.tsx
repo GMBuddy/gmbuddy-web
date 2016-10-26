@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { CREATE_CAMPAIGN_SUCCESS } from "./actionTypes";
+import { FETCH_CAMPAIGN_SUCCESS } from "./actionTypes";
 import { merge } from "lodash";
 
 interface ICampaign {
@@ -9,7 +9,7 @@ interface ICampaign {
 }
 
 export default handleActions({
-    [CREATE_CAMPAIGN_SUCCESS]: (state: ICampaign[], action: any) => {
+    [FETCH_CAMPAIGN_SUCCESS]: (state: ICampaign[], action: any) => {
         const { campaignId, title, gameType } = action.data;
         let newState = merge({}, state);
 

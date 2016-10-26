@@ -1,59 +1,56 @@
-import { CREATE_CAMPAIGN_SUCCESS } from "./actionTypes";
-import { ICampaignData } from "../containers/CampaignCreator";
-import {requestCreateCampaign, createCampaignInvalid} from "./actions";
+import { FETCH_CAMPAIGN_SUCCESS } from "./actionTypes";
+import {requestFetchCampaign, fetchCampaignInvalid} from "./actions";
 import { API_URL } from "../../constants";
 import { store } from "../../main";
 
-const createCampaign = (campaignData: ICampaignData, successCb = null, failCb = null) => {
+const fetchCampaign = (campaignId: string, successCb = null, failCb = null) => {
     return (dispatch) => {
-        const { gameType, title } = campaignData;
-
-        dispatch(requestCreateCampaign());
+        dispatch(requestFetchCampaign());
 
         let formData = new FormData();
-        formData.append("name", title);
+        formData.append("campaignId", campaignId);
 
-        fetch(`${API_URL}/${gameType}/campaigns`, {
+        fetch(`${API_URL}/campaign`, {
             body: formData,
             headers: {
                 Authorization: `Bearer ${store.getState().auth.data.token}`,
             },
-            method: "POST",
+            method: "GET",
         })
-            .then(response => {
-                if (response.status === 201) {
-                    return response.json();
+        .then(response => {
+            if (response.status === 201) {
+                return response.json();
+            }
+
+            throw "Error fetching campaign.";
+        })
+        .then(json => {
+            const { gameType, title } = json;
+
+            if (campaignId) {
+                dispatch({ data: { campaignId, gameType, title }, type: FETCH_CAMPAIGN_SUCCESS });
+
+                if (typeof successCb === "function") {
+                    successCb();
                 }
+            } else {
+                throw "Error fetching campaign data.";
+            }
+        })
+        .catch((err) => {
+            console.error(err);
 
-                throw "Error creating campaign.";
-            })
-            .then(json => {
-                const { campaignId } = json;
+            if (typeof err !== "string") {
+                err = "Error connecting to server.";
+            }
 
-                if (campaignId) {
-                    dispatch({ data: { campaignId, gameType, title }, type: CREATE_CAMPAIGN_SUCCESS });
+            dispatch(fetchCampaignInvalid(err));
 
-                    if (typeof successCb === "function") {
-                        successCb();
-                    }
-                } else {
-                    throw "Error loading campaign data.";
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-
-                if (typeof err !== "string") {
-                    err = "Error connecting to server.";
-                }
-
-                dispatch(createCampaignInvalid(err));
-
-                if (typeof failCb === "function") {
-                    failCb(err);
-                }
-            });
+            if (typeof failCb === "function") {
+                failCb(err);
+            }
+        });
     };
 };
 
-export { createCampaign };
+export { fetchCampaign };

@@ -3,7 +3,6 @@ import { CREATE_CAMPAIGN_REQUEST, CREATE_CAMPAIGN_SUCCESS, CREATE_CAMPAIGN_INVAL
 
 const requestCreateCampaign = createAction(
     CREATE_CAMPAIGN_REQUEST,
-    () => {},
 );
 
 const createCampaignInvalid = createAction(
@@ -13,7 +12,6 @@ const createCampaignInvalid = createAction(
 
 const createCampaignSuccess = createAction(
     CREATE_CAMPAIGN_SUCCESS,
-    () => {},
 );
 
 export {

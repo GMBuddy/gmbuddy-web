@@ -13,6 +13,7 @@ import NotFound from "../../layout/components/NotFound";
 import { createCampaign } from "../actions/thunks";
 import { IDispatch } from "~redux-thunk~redux";
 import { connect } from "react-redux";
+import CampaignInvite from "../components/CampaignInvite";
 
 export interface ICampaignData {
     gameType: string;
@@ -28,12 +29,14 @@ interface ICampaignCreatorState {
     canPrevious: boolean;
     canSubmit: boolean;
     currentStep: number;
+    error: string;
 }
 
 class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCreatorState> {
     private  steps = [
             "Design Campaign",
             "Review Campaign",
+            "Invite Friends",
         ];
 
     constructor() {
@@ -58,7 +61,7 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
                 disabled={!this.state.canPrevious}>Previous</RaisedButton>);
         }
 
-        if (this.state.currentStep < this.steps.length - 1) {
+        if (this.state.currentStep === 0) {
             buttons.push(<RaisedButton
                             key="next"
                             className="campaignCreatorNext"
@@ -70,7 +73,10 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
                             className="campaignCreatorSubmit"
                             type="submit"
                             primary={true}
-                            disabled={!this.state.canSubmit}>Done</RaisedButton>);
+                            disabled={!this.state.canSubmit}
+                >
+                    {(this.state.currentStep === 2 ? "Invite" : "Done")}
+                </RaisedButton>);
         }
 
         switch (this.state.currentStep) {
@@ -80,10 +86,21 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
             case 1:
                 campaignStep = <CampaignReview campaignData={this.state.campaignData}/>;
                 break;
+            case 2:
+                campaignStep = <CampaignInvite />;
+                break;
             default:
                 campaignStep = <NotFound/>;
                 break;
         }
+
+        const errorMessage = () => {
+            if (!this.state.error) {
+                return null;
+            }
+
+            return <p style={{color: "red"}}>ERROR: {this.state.error}</p>;
+        };
 
         return (
             <div id="campaign-creator">
@@ -97,6 +114,7 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
                         onValid={this.enableSubmit.bind(this)}
                         onInvalid={this.disableSubmit.bind(this)}
                     >
+                        {errorMessage()}
                         <section className="formContent">{campaignStep}</section>
                         <Divider/>
                         <section className="buttons">{buttons}</section>
@@ -123,15 +141,29 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
     }
 
     private submitForm(data) {
-        if (this.state.currentStep < this.steps.length - 1) {
-            if (this.state.currentStep === 0) {
+        this.setState({ error: null } as ICampaignCreatorState);
+
+        switch (this.state.currentStep) {
+            case 0:
                 this.setState({ campaignData: data } as ICampaignCreatorState);
-            }
-            this.nextStep();
-        } else {
-            this.props.dispatch(createCampaign(this.state.campaignData));
-            this.setState({ canPrevious: false } as ICampaignCreatorState);
-            this.disableSubmit();
+                this.nextStep();
+                break;
+            case 1:
+                this.setState({ canPrevious: false } as ICampaignCreatorState);
+                this.disableSubmit();
+
+                this.props.dispatch(createCampaign(this.state.campaignData,
+                    () => this.nextStep(),
+                    (error) => {
+                        this.setState({ error } as ICampaignCreatorState);
+                        this.enableSubmit();
+                    })
+                );
+                break;
+            case 2:
+                // And here is where I'd invite my friends... IF I HAD ANY!
+                break;
+            default: break;
         }
     }
 }
