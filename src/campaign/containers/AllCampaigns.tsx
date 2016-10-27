@@ -14,7 +14,7 @@ interface ICampaignState {
     title: string;
 }
 
-class Campaign extends React.Component<ICampaignProps, ICampaignState> {
+class AllCampaigns extends React.Component<ICampaignProps, ICampaignState> {
     constructor() {
         super();
         this.state = { isFetching: true, gameType: null, title: null };
@@ -44,4 +44,4 @@ class Campaign extends React.Component<ICampaignProps, ICampaignState> {
     }
 }
 
-export default Campaign;
+export default AllCampaigns;

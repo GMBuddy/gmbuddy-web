@@ -1,6 +1,6 @@
 import LoginPage from "./containers/LoginPage";
 import Register from "./containers/register";
-import {authLoggedOut} from "./authMethods";
+import { authLoggedOut } from "./authMethods";
 
 export default {
     childRoutes: [

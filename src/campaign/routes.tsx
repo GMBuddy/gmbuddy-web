@@ -1,7 +1,8 @@
-import Campaign from "./containers/Campaign";
+import CampaignView from "./containers/CampaignView";
 import { simpleAuth } from "../auth/authMethods";
 
 export default {
-    component: Campaign,
-    path: "/campaign/:campaignId",
+    component: CampaignView,
+    path: "/:gameType/campaign/:campaignId",
+    onEnter: simpleAuth,
 };
