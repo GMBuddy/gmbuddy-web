@@ -34,14 +34,12 @@ class Campaign extends React.Component<ICampaignProps, ICampaignState> {
 
         if (props.campaignId && props.gameType && !props.campaign) {
             finalState.isFetching = true;
-            this.loadCampaignData(props.gameType, props.campaignId);
         }
 
         this.state = finalState;
     }
 
     public render() {
-
         const spinner = () => {
             if (!this.state.isFetching) {
                 return null;
@@ -68,6 +66,10 @@ class Campaign extends React.Component<ICampaignProps, ICampaignState> {
                 {campaign()}
             </div>
         );
+    }
+
+    private componentDidMount() {
+        this.loadCampaignData(this.props.gameType, this.props.campaignId);
     }
 
     private loadCampaignData(gameType, campaignId) {
