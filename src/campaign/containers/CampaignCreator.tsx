@@ -1,23 +1,23 @@
 import * as React from "react";
 
-import CampaignStepper from "../components/CampaignStepper";
+import CampaignStepper from "../component/creator/CampaignStepper";
 
-import CampaignDesigner from "../components/CampaignDesigner";
-import CampaignReview from "../components/CampaignReview";
+import CampaignDesigner from "../component/creator/CampaignDesigner";
+import CampaignReview from "../component/creator/CampaignReview";
 
 import { RaisedButton, Paper, Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 
 import NotFound from "../../layout/components/NotFound";
 
-import { createCampaign } from "../actions/thunks";
+import { createCampaign } from "../actions/creator/thunks";
 import { IDispatch } from "~redux-thunk~redux";
 import { connect } from "react-redux";
-import CampaignInvite from "../components/CampaignInvite";
+import CampaignInvite from "../component/creator/CampaignInvite";
 
 export interface ICampaignData {
     gameType: string;
-    title: string;
+    name: string;
 }
 
 interface ICampaignCreatorProps {
@@ -155,7 +155,7 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
                 this.props.dispatch(createCampaign(this.state.campaignData,
                     () => this.nextStep(),
                     (error) => {
-                        this.setState({ error } as ICampaignCreatorState);
+                        this.setState({ canPrevious: true, error } as ICampaignCreatorState);
                         this.enableSubmit();
                     })
                 );

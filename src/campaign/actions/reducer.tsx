@@ -1,21 +1,29 @@
 import { handleActions } from "redux-actions";
-import { FETCH_CAMPAIGN_SUCCESS } from "./actionTypes";
+import { FETCH_CAMPAIGN_SUCCESS, FETCH_CAMPAIGNS_SUCCESS } from "./fetch/actionTypes";
+import { CREATE_CAMPAIGN_SUCCESS } from "./creator/actionTypes";
 import { merge } from "lodash";
-
-interface ICampaign {
-    campaignId: string;
-    gameType: string;
-    gmUserId: string;
-    title: string;
-}
+import { normalize }  from "normalizr";
+import { campaign, arrayOfCampaigns } from "./models";
 
 export default handleActions({
-    [FETCH_CAMPAIGN_SUCCESS]: (state: ICampaign[], action: any) => {
-        const { campaignId, title, gameType, gmUserId } = action.data;
-        let newState = merge({}, state);
+    /* FETCH */
+    [FETCH_CAMPAIGN_SUCCESS]: (state, action: any) => {
+        const { campaignId, name, gameType, gmUserId } = action.payload;
+        const norm = normalize({ campaignId, name, gameType, gmUserId }, campaign);
 
-        newState[campaignId] = {campaignId, title, gameType, gmUserId};
+        return merge({}, state, norm.entities.campaign);
+    },
+    [FETCH_CAMPAIGNS_SUCCESS]: (state, action: any) => {
+        const campaigns = action.payload;
+        const norm = normalize(campaigns, arrayOfCampaigns);
 
-        return newState;
+        return merge({}, state, norm.entities.campaign);
+    },
+
+    /* CREATE */
+    [CREATE_CAMPAIGN_SUCCESS]: (state, action: any) => {
+        const norm = normalize(action.data, arrayOfCampaigns);
+
+        return merge({}, state, norm.entities);
     },
 }, {});

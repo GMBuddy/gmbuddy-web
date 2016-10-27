@@ -1,8 +1,24 @@
+import CampaignsView from "./containers/CampaignsView";
 import CampaignView from "./containers/CampaignView";
+import CampaignCreator from "./containers/CampaignCreator";
 import { simpleAuth } from "../auth/authMethods";
 
 export default {
-    component: CampaignView,
-    path: "/:gameType/campaign/:campaignId",
-    onEnter: simpleAuth,
+    childRoutes: [
+        {
+            component: CampaignView,
+            onEnter: simpleAuth,
+            path: "/:gameType/campaign/:campaignId",
+        },
+        {
+            component: CampaignsView,
+            onEnter: simpleAuth,
+            path: "/:gameType/campaigns",
+        },
+        {
+            component: CampaignCreator,
+            onEnter: simpleAuth,
+            path: "/campaign/create",
+        },
+    ],
 };

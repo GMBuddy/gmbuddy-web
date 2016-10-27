@@ -1,5 +1,4 @@
-import { Schema } from "normalizr";
+import { Schema, arrayOf } from "normalizr";
 
-const campaign = new Schema("campaign", {idAttribute: "campaignId"});
-
-export default campaign;
+export const campaign = new Schema("campaign", {idAttribute: "campaignId"});
+export const arrayOfCampaigns = arrayOf(campaign);

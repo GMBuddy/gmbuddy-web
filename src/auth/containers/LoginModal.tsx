@@ -76,7 +76,7 @@ class LoginModal extends React.Component<ILoginModalProps, ILoginModalState> {
                     >
                         <Login error={this.state.error} />
                         <section className="loginFormButtons">{actions}</section>
-                    </Formsy.Form>;
+                    </Formsy.Form>
                 </Dialog>
         );
     }

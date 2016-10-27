@@ -1,6 +1,5 @@
 import * as React from "react";
 import { RaisedButton, Paper } from "material-ui";
-import {Link} from "react-router";
 
 class Home extends React.Component<any, any> {
     public render() {
@@ -16,7 +15,6 @@ class Home extends React.Component<any, any> {
                             <RaisedButton
                                 label="Start"
                                 primary={true}/>
-                            <Link to="/dnd35/campaign/1bc4545e-3f8b-4d1d-b136-8b7ddc6cbe66">Test Campaign</Link>
                         </Paper>
                         <span/>
                     </div>

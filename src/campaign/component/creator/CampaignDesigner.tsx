@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormsySelect, FormsyText } from "formsy-material-ui/lib";
 import { MenuItem, Divider } from "material-ui";
-import { ICampaignData } from "../containers/CampaignCreator";
+import { ICampaignData } from "../../containers/CampaignCreator";
 
 interface ICampaignDesignerProps {
     campaignData: ICampaignData;
@@ -9,15 +9,15 @@ interface ICampaignDesignerProps {
 
 class CampaignDesigner extends React.Component<ICampaignDesignerProps, any> {
     public render() {
-        const { title, gameType } = this.props.campaignData;
+        const { name, gameType } = this.props.campaignData;
 
         return (
             <section className="campaignDesigner">
                 <FormsyText
-                    name="title"
-                    floatingLabelText="Campaign Title"
+                    name="name"
+                    floatingLabelText="Campaign Name"
                     required
-                    value={title}
+                    value={name}
                 />
                 <FormsySelect
                     required

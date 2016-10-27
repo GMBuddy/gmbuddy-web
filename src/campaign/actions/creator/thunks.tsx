@@ -1,17 +1,17 @@
 import { CREATE_CAMPAIGN_SUCCESS } from "./actionTypes";
-import { ICampaignData } from "../containers/CampaignCreator";
+import { ICampaignData } from "../../containers/CampaignCreator";
 import {requestCreateCampaign, createCampaignInvalid} from "./actions";
-import { API_URL } from "../../constants";
-import { store } from "../../main";
+import { API_URL } from "../../../constants";
+import { store } from "../../../main";
 
 const createCampaign = (campaignData: ICampaignData, successCb = null, failCb = null) => {
     return (dispatch) => {
-        const { gameType, title } = campaignData;
+        const { gameType, name } = campaignData;
 
         dispatch(requestCreateCampaign());
 
         let formData = new FormData();
-        formData.append("name", title);
+        formData.append("name", name);
 
         fetch(`${API_URL}/${gameType}/campaigns`, {
             body: formData,
@@ -31,7 +31,7 @@ const createCampaign = (campaignData: ICampaignData, successCb = null, failCb = 
                 const { campaignId } = json;
 
                 if (campaignId) {
-                    dispatch({ data: { campaignId, gameType, title }, type: CREATE_CAMPAIGN_SUCCESS });
+                    dispatch({ data: { campaignId, gameType, name }, type: CREATE_CAMPAIGN_SUCCESS });
 
                     if (typeof successCb === "function") {
                         successCb();

@@ -1,5 +1,5 @@
 import * as React from "react";
-import Campaign from "../component/Campaign";
+import FetchCampaign from "../component/fetch/FetchCampaign";
 
 interface ICampaignProps {
     params: any;
@@ -9,7 +9,7 @@ class CampaignView extends React.Component<ICampaignProps, void> {
     public render() {
         const { campaignId, gameType } = this.props.params;
 
-        return <Campaign campaignId={campaignId} gameType={gameType}/>;
+        return <FetchCampaign campaignId={campaignId} gameType={gameType}/>;
     }
 
 }
