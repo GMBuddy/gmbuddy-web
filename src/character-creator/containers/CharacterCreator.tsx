@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import ModuleSelector from "../components/ModuleSelector";
 
 import { Paper } from "material-ui";

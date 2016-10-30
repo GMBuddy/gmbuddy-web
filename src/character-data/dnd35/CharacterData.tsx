@@ -2,8 +2,16 @@ export interface ICharacterDetails {
     name: string;
     class: string;
     race: string;
-    diety: string;
     alignment: string;
+    deity: string;
+    size: string;
+    age: string;
+    gender: string;
+    height: string;
+    weight: string;
+    eyes: string;
+    hair: string;
+    skin: string;
 }
 
 export interface ICharacterStats {
@@ -21,6 +29,9 @@ export interface ICharacterItem {
     range: number;
 }
 
+export interface ICharacterSkills{
+    skills: Object;
+}
 export interface ICharacterItems {
     items: ICharacterItem[];
 }
@@ -29,4 +40,5 @@ export interface ICharacterData {
     details: ICharacterDetails;
     stats: ICharacterStats;
     items: ICharacterItems;
+    skills: ICharacterSkills;
 }

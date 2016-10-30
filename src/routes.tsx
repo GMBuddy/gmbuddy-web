@@ -3,6 +3,7 @@ import HomeComponent from "./home/containers/Home";
 import About from "./about/routes";
 import Campaign from "./campaign/routes";
 import CharacterCreator from "./character-creator/routes";
+import CharacterViewer from "./character-viewer/routes";
 import Auth from "./auth/routes";
 import NotFound from "./layout/routes";
 
@@ -12,6 +13,7 @@ export default {
         Auth,
         Campaign,
         CharacterCreator,
+        CharacterViewer,
         NotFound,
     ],
     component: MasterLayout,

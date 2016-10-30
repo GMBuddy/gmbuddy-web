@@ -22,8 +22,8 @@ export default handleActions({
 
     /* CREATE */
     [CREATE_CAMPAIGN_SUCCESS]: (state, action: any) => {
-        const norm = normalize(action.data, arrayOfCampaigns);
+        const norm = normalize(action.data, campaign);
 
-        return merge({}, state, norm.entities);
+        return merge({}, state, norm.entities.campaign);
     },
 }, {});
