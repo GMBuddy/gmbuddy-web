@@ -2,7 +2,8 @@ import * as React from "react";
 import { AutoComplete, Dialog, FlatButton } from "material-ui";
 
 import * as Formsy from "formsy-react";
-import { ICharacterItem } from "../CharacterData";
+import {ICharacterItem } from "character-data/dnd35/CharacterData";
+
 import { FormsyText, FormsyToggle, FormsyAutoComplete } from "formsy-material-ui/lib";
 
 const ITEM_TYPES = [

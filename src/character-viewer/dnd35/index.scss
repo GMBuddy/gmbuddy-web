@@ -1,0 +1,14 @@
+@import './styles/detailsOverview';
+@import './styles/statsOverview';
+.dnd35CharViewer{
+	
+	.charViewerInfo{
+
+		.charOverviewTab{
+			display: flex;
+			flex-direction: column;
+		    text-align: center;
+   			flex-wrap: wrap;	
+		}
+	}
+}
