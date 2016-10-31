@@ -57,7 +57,14 @@ const SKILLS_HEADER = <TableHeader displaySelectAll={false}>
                             <TableHeaderColumn>Skill Modifier</TableHeaderColumn>
                         </TableRow>
                     </TableHeader>;
-
+const NEW_SKILLS_HEADER = <div className="skillsTableHeader">
+                            <div className="name"><p>Skill</p></div>
+                            <div className="ability"><p>Key<br/>Ability</p></div>
+                            <div className="skillMod"><p>Skill<br/>Modifier</p></div>
+                            <div className="abilityMod"><p>Ability<br/>Modifier</p></div>
+                            <div className="ranks"><p>Ranks</p></div>
+                            <div className="miscMod"><p>Misc<br/>Modifier</p></div>
+                        </div>
 class SkillsPage extends React.Component<any, any> {
     public render() {
         const SKILLS_DOM = SKILLS.map((skill) => {
@@ -69,6 +76,7 @@ class SkillsPage extends React.Component<any, any> {
             if (ranks === undefined) {
                 ranks = 0;
             }
+
             // Name, Ability, Ability Mod, Ranks, Skill Mod
             return (
                 <TableRow key={skillName} hoverable={true}>
@@ -80,14 +88,39 @@ class SkillsPage extends React.Component<any, any> {
                 </TableRow>
             );
         });
+        const NEW_SKILLS_DOM = SKILLS.map((skill) => {
+            const skillName = skill.name;
+            const ability = skill.ability;
+            // const untrained = skill.untrained;
+            const abilityMod = this.props.modifiers[ability];
+            let ranks = this.props.skills[skillName];
+            if (ranks === undefined) {
+                ranks = 0;
+            }
+
+            // Name, Ability, Ability Mod, Ranks, Skill Mod
+            return(
+                <div key={skillName} className="skillRow">
+                    <div className="skillName"><p>{skillName}</p></div>
+                    <div className="skillAbility"><p>{ability}</p></div>
+                    <div className="skillMod"><p>{ranks+abilityMod}</p></div>
+                    <div className="plusDiv"><p>=</p></div>
+                    <div className="skillAbilityMod"><p className="underlineP">{abilityMod}</p></div>
+                    <div className="plusDiv"><p>+</p></div>
+                    <div className="skillRanks"><p className="underlineP">{ranks}</p></div>
+                    <div className="plusDiv"><p>+</p></div>
+                    <div className="skillMiscMod"><p className="underlineP">0</p></div>
+                </div>
+            );
+        });
+
         return (
             <div className="skills">
-                <Table selectable={false} className="skillTable">
-                   {SKILLS_HEADER}
-                    <TableBody displayRowCheckbox={false}>
-                        {SKILLS_DOM}
-                    </TableBody>
-                </Table>
+                <div className="skillsTitle"><p>SKILLS</p></div>
+                {NEW_SKILLS_HEADER}
+                <div className="skillsList">
+                    {NEW_SKILLS_DOM}
+                </div>
             </div>
         );
     }
