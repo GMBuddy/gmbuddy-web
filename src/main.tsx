@@ -27,9 +27,16 @@ export const store: IStore<any> = applyMiddleware(thunk, routerMiddleware(browse
 const history = syncHistoryWithStore(browserHistory, store);
 
 import * as injectTapEventPluginExport from "react-tap-event-plugin";
+import {authSuccess} from "./auth/actions/actions";
 const injectTapEventPlugin = (injectTapEventPluginExport as any).default;
 // noinspection TypeScriptValidateTypes
 injectTapEventPlugin();
+
+// Login if there's a JWT stored in LocalStorage.
+const jwt = JSON.parse(localStorage.getItem('auth'));
+if (jwt) {
+    store.dispatch(authSuccess(jwt));
+}
 
 render(
     <Provider store={store}>

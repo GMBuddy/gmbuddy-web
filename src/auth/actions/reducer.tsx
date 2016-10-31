@@ -1,6 +1,7 @@
 import { handleActions } from "redux-actions";
 import { LOGIN, LOGIN_INVALID, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
 import { merge } from "lodash";
+import * as jwtDecode from "jwt-decode";
 
 interface IAuthData {
     username: string;
@@ -36,19 +37,26 @@ export default handleActions({
     },
 
     [LOGIN_SUCCESS]: (state: IAuthState, action: any) => {
-        const { token, username } = action.payload;
+        let decoded;
 
-        return setState(
-            state,
-            {
-                data: {
-                    token,
-                    username,
+        try {
+            decoded = jwtDecode["default"](action.payload);
+            
+            return setState(
+                state,
+                {
+                    data: {
+                        token: action.payload,
+                        username: decoded.email || "undefined",
+                    },
+                    error: null,
+                    isFetching: false,
                 },
-                error: null,
-                isFetching: false,
-            },
-        );
+            );
+        } catch(err) {
+                console.error("Error with JWT:", err);
+                return setState(state, { error: err, isFetching: false } as IAuthState);
+        }
     },
 
     [LOGOUT]: () => {

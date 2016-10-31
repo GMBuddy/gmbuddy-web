@@ -3,10 +3,6 @@ import {requestAuth, authSuccess, authLogout, authInvalid} from "./actions";
 import "isomorphic-fetch";
 import { AUTH_API_URL } from "../../constants";
 
-function storeAuthInLocalStorage(username, token) {
-    localStorage.setItem("authData", JSON.stringify({username, token}));
-}
-
 const login = (username, password, successCb = null, failCb = null) => {
     return (dispatch) => {
         let formData = new FormData();
@@ -30,9 +26,10 @@ const login = (username, password, successCb = null, failCb = null) => {
             const { accessToken } = data;
 
             if (accessToken) {
-                dispatch(authSuccess({username, token: accessToken}));
+                dispatch(authSuccess(accessToken));
 
-                storeAuthInLocalStorage(username, accessToken);
+                localStorage.setItem('auth', JSON.stringify(accessToken));
+
                 if (typeof successCb === "function") {
                     successCb();
                 }
@@ -83,9 +80,10 @@ const register = (data, successCb = null, failCb = null) => {
                 const { accessToken } = json;
 
                 if (accessToken) {
-                    dispatch(authSuccess({username, token: accessToken}));
+                    dispatch(authSuccess(accessToken));
 
-                    storeAuthInLocalStorage(username, accessToken);
+                    localStorage.setItem('auth', JSON.stringify(accessToken));
+
                     if (typeof successCb === "function") {
                         successCb();
                     }
@@ -113,7 +111,7 @@ const logout = () => {
     return (dispatch) => {
         dispatch(push("/"));
         dispatch(authLogout());
-        localStorage.removeItem("authData");
+        localStorage.removeItem("auth");
     };
 };
 
