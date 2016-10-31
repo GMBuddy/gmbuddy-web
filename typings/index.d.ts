@@ -9,6 +9,7 @@
 /// <reference path="globals/redux-actions/index.d.ts" />
 /// <reference path="globals/whatwg-fetch/index.d.ts" />
 /// <reference path="globals/whatwg-streams/index.d.ts" />
+/// <reference path="modules/es6-promise/index.d.ts" />
 /// <reference path="modules/lodash/index.d.ts" />
 /// <reference path="modules/material-ui/index.d.ts" />
 /// <reference path="modules/react-dom/index.d.ts" />

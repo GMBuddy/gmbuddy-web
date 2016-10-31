@@ -8,6 +8,7 @@ import { IStore, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { routerMiddleware } from "react-router-redux";
+import * as ES6Promise from "es6-promise"
 
 import "./main.scss";
 
@@ -31,6 +32,9 @@ import {authSuccess} from "./auth/actions/actions";
 const injectTapEventPlugin = (injectTapEventPluginExport as any).default;
 // noinspection TypeScriptValidateTypes
 injectTapEventPlugin();
+
+// Support fetch on IE.
+ES6Promise.polyfill();
 
 // Login if there's a JWT stored in LocalStorage.
 const jwt = JSON.parse(localStorage.getItem('auth'));

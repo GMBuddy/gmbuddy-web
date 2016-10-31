@@ -41,7 +41,7 @@ export default handleActions({
 
         try {
             decoded = jwtDecode["default"](action.payload);
-            
+
             return setState(
                 state,
                 {
