@@ -8,21 +8,39 @@
   background-color: #F0F0F0;
 }
 
-.sidebar {
-  padding: 50px;
-  position: absolute;
-  top: 64px;
-}
-
-.quiz-input-container {
-  margin-top: 25px;
-  padding: 10px;
-}
-
 ul {
   padding: 0px;
 
   > div {
     margin-top: 20px;
   }
+}
+
+.navbarButton {
+  top: 14px;
+
+  div {
+    color: white;
+  }
+}
+
+.sidebarTitle {
+  height: 64px;
+
+  & > div {
+    padding-top: 8px;
+  }
+}
+
+.active {
+  color: rgb(0, 188, 212) !important;
+  background-color: #F0F0F0 !important;
+
+  span {
+    color: rgb(0, 188, 212) !important;
+  }
+}
+
+.sidebarDiv {
+  margin: 15px 0px 15px 0px;
 }

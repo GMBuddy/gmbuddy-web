@@ -1,9 +1,36 @@
-.loginModalContent {
+.loginModal {
+  .loginModalContent {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      width: 100%;
+      align-self: center;
+    }
+  }
+
+  .loginFormButtons {
+    margin-top: 20px;
+    right: 0px;
+    text-align: right;
+  }
+}
+
+.registerForm, .loginForm {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 15px;
+  margin-bottom: 15px;
 
   div {
-    width: 100%;
-   align-self: center;
+    flex-basis: 40%;
+    align-self: center;
+  }
+
+  button {
+    margin-top: 15px !important;
+    flex-basis: 100%;
   }
 }
