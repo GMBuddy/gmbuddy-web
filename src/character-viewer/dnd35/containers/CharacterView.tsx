@@ -65,7 +65,6 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
                                 {steps.Stats}
                             </div>
                             <div className="skillsOverview">
-                                <h1><u>Skills</u></h1>
                                 {steps.Skills}
                             </div>
                             <div className="itemsOverview">

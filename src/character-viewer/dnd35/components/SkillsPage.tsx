@@ -97,10 +97,13 @@ class SkillsPage extends React.Component<any, any> {
             if (ranks === undefined) {
                 ranks = 0;
             }
-
+            let cName = "skillRow";
+            if(skillName.toUpperCase().includes("KNOWLEDGE")){
+                cName = "knowledgeRow";
+            }
             // Name, Ability, Ability Mod, Ranks, Skill Mod
             return(
-                <div key={skillName} className="skillRow">
+                <div key={skillName} className={cName}>
                     <div className="skillName"><p>{skillName}</p></div>
                     <div className="skillAbility"><p>{ability}</p></div>
                     <div className="skillMod"><p>{ranks+abilityMod}</p></div>

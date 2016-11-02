@@ -1,14 +1,27 @@
 @import './styles/detailsOverview';
 @import './styles/statsOverview';
+@import './styles/skillsOverview';
 .dnd35CharViewer{
 	
 	.charViewerInfo{
-
 		.charOverviewTab{
 			display: flex;
-			flex-direction: column;
+			flex-direction: row;
 		    text-align: center;
-   			flex-wrap: wrap;	
+   			flex-wrap: wrap;
+   			.detailsOverview{
+   				flex-basis: 100%;
+   			}
+   			.statsOverview{
+   				flex-basis: 40%;
+   			}
+   			.skillsOverview{
+   				flex-basis: 60%;
+   			}
 		}
 	}
+}
+
+p{
+	
 }

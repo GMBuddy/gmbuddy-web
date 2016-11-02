@@ -4,13 +4,16 @@
     text-align: center;
     padding-top: 20px;
     flex-flow: row nowrap;
+    .details{
+        flex-basis: 65%;
+    }
+}
 
-    .details {
+.details {
         display: flex;
         align-self: center;
         justify-content: space-around;
         flex-wrap: wrap;
-        flex-basis: 65%;
         padding-left: 5px;
 
         div {
@@ -95,4 +98,3 @@
             width: 100%;
         }
     }
-}

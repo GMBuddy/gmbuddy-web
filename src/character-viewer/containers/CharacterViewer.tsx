@@ -8,10 +8,10 @@ interface ICharacterViewerState {
 };
 
 const CHAR_DETAILS = {
-                "player": "Stephen",
                 "name": "Steve the Wizard",
+                "player": "Stephen",
                 "class": "Sorcerer",
-                "level": "3",
+                "level": "1",
                 "race": "Human",
                 "alignment": "Chaotic Neutral",
                 "deity": "Kord",
@@ -25,6 +25,18 @@ const CHAR_DETAILS = {
                 "skin": "tan",
             };
 
+const CHAR_ITEMS = [
+            {
+                "name": "asdf", "type": "Armor", "damageDieAmount": "2",
+                "damageDie": "6", "damageType": "Piercing", "weight": "5",
+                "range": "5", "twoHanded": false,
+            }
+        ];
+const CHAR_SKILLS = {"SpellCraft": 6, "Appraise": 5,};
+const CHAR_STATS = {
+                "Strength": 7, "Dexterity": 14, "Constitution": 16,
+                "Intelligence": 10, "Wisdom": 15, "Charisma": 18,
+            };
 class CharacterViewer extends React.Component<void, ICharacterViewerState> {
     constructor() {
         super();
@@ -33,18 +45,9 @@ class CharacterViewer extends React.Component<void, ICharacterViewerState> {
     public render() {
         let data = {
             details : CHAR_DETAILS,
-            items: [
-                {
-                    "name": "asdf", "type": "Armor", "damageDieAmount": "2",
-                    "damageDie": "6", "damageType": "Piercing", "weight": "5",
-                    "range": "5", "twoHanded": false,
-                },
-            ],
-            skills: {"SpellCraft": 6, "Appraise": 5},
-            stats: {
-                "Strength": 7, "Dexterity": 14, "Constitution": 16,
-                "Intelligence": 10, "Wisdom": 15, "Charisma": 18,
-            },
+            items: CHAR_ITEMS,
+            skills: CHAR_SKILLS,
+            stats: CHAR_STATS,
         };
         let currentCharacter = <DnD35CharacterViewer
             data={data}/>;

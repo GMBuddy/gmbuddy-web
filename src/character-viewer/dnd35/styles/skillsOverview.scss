@@ -1,6 +1,6 @@
 .skillsOverview{
 	display: flex;
-    flex-direction: column;
+    flex-direction: row;
     text-align: center;
     padding-top: 20px;
     flex-flow: row nowrap;
@@ -9,81 +9,92 @@
         font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     }
 	.skills{
-	    display: flex;
-	    flex-direction: column;
-        align-self: center;
-        justify-content: space-around;
-        flex-wrap: row nowrap;
-        padding-left: 5px;
-        flex-basis: 50%;
-        .skillsTitle{
-        	display: inline-block;
-            background-color: black;
-            p{
-            	color: white;
-            }
-        }
-		.skillsTableHeader{
-			display: flex;
-		    flex-direction: row;
-		    text-align: center;
+	    flex-basis: 50%;
+	}
+}
 
-		    div{
-		    	border: 1px solid black;
-				flex-basis: 12%;
-				display:inline-block;
-		    }
+.skills{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: space-around;
+    flex-wrap: row nowrap;
+    padding-left: 5px;
+    .skillsTitle{
+    	display: inline-block;
+        background-color: black;
+        p{
+        	color: white;
+        }
+    }
+	.skillsTableHeader{
+		display: flex;
+	    flex-direction: row;
+	    text-align: center;
+
+	    div{
+	    	border: 1px solid black;
+			flex-basis: 12%;
+			display:inline-block;
+	    }
+		p{
+			vertical-align: middle;
+			text-align: center;
+			font-size: 10px;
+		}
+		.name{
+			flex-basis: 40%;
 			p{
-				vertical-align: middle;
-				text-align: center;
-				font-size: 10px;
+				font-size: 12px;
 			}
-			.name{
+		}
+	}
+
+	.skillsList{
+		display: flex;
+		flex-direction: column;
+		div{
+			display: flex;
+			flex-direction: row;
+
+			
+			div{
+				flex-basis:11%;
+				display: inline-block;
+				max-height: 22px;
+				p{
+					margin: 0;
+					font-size: 11px;
+					font-weight: normal;
+				}
+			}
+			.plusDiv{
+				flex-basis: 2%;
+				p{
+					font-size: 12px;
+					font-weight: bold;
+				}
+			}
+			.underlineP{
+				border-bottom: 1px solid black;
+			}
+			.skillName{
 				flex-basis: 40%;
 				p{
 					font-size: 12px;
 				}
 			}
+			.skillMod{
+				margin: 1px;
+				border: 1px solid black;
+			}
 		}
-
-		.skillsList{
-			display: flex;
-			flex-direction: column;
-			.skillRow{
-				display: flex;
-				flex-direction: row;
-				
-				div{
-					flex-basis:11%;
-					display: inline-block;
-					max-height: 22px;
-					p{
-						margin: 0;
-						font-size: 11px;
-						font-weight: normal;
-					}
-				}
-
-				.plusDiv{
-					flex-basis: 2%;
-					p{
-						font-size: 12px;
-						font-weight: bold;
-					}
-				}
-				.underlineP{
-					border-bottom: 1px solid black;
-				}
-				.skillName{
-					flex-basis: 40%;
-					p{
-						font-size: 12px;
-					}
-				}
-				.skillMod{
-					margin: 1px;
-					border: 1px solid black;
-				}
+		.skillRow{
+			
+		}
+		.knowledgeRow{
+			div{
+				max-height: 44px;
 			}
 		}
 	}
