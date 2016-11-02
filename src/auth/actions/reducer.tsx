@@ -53,7 +53,7 @@ export default handleActions({
                     isFetching: false,
                 },
             );
-        } catch(err) {
+        } catch (err) {
                 console.error("Error with JWT:", err);
                 return setState(state, { error: err, isFetching: false } as IAuthState);
         }

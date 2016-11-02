@@ -8,7 +8,7 @@ import { IStore, createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { routerMiddleware } from "react-router-redux";
-import * as ES6Promise from "es6-promise"
+import * as ES6Promise from "es6-promise";
 
 import "./main.scss";
 
