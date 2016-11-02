@@ -1,26 +1,38 @@
 import * as React from "react";
 
-import CampaignStepper from "../components/CampaignStepper";
+import CampaignStepper from "../component/creator/CampaignStepper";
 
-import CampaignDesigner from "../components/CampaignDesigner";
-import CampaignReview from "../components/CampaignReview";
-import CampaignInvite from "../components/CampaignInvite";
-import { connect } from "react-redux";
+import CampaignDesigner from "../component/creator/CampaignDesigner";
+import CampaignReview from "../component/creator/CampaignReview";
 
 import { RaisedButton, Paper, Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 
-import { ICampaignData } from "../components/CampaignDesigner";
 import NotFound from "../../layout/components/NotFound";
+
+import { createCampaign } from "../actions/creator/thunks";
+import { IDispatch } from "~redux-thunk~redux";
+import { connect } from "react-redux";
+import CampaignInvite from "../component/creator/CampaignInvite";
+
+export interface ICampaignData {
+    gameType: string;
+    name: string;
+}
+
+interface ICampaignCreatorProps {
+    dispatch: IDispatch;
+}
 
 interface ICampaignCreatorState {
     campaignData: ICampaignData;
     canPrevious: boolean;
     canSubmit: boolean;
     currentStep: number;
+    error: string;
 }
 
-class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
+class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCreatorState> {
     private  steps = [
             "Design Campaign",
             "Review Campaign",
@@ -49,7 +61,7 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
                 disabled={!this.state.canPrevious}>Previous</RaisedButton>);
         }
 
-        if (this.state.currentStep < this.steps.length - 1) {
+        if (this.state.currentStep === 0) {
             buttons.push(<RaisedButton
                             key="next"
                             className="campaignCreatorNext"
@@ -61,7 +73,10 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
                             className="campaignCreatorSubmit"
                             type="submit"
                             primary={true}
-                            disabled={!this.state.canSubmit}>Done</RaisedButton>);
+                            disabled={!this.state.canSubmit}
+                >
+                    {(this.state.currentStep === 2 ? "Invite" : "Done")}
+                </RaisedButton>);
         }
 
         switch (this.state.currentStep) {
@@ -72,12 +87,20 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
                 campaignStep = <CampaignReview campaignData={this.state.campaignData}/>;
                 break;
             case 2:
-                campaignStep = <CampaignInvite/>;
+                campaignStep = <CampaignInvite />;
                 break;
             default:
                 campaignStep = <NotFound/>;
                 break;
         }
+
+        const errorMessage = () => {
+            if (!this.state.error) {
+                return null;
+            }
+
+            return <p style={{color: "red"}}>ERROR: {this.state.error}</p>;
+        };
 
         return (
             <div id="campaign-creator">
@@ -91,6 +114,7 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
                         onValid={this.enableSubmit.bind(this)}
                         onInvalid={this.disableSubmit.bind(this)}
                     >
+                        {errorMessage()}
                         <section className="formContent">{campaignStep}</section>
                         <Divider/>
                         <section className="buttons">{buttons}</section>
@@ -117,16 +141,29 @@ class CampaignCreator extends React.Component<void, ICampaignCreatorState> {
     }
 
     private submitForm(data) {
-        if (this.state.currentStep < this.steps.length - 1) {
-            if (this.state.currentStep === 0) {
-                this.setState({ campaignData: data } as ICampaignCreatorState);
-            }
+        this.setState({ error: null } as ICampaignCreatorState);
 
-            this.nextStep();
-        } else {
-            // console.info("Submit data", this.state.campaignData);
-            this.setState({ canPrevious: false } as ICampaignCreatorState);
-            this.disableSubmit();
+        switch (this.state.currentStep) {
+            case 0:
+                this.setState({ campaignData: data } as ICampaignCreatorState);
+                this.nextStep();
+                break;
+            case 1:
+                this.setState({ canPrevious: false } as ICampaignCreatorState);
+                this.disableSubmit();
+
+                this.props.dispatch(createCampaign(this.state.campaignData,
+                    () => this.nextStep(),
+                    (error) => {
+                        this.setState({ canPrevious: true, error } as ICampaignCreatorState);
+                        this.enableSubmit();
+                    })
+                );
+                break;
+            case 2:
+                // And here is where I'd invite my friends... IF I HAD ANY!
+                break;
+            default: break;
         }
     }
 }

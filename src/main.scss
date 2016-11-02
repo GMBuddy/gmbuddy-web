@@ -1,7 +1,8 @@
 @import './layout/index';
+@import './components/index';
 @import './auth/index';
 @import './home/index';
-@import './campaign-creator/index';
+@import 'campaign/index';
 @import './character-creator/index';
 @import './character-viewer/index';
 
@@ -36,4 +37,8 @@ body {
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+.hidden {
+  display: none;
 }

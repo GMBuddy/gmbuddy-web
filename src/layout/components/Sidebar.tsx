@@ -1,35 +1,72 @@
 import * as React from "react";
-import { Drawer, MenuItem } from "material-ui";
-import {Link} from "react-router";
+import { Divider, Drawer, MenuItem } from "material-ui";
+import { IndexLink } from "react-router";
+import { connect } from "react-redux";
+import Menu from "material-ui/svg-icons/navigation/menu";
+import FontIcon from "material-ui/FontIcon";
 
 interface ISidebarProps {
+    auth: any;
+    dispatch: any;
     drawerOpen: boolean;
     closeDrawer: () => any;
 }
 
-const menuItems = [
-    {route: "/", text: "Home"},
-    {route: "/about", text: "About"},
-    {route: "/campaign/create", text: "Campaign Creator"},
-    {route: "/character/create", text: "Character Creator"},
-    {route: "/character/view", text: "Character Viewer"},
-];
-
 class Sidebar extends React.Component<ISidebarProps, void> {
     public render() {
+        const { auth } = this.props;
+        const loggedIn = !auth.isRunning && auth.error === null && !!auth.data.token;
+
+        let menuItems = [
+            {icon: null, route: "/", text: "Home"},
+            {icon: null, route: "/about", text: "About"},
+            {icon: null, route: null, text: null},
+            {icon: <FontIcon className="material-icons">settings</FontIcon>, route: "/settings", text: "Settings"},
+            {icon: <FontIcon className="material-icons">help</FontIcon>, route: "/help", text: "Help"},
+        ];
+
+        if (loggedIn) {
+            menuItems = [
+                {icon: null, route: "/", text: "Home"},
+                {icon: null, route: "/about", text: "About"},
+                {icon: null, route: "/campaign/create", text: "Campaign Creator"},
+                {icon: null, route: "/dnd35/campaigns", text: "D&D 3.5 Campaigns"},
+                {icon: null, route: "/character/create", text: "Character Creator"},
+                {icon: null, route: "/character/view", text: "Character Viewer"},
+                {icon: null, route: null, text: null},
+                {icon: <FontIcon className="material-icons">settings</FontIcon>, route: "/settings", text: "Settings"},
+                {icon: <FontIcon className="material-icons">help</FontIcon>, route: "/help", text: "Help"},
+            ];
+        }
+
         return (
                 <Drawer
-                    containerStyle={{height: "calc(100% - 64px)", top: 64}}
-                    open={this.props.drawerOpen}>
-                    {menuItems.map(item =>
-                        <MenuItem
-                            key={item.text}
-                            containerElement={<Link to={item.route}/>}
-                            onTouchTap={this.props.closeDrawer}>{item.text}</MenuItem>
+                    open={this.props.drawerOpen}
+                    docked={false}>
+                    <MenuItem
+                        onTouchTap={this.props.closeDrawer}
+                        className="sidebarTitle"
+                        primaryText="GMBuddy"
+                        leftIcon={<Menu />} />
+                    {menuItems.map(item => {
+                            if (typeof item.route === "string") {
+                                return <MenuItem
+                                            leftIcon={item.icon}
+                                            key={item.text}
+                                            containerElement={<IndexLink to={item.route} activeClassName="active"/>}
+                                            onTouchTap={this.props.closeDrawer}>{item.text}</MenuItem>;
+                            } else {
+                                return <section key="div" className="sidebarDiv"><Divider key="div" /></section>;
+                            }
+                        }
                     )}
                 </Drawer>
         );
     }
 }
 
-export default Sidebar;
+function mapStateToProps(state) {
+    return { auth: state.auth };
+}
+
+export default connect(mapStateToProps)(Sidebar);
