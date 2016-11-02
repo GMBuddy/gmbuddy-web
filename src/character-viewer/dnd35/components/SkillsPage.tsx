@@ -1,8 +1,5 @@
 import * as React from "react";
 
-import { Table, TableHeader, TableRow, TableHeaderColumn,
-    TableBody, TableRowColumn } from "material-ui";
-
 const SKILLS = [
         { "name": "Appraise", "ability": "INT", "untrained": true},
         { "name": "Balance", "ability": "DEX", "untrained": true},
@@ -48,23 +45,14 @@ const SKILLS = [
         { "name": "Use Rope", "ability": "DEX", "untrained": true},
     ];
 
-const SKILLS_HEADER = <TableHeader displaySelectAll={false}>
-                        <TableRow>
-                            <TableHeaderColumn>Skill</TableHeaderColumn>
-                            <TableHeaderColumn>Key Ability</TableHeaderColumn>
-                            <TableHeaderColumn>Ability Modifier</TableHeaderColumn>
-                            <TableHeaderColumn>Ranks</TableHeaderColumn>
-                            <TableHeaderColumn>Skill Modifier</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>;
-const NEW_SKILLS_HEADER = <div className="skillsTableHeader">
+const SKILLS_HEADER = <div className="skillsTableHeader">
                             <div className="name"><p>Skill</p></div>
                             <div className="ability"><p>Key<br/>Ability</p></div>
                             <div className="skillMod"><p>Skill<br/>Modifier</p></div>
                             <div className="abilityMod"><p>Ability<br/>Modifier</p></div>
                             <div className="ranks"><p>Ranks</p></div>
                             <div className="miscMod"><p>Misc<br/>Modifier</p></div>
-                        </div>
+                        </div>;
 class SkillsPage extends React.Component<any, any> {
     public render() {
         const SKILLS_DOM = SKILLS.map((skill) => {
@@ -76,29 +64,8 @@ class SkillsPage extends React.Component<any, any> {
             if (ranks === undefined) {
                 ranks = 0;
             }
-
-            // Name, Ability, Ability Mod, Ranks, Skill Mod
-            return (
-                <TableRow key={skillName} hoverable={true}>
-                    <TableRowColumn>{skillName}</TableRowColumn>
-                    <TableRowColumn>{ability}</TableRowColumn>
-                    <TableRowColumn>{abilityMod}</TableRowColumn>
-                    <TableRowColumn>{ranks}</TableRowColumn>
-                    <TableRowColumn>{ranks + abilityMod}</TableRowColumn>
-                </TableRow>
-            );
-        });
-        const NEW_SKILLS_DOM = SKILLS.map((skill) => {
-            const skillName = skill.name;
-            const ability = skill.ability;
-            // const untrained = skill.untrained;
-            const abilityMod = this.props.modifiers[ability];
-            let ranks = this.props.skills[skillName];
-            if (ranks === undefined) {
-                ranks = 0;
-            }
             let cName = "skillRow";
-            if(skillName.toUpperCase().includes("KNOWLEDGE")){
+            if (skillName.toUpperCase().includes("KNOWLEDGE")) {
                 cName = "knowledgeRow";
             }
             // Name, Ability, Ability Mod, Ranks, Skill Mod
@@ -106,7 +73,7 @@ class SkillsPage extends React.Component<any, any> {
                 <div key={skillName} className={cName}>
                     <div className="skillName"><p>{skillName}</p></div>
                     <div className="skillAbility"><p>{ability}</p></div>
-                    <div className="skillMod"><p>{ranks+abilityMod}</p></div>
+                    <div className="skillMod"><p>{ranks + abilityMod}</p></div>
                     <div className="plusDiv"><p>=</p></div>
                     <div className="skillAbilityMod"><p className="underlineP">{abilityMod}</p></div>
                     <div className="plusDiv"><p>+</p></div>
@@ -120,9 +87,9 @@ class SkillsPage extends React.Component<any, any> {
         return (
             <div className="skills">
                 <div className="skillsTitle"><p>SKILLS</p></div>
-                {NEW_SKILLS_HEADER}
+                {SKILLS_HEADER}
                 <div className="skillsList">
-                    {NEW_SKILLS_DOM}
+                    {SKILLS_DOM}
                 </div>
             </div>
         );

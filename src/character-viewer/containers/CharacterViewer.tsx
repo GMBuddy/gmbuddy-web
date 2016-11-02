@@ -30,9 +30,9 @@ const CHAR_ITEMS = [
                 "name": "asdf", "type": "Armor", "damageDieAmount": "2",
                 "damageDie": "6", "damageType": "Piercing", "weight": "5",
                 "range": "5", "twoHanded": false,
-            }
+            },
         ];
-const CHAR_SKILLS = {"SpellCraft": 6, "Appraise": 5,};
+const CHAR_SKILLS = {"SpellCraft": 6, "Appraise": 5} ;
 const CHAR_STATS = {
                 "Strength": 7, "Dexterity": 14, "Constitution": 16,
                 "Intelligence": 10, "Wisdom": 15, "Charisma": 18,

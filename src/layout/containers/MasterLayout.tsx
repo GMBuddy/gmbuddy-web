@@ -6,7 +6,6 @@ import LoginModal from "../../auth/containers/LoginModal";
 import { connect } from "react-redux";
 import {logout} from "../../auth/actions/thunks";
 import { IDispatch } from "~redux-thunk~redux";
-import { authSuccess } from "../../auth/actions/actions";
 
 interface IMasterLayoutProps {
     auth: any;

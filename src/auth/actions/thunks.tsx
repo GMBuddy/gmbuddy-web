@@ -28,7 +28,7 @@ const login = (username, password, successCb = null, failCb = null) => {
             if (accessToken) {
                 dispatch(authSuccess(accessToken));
 
-                localStorage.setItem('auth', JSON.stringify(accessToken));
+                localStorage.setItem("auth", JSON.stringify(accessToken));
 
                 if (typeof successCb === "function") {
                     successCb();
@@ -82,7 +82,7 @@ const register = (data, successCb = null, failCb = null) => {
                 if (accessToken) {
                     dispatch(authSuccess(accessToken));
 
-                    localStorage.setItem('auth', JSON.stringify(accessToken));
+                    localStorage.setItem("auth", JSON.stringify(accessToken));
 
                     if (typeof successCb === "function") {
                         successCb();
