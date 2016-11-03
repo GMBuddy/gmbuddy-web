@@ -4,6 +4,7 @@ import {
 } from "./actions";
 import { API_URL } from "../../../constants";
 import { store } from "../../../main";
+import { merge } from "lodash";
 
 const fetchCampaign = (gameType: string, campaignId: string, successCb = null, failCb = null) => {
     return (dispatch) => {
@@ -71,7 +72,13 @@ const fetchCampaigns = (gameType: string, successCb = null, failCb = null) => {
             })
             .then(data => {
                 if (data) {
-                    dispatch(fetchCampaignsSuccess(data));
+
+                    // Add the gametype to each campaign result.
+                    data.forEach((item) => {
+                        item.gameType = gameType;
+                    });
+
+                    dispatch(fetchCampaignsSuccess({data}));
 
                     if (typeof successCb === "function") {
                         successCb(data);

@@ -1,9 +1,17 @@
 import * as React from "react";
 
-class CampaignInvite extends React.Component<any, any> {
+interface ICampaignInviteProps {
+    campaignId: string;
+}
+
+class CampaignInvite extends React.Component<ICampaignInviteProps, any> {
     public render() {
         return (
-            <p>Invite yo friends.</p>
+            <div>
+                Share this easy to remember code with your friends: <strong>{this.props.campaignId}</strong>
+                <br/>
+                <p>In the future you can select friends from a list here.</p>
+            </div>
         );
     }
 }

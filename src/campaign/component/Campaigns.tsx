@@ -5,6 +5,7 @@ import { Link } from "react-router";
 
 interface ICampaignProps {
     campaigns: ICampaign[];
+    gameType: string;
 }
 
 class Campaigns extends React.Component<ICampaignProps, void> {
@@ -24,7 +25,7 @@ class Campaigns extends React.Component<ICampaignProps, void> {
                             <CardActions>
                                 <FlatButton
                                     label="View"
-                                    containerElement={<Link to={`/dnd35/campaign/${campaignId}`}/>}
+                                    containerElement={<Link to={`/${this.props.gameType}/campaign/${campaignId}`}/>}
                                 />
                             </CardActions>
                         </Card>;
@@ -33,7 +34,7 @@ class Campaigns extends React.Component<ICampaignProps, void> {
 
         return (
             <div className="campaigns">
-                <h2>Here are all of the campaigns:</h2>
+                <h2>Here are all of the '{this.props.gameType}' campaigns:</h2>
                 {campaigns}
             </div>
         );

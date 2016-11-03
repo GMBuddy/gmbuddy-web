@@ -14,6 +14,7 @@ import { createCampaign } from "../actions/creator/thunks";
 import { IDispatch } from "~redux-thunk~redux";
 import { connect } from "react-redux";
 import CampaignInvite from "../component/creator/CampaignInvite";
+import { browserHistory } from "react-router";
 
 export interface ICampaignData {
     gameType: string;
@@ -26,6 +27,7 @@ interface ICampaignCreatorProps {
 
 interface ICampaignCreatorState {
     campaignData: ICampaignData;
+    campaignId: string;
     canPrevious: boolean;
     canSubmit: boolean;
     currentStep: number;
@@ -87,7 +89,7 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
                 campaignStep = <CampaignReview campaignData={this.state.campaignData}/>;
                 break;
             case 2:
-                campaignStep = <CampaignInvite />;
+                campaignStep = <CampaignInvite campaignId={this.state.campaignId}/>;
                 break;
             default:
                 campaignStep = <NotFound/>;
@@ -153,7 +155,11 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
                 this.disableSubmit();
 
                 this.props.dispatch(createCampaign(this.state.campaignData,
-                    () => this.nextStep(),
+                    (id: string) => {
+                        this.setState({ campaignId:  id} as ICampaignCreatorState);
+                        this.nextStep();
+                        this.enableSubmit();
+                    },
                     (error) => {
                         this.setState({ canPrevious: true, error } as ICampaignCreatorState);
                         this.enableSubmit();
@@ -162,6 +168,7 @@ class CampaignCreator extends React.Component<ICampaignCreatorProps, ICampaignCr
                 break;
             case 2:
                 // And here is where I'd invite my friends... IF I HAD ANY!
+                browserHistory.push("/");
                 break;
             default: break;
         }

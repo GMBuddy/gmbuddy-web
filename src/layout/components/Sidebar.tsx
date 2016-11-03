@@ -29,8 +29,11 @@ class Sidebar extends React.Component<ISidebarProps, void> {
             menuItems = [
                 {icon: null, route: "/", text: "Home"},
                 {icon: null, route: "/about", text: "About"},
+                {icon: null, route: null, text: null},
                 {icon: null, route: "/campaign/create", text: "Campaign Creator"},
-                {icon: null, route: "/dnd35/campaigns", text: "D&D 3.5 Campaigns"},
+                {icon: null, route: "/dnd35/campaigns", text: "All D&D 3.5 Campaigns"},
+                {icon: null, route: "/micro20/campaigns", text: "All Microlite20 Campaigns"},
+                {icon: null, route: null, text: null},
                 {icon: null, route: "/character/create", text: "Character Creator"},
                 {icon: null, route: "/character/view", text: "Character Viewer"},
                 {icon: null, route: null, text: null},
@@ -48,15 +51,15 @@ class Sidebar extends React.Component<ISidebarProps, void> {
                         className="sidebarTitle"
                         primaryText="GMBuddy"
                         leftIcon={<Menu />} />
-                    {menuItems.map(item => {
+                    {menuItems.map((item, index) => {
                             if (typeof item.route === "string") {
                                 return <MenuItem
                                             leftIcon={item.icon}
-                                            key={item.text}
+                                            key={index}
                                             containerElement={<IndexLink to={item.route} activeClassName="active"/>}
                                             onTouchTap={this.props.closeDrawer}>{item.text}</MenuItem>;
                             } else {
-                                return <section key="div" className="sidebarDiv"><Divider key="div" /></section>;
+                                return <section key={index} className="sidebarDiv"><Divider /></section>;
                             }
                         }
                     )}

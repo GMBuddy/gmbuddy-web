@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FormsySelect, FormsyText } from "formsy-material-ui/lib";
-import { MenuItem, Divider } from "material-ui";
+import { MenuItem } from "material-ui";
 import { ICampaignData } from "../../containers/CampaignCreator";
 
 interface ICampaignDesignerProps {
@@ -31,9 +31,7 @@ class CampaignDesigner extends React.Component<ICampaignDesignerProps, any> {
                 >
                     <MenuItem primaryText=" "/>
                     <MenuItem value="dnd35" label="Dungeons & Dragons v3.5" primaryText="D&D 3.5" />
-                    <MenuItem value="dnd5" label="Dungeons & Dragons 5e" primaryText="D&D 5" />
-                    <Divider/>
-                    <MenuItem value="other" label="What did you expect?" primaryText="Other Game Type" />
+                    <MenuItem value="micro20" label="Microlite20" primaryText="Microlite20" />
                 </FormsySelect>
             </section>
         );

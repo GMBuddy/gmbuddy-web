@@ -7,7 +7,6 @@ import { ICampaign } from "../Campaign";
 import Campaigns from "../Campaigns";
 
 interface IFetchCampaignsProps {
-    campaigns: ICampaign[];
     dispatch: IDispatch;
     gameType: string;
     params: any;
@@ -24,11 +23,7 @@ class FetchCampaigns extends React.Component<IFetchCampaignsProps, IFetchCampaig
         super(props);
 
         let finalState = { campaigns: null, error: null, isFetching: false };
-
-        if (!props.campaigns || Object.keys(props.campaigns).length === 0) {
-            finalState.isFetching = true;
-        }
-
+        finalState.isFetching = true;
         this.state = finalState;
     }
 
@@ -42,11 +37,11 @@ class FetchCampaigns extends React.Component<IFetchCampaignsProps, IFetchCampaig
         };
 
         const campaigns = () => {
-            const campaignsData = this.state.campaigns || this.props.campaigns;
+            const campaignsData = this.state.campaigns;
 
             if (campaignsData) {
                 if (!this.state.isFetching ) {
-                    return <Campaigns campaigns={campaignsData} />;
+                    return <Campaigns gameType={this.props.gameType} campaigns={campaignsData} />;
                 }
             }
         };

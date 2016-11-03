@@ -34,7 +34,7 @@ const createCampaign = (campaignData: ICampaignData, successCb = null, failCb = 
                     dispatch({ data: { campaignId, gameType, name }, type: CREATE_CAMPAIGN_SUCCESS });
 
                     if (typeof successCb === "function") {
-                        successCb();
+                        successCb(campaignId);
                     }
                 } else {
                     throw "Error loading campaign data.";

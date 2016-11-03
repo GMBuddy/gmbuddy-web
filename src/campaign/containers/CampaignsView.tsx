@@ -9,7 +9,7 @@ class CampaignsView extends React.Component<ICampaignsProps, void> {
     public render() {
         const { gameType } = this.props.params;
 
-        return <FetchCampaigns gameType={gameType}/>;
+        return <FetchCampaigns key={gameType} gameType={gameType}/>;
     }
 }
 
