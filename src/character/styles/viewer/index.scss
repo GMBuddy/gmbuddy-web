@@ -1,0 +1,13 @@
+@import "detailsOverview";
+@import "statsOverview";
+
+.dnd35CharViewer{
+  .charViewerInfo{
+    .charOverviewTab{
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+  }
+}

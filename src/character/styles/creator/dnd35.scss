@@ -1,0 +1,43 @@
+.dnd35CharacterCreator > .characterCreatorForm {
+  .characterDetails {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: stretch;
+
+    div {
+      max-height: 72px;
+      flex-basis: 50%;
+
+      div {
+        text-align: left;
+      }
+    }
+  }
+
+  .characterItems {
+    .addItem {
+      padding-top: 15px;
+      text-align: right;
+    }
+  }
+}
+
+
+.dnd35ItemModal {
+  .itemForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    div {
+      flex-basis: 40%;
+    }
+
+    .itemCheckbox {
+      align-self: center;
+    }
+  }
+}

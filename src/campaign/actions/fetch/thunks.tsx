@@ -4,7 +4,6 @@ import {
 } from "./actions";
 import { API_URL } from "../../../constants";
 import { store } from "../../../main";
-import { merge } from "lodash";
 
 const fetchCampaign = (gameType: string, campaignId: string, successCb = null, failCb = null) => {
     return (dispatch) => {
