@@ -2,7 +2,7 @@ import * as React from "react";
 import { AutoComplete } from "material-ui";
 import { FormsyAutoComplete, FormsyText } from "formsy-material-ui/lib";
 import { ICharacterData } from "gmbuddy/dnd35/character";
-import { CLASSES, RACES, ALIGNMENTS, DEITIES } from "../../../data/dnd35";
+import { CLASSES, RACES, ALIGNMENTS, DEITIES } from "../../../constants/dnd35";
 
 class CharacterDetails extends React.Component<ICharacterData, any> {
     public render() {

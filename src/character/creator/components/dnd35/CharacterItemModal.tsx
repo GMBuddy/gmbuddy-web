@@ -2,7 +2,7 @@ import * as React from "react";
 import { AutoComplete, Dialog, FlatButton } from "material-ui";
 import * as Formsy from "formsy-react";
 import { FormsyText, FormsyToggle, FormsyAutoComplete } from "formsy-material-ui/lib";
-import { ITEM_TYPES, DAMAGE_TYPES } from "../../../data/dnd35";
+import { ITEM_TYPES, DAMAGE_TYPES } from "../../../constants/dnd35";
 import { ICharacterItem } from "gmbuddy/dnd35/character";
 
 interface ICreateItemModalProps {

@@ -8,7 +8,7 @@ import CharacterReviewDnd35 from "../components/dnd35/CharacterReview";
 import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 import CharacterStats from "../components/shared/CharacterStats";
-import { STATS } from "../../data/micro20";
+import { STATS } from "../../constants/micro20";
 
 interface IDnD35CharacterCreatorProps {
     step: number;

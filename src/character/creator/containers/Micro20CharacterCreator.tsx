@@ -7,7 +7,7 @@ import CharacterReview from "../components/micro20/CharacterReview";
 import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 import CharacterStats from "../components/shared/CharacterStats";
-import { STATS } from "../../data/micro20";
+import { STATS } from "../../constants/micro20";
 
 interface IMicro20CharacterCreatorProps {
     step: number;
