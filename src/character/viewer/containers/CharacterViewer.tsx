@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Paper } from "material-ui";
-import DnD35CharacterViewer from "../components/DnD35CharacterViewer";
+import DnD35CharacterViewer from "../components/dnd35/DnD35CharacterViewer";
 interface ICharacterViewerState {
     gameType; string;
     step: number;

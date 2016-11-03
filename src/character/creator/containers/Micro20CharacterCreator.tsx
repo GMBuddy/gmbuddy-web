@@ -8,8 +8,13 @@ import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 import CharacterStats from "../components/shared/CharacterStats";
 import { STATS } from "../../constants/micro20";
+import { createCharacter} from "../../actions/create/thunks";
+import {connect} from "react-redux";
+import { merge } from "lodash";
+import {browserHistory} from "react-router";
 
 interface IMicro20CharacterCreatorProps {
+    dispatch: any;
     step: number;
     previousStep: () => any;
     nextStep: () => any;
@@ -19,6 +24,7 @@ interface IMicro20CharacterCreatorState {
     canPrevious: boolean;
     canSubmit: boolean;
     data: any;
+    createError: string;
 }
 
 class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorProps, IMicro20CharacterCreatorState> {
@@ -27,7 +33,7 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
         this.state = {
             canPrevious: true,
             canSubmit: false,
-            data: { details: {},  items: [], stats: {}},
+            data: { createError: null, details: {},  stats: {} },
         } as IMicro20CharacterCreatorState;
     }
 
@@ -42,6 +48,7 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
                 names={STATS}
                 stats={this.state.data.stats} />,
             Review: <CharacterReview
+                error={this.state.createError}
                 key="review"
                 data={this.state.data} />,
         };
@@ -99,11 +106,20 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
             this.setState({data: Object.assign(this.state.data, data)} as IMicro20CharacterCreatorState);
             this.nextStep();
         } else {
-            // console.info("Submit Micro20 data:", this.state.data);
+            this.props.dispatch(createCharacter(merge({gameType: "micro20"}, this.state.data),
+                (id) => {
+                    browserHistory.push(`/micro20/characters/${id}`);
+                    this.enableSubmit();
+                },
+                (error) => {
+                    this.setState({ createError: error } as IMicro20CharacterCreatorState);
+                    this.enableSubmit();
+                    this.setState({ canPrevious: true } as IMicro20CharacterCreatorState);
+                }));
             this.setState({ canPrevious: false } as IMicro20CharacterCreatorState);
             this.disableSubmit();
         }
     }
 }
 
-export default Micro20CharacterCreator;
+export default connect()(Micro20CharacterCreator);

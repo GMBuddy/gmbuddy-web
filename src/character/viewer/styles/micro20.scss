@@ -1,0 +1,16 @@
+.characterViewer > form {
+
+  .details, .stats {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+    & > div {
+      max-height: 72px;
+      flex-basis: 25%;
+      text-align: left;
+    }
+  }
+}

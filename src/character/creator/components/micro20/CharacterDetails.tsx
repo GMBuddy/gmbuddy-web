@@ -2,22 +2,18 @@ import * as React from "react";
 import { MenuItem } from "material-ui";
 import { FormsyText, FormsySelect } from "formsy-material-ui/lib";
 import { ICharacterData } from "gmbuddy/micro20/character";
-
-const CLASSES = [
-    <MenuItem key="fighter" value="fighter" primaryText="Fighter" />,
-    <MenuItem key="rogue" value="rogue" primaryText="Rogue" />,
-    <MenuItem key="mage" value="mage" primaryText="Mage" />,
-    <MenuItem key="cleric" value="cleric" primaryText="Cleric" />,
-];
-
-const RACES = [
-    <MenuItem key="human" value="human" primaryText="Human" />,
-    <MenuItem key="elf" value="elf" primaryText="Elf" />,
-    <MenuItem key="dwarf" value="dwarf" primaryText="Dwarf" />,
-    <MenuItem key="halfling" value="halfling" primaryText="Halfling" />,
-];
+import { CLASSES, RACES } from "../../../constants/micro20";
 
 class CharacterDetails extends React.Component<ICharacterData, any> {
+    private classesMenu;
+    private racesMenu;
+
+    private constructor(props) {
+        super(props);
+        this.classesMenu = this.generateMenuItems(CLASSES);
+        this.racesMenu = this.generateMenuItems(RACES);
+    }
+
     public render() {
         return (
             <section className="characterDetails">
@@ -37,7 +33,7 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     required
                 >
                     <MenuItem primaryText=" "/>
-                    {CLASSES}
+                    {this.classesMenu}
                 </FormsySelect>
                 <FormsySelect
                     name="details.race"
@@ -46,10 +42,17 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     required
                 >
                     <MenuItem primaryText=" "/>
-                    {RACES}
+                    {this.racesMenu}
                 </FormsySelect>
             </section>
         );
+    }
+
+    // TODO: Remove duplication of this function
+    private generateMenuItems(menuItems) {
+        return menuItems.map((menuName, index) => {
+            return <MenuItem key={index} value={menuName.toLowerCase()} primaryText={menuName} />;
+        });
     }
 }
 

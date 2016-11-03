@@ -55,6 +55,7 @@ declare module "gmbuddy/dnd35/character" {
     }
 
     export interface ICharacterData {
+        gameType?: String;
         details: ICharacterDetails;
         stats: ICharacterStats;
         items: ICharacterItems;
@@ -68,18 +69,12 @@ declare module "gmbuddy/micro20/character" {
         name: string;
         class: string;
         race: string;
-        size: string;
-        age: string;
-        gender: string;
-        height: string;
-        weight: string;
-        eyes: string;
-        hair: string;
-        skin: string;
     }
 
     export interface ICharacterStats {
-        stats: Object;
+        Strength: number;
+        Dexterity: number;
+        Mind: number;
     }
 
     export interface ICharacterItem {
@@ -113,9 +108,8 @@ declare module "gmbuddy/micro20/character" {
     }
 
     export interface ICharacterData {
+        gameType?: string;
         details: ICharacterDetails;
-        items: ICharacterItems;
-        skills: ICharacterSkills;
-        spells: ICharacterSpells;
+        stats: ICharacterStats;
     }
 }

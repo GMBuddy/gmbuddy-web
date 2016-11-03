@@ -1,0 +1,62 @@
+import { CREATE_CHARACTER_SUCCESS } from "./actionTypes";
+import {requestCreateCharacter, createCharacterInvalid} from "./actions";
+import { API_URL } from "../../../constants";
+import { store } from "../../../main";
+import { ICharacterData } from "gmbuddy/micro20/character";
+
+const createCharacter = (characterData: ICharacterData, successCb = null, failCb = null) => {
+    return (dispatch) => {
+        const { gameType, details, stats } = characterData;
+
+        dispatch(requestCreateCharacter());
+
+        let formData = new FormData();
+        formData.append("name", details.name);
+        formData.append("class", details.class);
+        formData.append("race", details.race);
+        formData.append("Dexterity", stats.Dexterity);
+        formData.append("Strength", stats.Strength);
+        formData.append("Mind", stats.Mind);
+
+        fetch(`${API_URL}/${gameType}/characters`, {
+            body: formData,
+            headers: {
+                Authorization: `Bearer ${store.getState().auth.data.token}`,
+            },
+            method: "POST",
+        })
+            .then(response => {
+                if (response.status === 201) {
+                    return response.json();
+                }
+
+                throw "Error creating character.";
+            })
+            .then(json => {
+                const { characterId } = json;
+
+                if (characterId) {
+                    dispatch({ data: { characterId, gameType }, type: CREATE_CHARACTER_SUCCESS });
+
+                    if (typeof successCb === "function") {
+                        successCb(characterId);
+                    }
+                } else {
+                    throw "Error loading character data.";
+                }
+            })
+            .catch((err) => {
+                if (typeof err !== "string") {
+                    err = "Error connecting to server.";
+                }
+
+                dispatch(createCharacterInvalid(err));
+
+                if (typeof failCb === "function") {
+                    failCb(err);
+                }
+            });
+    };
+};
+
+export { createCharacter };

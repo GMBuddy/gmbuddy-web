@@ -10,6 +10,7 @@ interface ICharacterReviewState {
 interface ICharacterReviewProps {
     gameType: string;
     data: any;
+    error: string;
 }
 
 class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterReviewState> {
@@ -19,6 +20,14 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
     }
     public render() {
         const { data } = this.props;
+
+        const errorMessage = () => {
+            if (!this.props.error) {
+                return null;
+            }
+
+            return <p style={{color: "red"}}>ERROR: {this.props.error}</p>;
+        };
 
         const detailRows = Object.keys(this.props.data.details).map((key) => {
             const value = this.props.data.details[key];
@@ -38,6 +47,7 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
 
         return (
             <section>
+                {errorMessage()}
                 <p>Here's a preview of what will be sent to the server:</p>
                 <Paper>
                     <Tabs
