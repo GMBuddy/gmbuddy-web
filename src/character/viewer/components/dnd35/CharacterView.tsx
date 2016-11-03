@@ -1,12 +1,11 @@
 import * as React from "react";
-
 import { Tabs, Tab, Paper } from "material-ui";
 import SwipeableViews from "react-swipeable-views";
-import {ICharacterData } from "../../../data/dnd35/character";
 import CharacterSkills from "./SkillsPage";
 import CharacterStats from  "./StatsPage";
 import CharacterDetails from  "./DetailsPage";
 import CharacterItems from "./ItemsPage";
+import { ICharacterData } from "gmbuddy/dnd35/character";
 
 interface ICharacterViewState {
     slideIndex: number;

@@ -1,6 +1,5 @@
 import * as React from "react";
-
-import { ICharacterData } from "../../../data/dnd35/character";
+import {ICharacterData} from "gmbuddy/dnd35/character";
 
 class DetailsPage extends React.Component<ICharacterData, any> {
     public render() {

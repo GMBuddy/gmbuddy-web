@@ -3,8 +3,8 @@ import LoadingSpinner from "../../../components/LoadingSpinner";
 import { fetchCampaign } from "../../actions/fetch/thunks";
 import { IDispatch } from "~redux-thunk~redux";
 import {connect} from "react-redux";
-import Campaign from "../Campaign";
-import { ICampaign } from "../Campaign";
+import Campaign from "../../view/components/Campaign";
+import { ICampaign } from "gmbuddy/campaign";
 
 interface IFetchCampaignProps {
     campaign: ICampaign;

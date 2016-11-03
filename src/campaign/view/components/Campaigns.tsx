@@ -1,7 +1,7 @@
 import * as React from "react";
-import { ICampaign } from "./Campaign";
 import { Card, CardActions, CardHeader, FlatButton } from "material-ui";
 import { Link } from "react-router";
+import { ICampaign } from "gmbuddy/campaign";
 
 interface ICampaignProps {
     campaigns: ICampaign[];

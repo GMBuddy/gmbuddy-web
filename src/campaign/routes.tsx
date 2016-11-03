@@ -1,6 +1,6 @@
-import CampaignsView from "./containers/CampaignsView";
-import CampaignView from "./containers/CampaignView";
-import CampaignCreator from "./containers/CampaignCreator";
+import CampaignsView from "./fetch/containers/CampaignsView";
+import CampaignView from "./fetch/containers/CampaignView";
+import CampaignCreator from "./create/containers/CampaignCreator";
 import { simpleAuth } from "../auth/authMethods";
 
 export default {

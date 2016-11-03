@@ -36,7 +36,7 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                     </TableRow>;
         });
 
-        const itemRows= this.props.data.items.map((item, index) => {
+        const itemRows = this.props.data.items.map((item, index) => {
             return  <TableRow key={index}>
                         <TableRowColumn>{item.name}</TableRowColumn>
                         <TableRowColumn>{item.type}</TableRowColumn>

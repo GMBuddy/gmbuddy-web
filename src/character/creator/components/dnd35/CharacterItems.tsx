@@ -2,9 +2,8 @@ import * as React from "react";
 import { Table, TableHeader, TableBody, TableRow, TableRowColumn, TableHeaderColumn,
     FloatingActionButton, IconButton } from "material-ui";
 import { ContentAdd, ActionDelete, EditorModeEdit } from "material-ui/svg-icons";
-import {ICharacterItems, ICharacterItem} from "../../../data/dnd35/character";
-
 import ItemModal from "./CharacterItemModal";
+import { ICharacterItems, ICharacterItem } from "gmbuddy/dnd35/character";
 
 const style = {
     marginRight: 20,

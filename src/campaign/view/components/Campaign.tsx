@@ -1,11 +1,5 @@
 import * as React from "react";
-
-export interface ICampaign {
-    gameType: string;
-    campaignId: string;
-    name: string;
-    gmUserId: string;
-}
+import { ICampaign } from "gmbuddy/campaign";
 
 interface ICampaignProps {
     campaign: ICampaign;

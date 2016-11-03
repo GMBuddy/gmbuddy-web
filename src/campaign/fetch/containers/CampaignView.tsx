@@ -1,5 +1,5 @@
 import * as React from "react";
-import FetchCampaign from "../component/fetch/FetchCampaign";
+import FetchCampaign from "../components/FetchCampaign";
 
 interface ICampaignProps {
     params: any;

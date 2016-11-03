@@ -1,17 +1,14 @@
 import * as React from "react";
-
 import CharacterStepContainer from "../components/CharacterStepContainer";
 import CharacterStepper from "../components/CharacterStepper";
 import CharacterStepButtons from "../components/CharacterStepButtons";
-
 import CharacterDetailsDnd35 from "../components/dnd35/CharacterDetails";
 import CharacterItemsDnd35 from "../components/dnd35/CharacterItems";
 import CharacterReviewDnd35 from "../components/dnd35/CharacterReview";
-
 import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 import CharacterStats from "../components/shared/CharacterStats";
-import STATS from "../../data/dnd35/stats";
+import { STATS } from "../../data/micro20";
 
 interface IDnD35CharacterCreatorProps {
     step: number;

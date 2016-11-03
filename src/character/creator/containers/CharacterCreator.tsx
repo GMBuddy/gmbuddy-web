@@ -1,6 +1,5 @@
 import * as React from "react";
 import ModuleSelector from "../components/ModuleSelector";
-
 import { Paper } from "material-ui";
 import DnD35CharacterCreator from "./DnD35CharacterCreator";
 import NotFoundCharacterCreator from "./NotFoundCharacterCreator";

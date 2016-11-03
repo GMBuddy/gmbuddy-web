@@ -1,25 +1,17 @@
 import * as React from "react";
-
-import CampaignStepper from "../component/creator/CampaignStepper";
-
-import CampaignDesigner from "../component/creator/CampaignDesigner";
-import CampaignReview from "../component/creator/CampaignReview";
-
 import { RaisedButton, Paper, Divider } from "material-ui";
 import * as Formsy from "formsy-react";
-
-import NotFound from "../../layout/components/NotFound";
-
-import { createCampaign } from "../actions/creator/thunks";
 import { IDispatch } from "~redux-thunk~redux";
 import { connect } from "react-redux";
-import CampaignInvite from "../component/creator/CampaignInvite";
 import { browserHistory } from "react-router";
+import { createCampaign } from "../../actions/creator/thunks";
+import NotFound from "../../../layout/components/NotFound";
+import CampaignInvite from "../components/CampaignInvite";
+import CampaignStepper from "../components/CampaignStepper";
+import CampaignDesigner from "../components/CampaignDesigner";
+import CampaignReview from "../components/CampaignReview";
 
-export interface ICampaignData {
-    gameType: string;
-    name: string;
-}
+import { ICampaignData } from "gmbuddy/campaign";
 
 interface ICampaignCreatorProps {
     dispatch: IDispatch;

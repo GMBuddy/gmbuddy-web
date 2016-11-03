@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FormsySelect, FormsyText } from "formsy-material-ui/lib";
 import { MenuItem } from "material-ui";
-import { ICampaignData } from "../../containers/CampaignCreator";
+import { ICampaignData } from "gmbuddy/campaign";
 
 interface ICampaignDesignerProps {
     campaignData: ICampaignData;

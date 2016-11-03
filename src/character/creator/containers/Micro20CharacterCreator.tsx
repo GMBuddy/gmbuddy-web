@@ -1,16 +1,13 @@
 import * as React from "react";
-
 import CharacterStepContainer from "../components/CharacterStepContainer";
 import CharacterStepper from "../components/CharacterStepper";
 import CharacterStepButtons from "../components/CharacterStepButtons";
 import CharacterDetails from "../components/micro20/CharacterDetails";
 import CharacterReview from "../components/micro20/CharacterReview";
-
 import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
-
 import CharacterStats from "../components/shared/CharacterStats";
-import STATS from "../../data/micro20/stats";
+import { STATS } from "../../data/micro20";
 
 interface IMicro20CharacterCreatorProps {
     step: number;
@@ -102,7 +99,7 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
             this.setState({data: Object.assign(this.state.data, data)} as IMicro20CharacterCreatorState);
             this.nextStep();
         } else {
-            console.info("Submit Micro20 data:", this.state.data);
+            // console.info("Submit Micro20 data:", this.state.data);
             this.setState({ canPrevious: false } as IMicro20CharacterCreatorState);
             this.disableSubmit();
         }

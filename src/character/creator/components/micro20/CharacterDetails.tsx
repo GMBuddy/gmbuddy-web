@@ -1,8 +1,7 @@
 import * as React from "react";
-
 import { MenuItem } from "material-ui";
 import { FormsyText, FormsySelect } from "formsy-material-ui/lib";
-import { ICharacterData } from "../../../data/micro20/character";
+import { ICharacterData } from "gmbuddy/micro20/character";
 
 const CLASSES = [
     <MenuItem key="fighter" value="fighter" primaryText="Fighter" />,

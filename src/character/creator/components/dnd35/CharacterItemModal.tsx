@@ -1,38 +1,9 @@
 import * as React from "react";
 import { AutoComplete, Dialog, FlatButton } from "material-ui";
 import * as Formsy from "formsy-react";
-import {ICharacterItem } from "../../../data/dnd35/character";
 import { FormsyText, FormsyToggle, FormsyAutoComplete } from "formsy-material-ui/lib";
-
-const ITEM_TYPES = [
-    "Adventuring Gear",
-    "Armor",
-    "Tools",
-    "Food/Drink",
-    "Jewelry",
-    "Material",
-    "Poison",
-    "Potion",
-    "Ring",
-    "Shield",
-    "Apparel",
-    "Weapon",
-    "Staff",
-];
-
-const DAMAGE_TYPES = [
-    "Piercing",
-    "Bludgeoning",
-    "Slashing",
-    "Force",
-    "Sonic",
-    "Poison",
-    "Fire",
-    "Cold",
-    "Electricity",
-    "Acid",
-    "Non-Lethal",
-];
+import { ITEM_TYPES, DAMAGE_TYPES } from "../../../data/dnd35";
+import { ICharacterItem } from "gmbuddy/dnd35/character";
 
 interface ICreateItemModalProps {
     open: boolean;

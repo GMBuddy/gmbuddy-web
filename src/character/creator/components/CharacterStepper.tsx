@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { Step, Stepper, StepLabel } from "material-ui/Stepper";
 
 interface ICharacterStepperProps {

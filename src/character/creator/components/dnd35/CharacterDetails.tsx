@@ -1,65 +1,8 @@
 import * as React from "react";
 import { AutoComplete } from "material-ui";
 import { FormsyAutoComplete, FormsyText } from "formsy-material-ui/lib";
-import { ICharacterData } from "../../../data/dnd35/character";
-
-const CLASSES = [
-    "Barbarian",
-    "Bard",
-    "Cleric",
-    "Druid",
-    "Fighter",
-    "Monk",
-    "Paladin",
-    "Ranger",
-    "Sorcerer",
-    "Rogue",
-    "Wizard",
-];
-
-const RACES = [
-    "Dwarf",
-    "Elf",
-    "Gnome",
-    "Half-Elf",
-    "Half-Orc",
-    "Halfling",
-    "Human",
-];
-
-const DEITIES = [
-    "Baccob",
-    "Corellon Larethian",
-    "Ehlonna",
-    "Erythnul",
-    "Fharlanghn",
-    "Garl Glittergold",
-    "Gruumsh",
-    "Heironeous",
-    "Hextor",
-    "Kord",
-    "Moradin",
-    "Nerull",
-    "Obad-Hai",
-    "Olidammara",
-    "Pelor",
-    "St. Cuthbert",
-    "Vecna",
-    "Wee Jas",
-    "Yondalla",
-];
-
-const ALIGNMENTS = [
-    "Lawful Good",
-    "Neutral Good",
-    "Chaotic Good",
-    "Lawful Neutral",
-    "True Neutral",
-    "Chaotic Neutral",
-    "Lawful Evil",
-    "Neutral Evil",
-    "Chaotic Evil",
-];
+import { ICharacterData } from "gmbuddy/dnd35/character";
+import { CLASSES, RACES, ALIGNMENTS, DEITIES } from "../../../data/dnd35";
 
 class CharacterDetails extends React.Component<ICharacterData, any> {
     public render() {
