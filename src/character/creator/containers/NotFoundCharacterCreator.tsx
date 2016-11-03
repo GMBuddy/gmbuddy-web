@@ -1,8 +1,8 @@
 import * as React from "react";
 
-import CharacterStepContainer from "../../components/creator/CharacterStepContainer";
-import CharacterStepper from "../../components/creator/CharacterStepper";
-import CharacterStepButtons from "../../components/creator/CharacterStepButtons";
+import CharacterStepContainer from "../components/CharacterStepContainer";
+import CharacterStepper from "../components/CharacterStepper";
+import CharacterStepButtons from "../components/CharacterStepButtons";
 
 import { Divider } from "material-ui";
 import NotFound from "../../../layout/components/NotFound";

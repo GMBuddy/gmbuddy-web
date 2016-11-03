@@ -1,5 +1,5 @@
-import CharacterCreator from "./containers/creator/CharacterCreator";
-import CharacterViewer from "./containers/viewer/CharacterViewer";
+import CharacterCreator from "./creator/containers/CharacterCreator";
+import CharacterViewer from "./viewer/containers/CharacterViewer";
 import { simpleAuth } from "../auth/authMethods";
 
 export default {

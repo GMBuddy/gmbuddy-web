@@ -1,50 +1,54 @@
 import * as React from "react";
 
-import CharacterStepContainer from "../../components/creator/CharacterStepContainer";
-import CharacterStepper from "../../components/creator/CharacterStepper";
-import CharacterStepButtons from "../../components/creator/CharacterStepButtons";
-import CharacterDetails from "../../components/creator/micro20/CharacterDetails";
-import CharacterReview from "../../components/creator/micro20/CharacterReview";
+import CharacterStepContainer from "../components/CharacterStepContainer";
+import CharacterStepper from "../components/CharacterStepper";
+import CharacterStepButtons from "../components/CharacterStepButtons";
+
+import CharacterDetailsDnd35 from "../components/dnd35/CharacterDetails";
+import CharacterItemsDnd35 from "../components/dnd35/CharacterItems";
+import CharacterReviewDnd35 from "../components/dnd35/CharacterReview";
 
 import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
+import CharacterStats from "../components/shared/CharacterStats";
+import STATS from "../../data/dnd35/stats";
 
-import CharacterStats from "../../components/creator/shared/CharacterStats";
-import STATS from "../../data/micro20/stats";
-
-interface IMicro20CharacterCreatorProps {
+interface IDnD35CharacterCreatorProps {
     step: number;
     previousStep: () => any;
     nextStep: () => any;
 }
 
-interface IMicro20CharacterCreatorState {
+interface IDnD35CharacterCreatorState {
     canPrevious: boolean;
     canSubmit: boolean;
     data: any;
 }
 
-class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorProps, IMicro20CharacterCreatorState> {
+class DnD35CharacterCreator extends React.Component<IDnD35CharacterCreatorProps, IDnD35CharacterCreatorState> {
     constructor() {
         super();
         this.state = {
             canPrevious: true,
             canSubmit: false,
             data: { details: {},  items: [], stats: {}},
-        } as IMicro20CharacterCreatorState;
+        } as IDnD35CharacterCreatorState;
     }
 
     public render() {
         /* tslint:disable */
         let steps = {
-            Details: <CharacterDetails
+            Details: <CharacterDetailsDnd35
                 key="details"
                 details={this.state.data.details} />,
             Stats: <CharacterStats
-                key="stats"
                 names={STATS}
+                key="stats"
                 stats={this.state.data.stats} />,
-            Review: <CharacterReview
+            Items: <CharacterItemsDnd35
+                key="items"
+                items={this.state.data.items} />,
+            Review: <CharacterReviewDnd35
                 key="review"
                 data={this.state.data} />,
         };
@@ -56,7 +60,7 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
         const numSteps = stepsDom.length + 1;
 
         return (
-            <div className="micro20CharacterCreator">
+            <div className="dnd35CharacterCreator">
                 <CharacterStepper currentStep={this.props.step} names={["Select Module", ...stepWords]}/>
                 <Divider/>
                 <Formsy.Form
@@ -82,11 +86,11 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
     }
 
     private enableSubmit() {
-        this.setState({ canSubmit: true } as IMicro20CharacterCreatorState);
+        this.setState({ canSubmit: true } as IDnD35CharacterCreatorState);
     }
 
     private disableSubmit() {
-        this.setState({ canSubmit: false } as IMicro20CharacterCreatorState);
+        this.setState({ canSubmit: false } as IDnD35CharacterCreatorState);
     }
 
     private previousStep() {
@@ -99,14 +103,14 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
 
     private submitForm(numSteps: number, data) {
         if (this.props.step === 0 || this.props.step < numSteps - 1) {
-            this.setState({data: Object.assign(this.state.data, data)} as IMicro20CharacterCreatorState);
+            this.setState({data: Object.assign(this.state.data, data)} as IDnD35CharacterCreatorState);
             this.nextStep();
         } else {
-            console.info("Submit Micro20 data:", this.state.data);
-            this.setState({ canPrevious: false } as IMicro20CharacterCreatorState);
+            // console.info("Submit D&D 3.5 data:", this.state.data);
+            this.setState({ canPrevious: false } as IDnD35CharacterCreatorState);
             this.disableSubmit();
         }
     }
 }
 
-export default Micro20CharacterCreator;
+export default DnD35CharacterCreator;
