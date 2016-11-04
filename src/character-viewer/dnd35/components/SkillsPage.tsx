@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FormsyText } from "formsy-material-ui/lib";
 
 const SKILLS = [
         { "name": "Appraise", "ability": "INT", "untrained": true},
@@ -55,41 +56,88 @@ const SKILLS_HEADER = <div className="skillsTableHeader">
                         </div>;
 class SkillsPage extends React.Component<any, any> {
     public render() {
-        const SKILLS_DOM = SKILLS.map((skill) => {
-            const skillName = skill.name;
-            const ability = skill.ability;
-            // const untrained = skill.untrained;
-            const abilityMod = this.props.modifiers[ability];
-            let ranks = this.props.skills[skillName];
-            if (ranks === undefined) {
-                ranks = 0;
-            }
-            let cName = "skillRow";
-            if (skillName.toUpperCase().includes("KNOWLEDGE")) {
-                cName = "knowledgeRow";
-            }
-            // Name, Ability, Ability Mod, Ranks, Skill Mod
-            return(
-                <div key={skillName} className={cName}>
-                    <div className="skillName"><p>{skillName}</p></div>
-                    <div className="skillAbility"><p>{ability}</p></div>
-                    <div className="skillMod"><p>{ranks + abilityMod}</p></div>
-                    <div className="plusDiv"><p>=</p></div>
-                    <div className="skillAbilityMod"><p className="underlineP">{abilityMod}</p></div>
-                    <div className="plusDiv"><p>+</p></div>
-                    <div className="skillRanks"><p className="underlineP">{ranks}</p></div>
-                    <div className="plusDiv"><p>+</p></div>
-                    <div className="skillMiscMod"><p className="underlineP">0</p></div>
-                </div>
-            );
-        });
-
+        let skillsDom;
+        if (this.props.editMode === 1) {
+            skillsDom = SKILLS.map((skill) => {
+                const skillName = skill.name;
+                const ability = skill.ability;
+                // const untrained = skill.untrained;
+                const abilityMod = this.props.modifiers[ability];
+                let ranks = this.props.skills[skillName];
+                if (ranks === undefined) {
+                    ranks = 0;
+                }
+                let cName = "skillRow";
+                if (skillName.toUpperCase().includes("KNOWLEDGE")) {
+                    cName = "knowledgeRow";
+                }
+                if (skillName.length > 10) {
+                    cName = "knowledgeRow";
+                }
+                let formName = "skills." + skillName;
+                // Name, Ability, Ability Mod, Ranks, Skill Mod
+                return(
+                    <div key={skillName} className={cName}>
+                        <div className="skillName"><p>{skillName}</p></div>
+                        <div className="skillAbility"><p>{ability}</p></div>
+                        <div className="skillMod"><p>{ranks + abilityMod}</p></div>
+                        <div className="plusDiv"><p>=</p></div>
+                        <div className="skillAbilityMod"><p className="underlineP">{abilityMod}</p></div>
+                        <div className="plusDiv"><p>+</p></div>
+                        <div className="skillRanks">
+                            <div className="skillRankForm">
+                                <FormsyText
+                                    autoComplete="off"
+                                    name={formName}
+                                    value={ranks.toString()}
+                                    required
+                                    />
+                            </div>
+                        </div>
+                        <div className="plusDiv"><p>+</p></div>
+                        <div className="skillMiscMod"><p className="underlineP">0</p></div>
+                    </div>
+                );
+            });
+        } else {
+            skillsDom = SKILLS.map((skill) => {
+                const skillName = skill.name;
+                const ability = skill.ability;
+                // const untrained = skill.untrained;
+                const abilityMod = this.props.modifiers[ability];
+                let ranks = this.props.skills[skillName];
+                if (ranks === undefined) {
+                    ranks = 0;
+                }
+                let cName = "skillRow";
+                if (skillName.toUpperCase().includes("KNOWLEDGE")) {
+                    cName = "knowledgeRow";
+                }
+                if (skillName.length > 10) {
+                    cName = "knowledgeRow";
+                }
+                // Name, Ability, Ability Mod, Ranks, Skill Mod
+                return(
+                    <div key={skillName} className={cName}>
+                        <div className="skillName"><p>{skillName}</p></div>
+                        <div className="skillAbility"><p>{ability}</p></div>
+                        <div className="skillMod"><p>{ranks + abilityMod}</p></div>
+                        <div className="plusDiv"><p>=</p></div>
+                        <div className="skillAbilityMod"><p className="underlineP">{abilityMod}</p></div>
+                        <div className="plusDiv"><p>+</p></div>
+                        <div className="skillRanks"><p className="underlineP">{ranks}</p></div>
+                        <div className="plusDiv"><p>+</p></div>
+                        <div className="skillMiscMod"><p className="underlineP">0</p></div>
+                    </div>
+                );
+            });
+        };
         return (
             <div className="skills">
                 <div className="skillsTitle"><p>SKILLS</p></div>
                 {SKILLS_HEADER}
                 <div className="skillsList">
-                    {SKILLS_DOM}
+                    {skillsDom}
                 </div>
             </div>
         );

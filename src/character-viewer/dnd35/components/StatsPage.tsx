@@ -17,16 +17,16 @@ class StatsPage extends React.Component<any, any> {
                         </div>
                     </div>
                     <div className="abilityScoreBox">
-                        <div><p>{value}</p></div>
+                        <div className="borderDiv"><p>{value}</p></div>
                     </div>
                     <div className="abilityModBox">
-                        <div><p>{modifier}</p></div>
+                        <div className="borderDiv"><p>{modifier}</p></div>
                     </div>
                     <div className="abilityTempScore">
-                        <div/>
+                        <div className="borderDiv"/>
                     </div>
                     <div className="abilityTempMod">
-                        <div/>
+                        <div className="borderDiv"/>
                     </div>
                 </div>);
         });

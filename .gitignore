@@ -5,3 +5,4 @@ dist
 .idea
 typings/globals/*
 typings/modules/*
+src/character-viewer/dnd35/sample_char.json

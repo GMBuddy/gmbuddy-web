@@ -7,6 +7,8 @@ import CharacterSkills from "../components/SkillsPage";
 import CharacterStats from  "../components/StatsPage";
 import CharacterDetails from  "../components/DetailsPage";
 import CharacterItems from "../components/ItemsPage";
+import CharacterEdit from "../components/EditPage";
+
 interface ICharacterViewState {
     slideIndex: number;
     modifiers: any;
@@ -26,6 +28,9 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
             Details: <CharacterDetails
                 key="details"
                 details={this.props.details} />,
+            Edit: <CharacterEdit
+                key="edit"
+                data={this.props} />,
             Items: <CharacterItems
                 key="items"
                 items={this.props.items} />,
@@ -49,6 +54,7 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
                         <Tab label="Stats" value={2} />
                         <Tab label="Skills" value={3} />
                         <Tab label="Items" value={4} />
+                        <Tab label="Edit" value={5} />
                     </Tabs>
                     <SwipeableViews
                             index={this.state.slideIndex}
@@ -83,6 +89,9 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
                         </div>
                         <div className="charItemsTab">
                             {steps.Items}
+                        </div>
+                        <div className="charEditTab">
+                            {steps.Edit}
                         </div>
                     </SwipeableViews>
                 </Paper>

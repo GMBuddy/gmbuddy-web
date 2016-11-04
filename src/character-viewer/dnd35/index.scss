@@ -7,21 +7,17 @@
 		.charOverviewTab{
 			display: flex;
 			flex-direction: row;
-		    text-align: center;
-   			flex-wrap: wrap;
-   			.detailsOverview{
-   				flex-basis: 100%;
-   			}
-   			.statsOverview{
-   				flex-basis: 40%;
-   			}
-   			.skillsOverview{
-   				flex-basis: 60%;
-   			}
+	      text-align: center;
+			flex-wrap: wrap;
+			.detailsOverview{
+				flex-basis: 100%;
+			}
+			.statsOverview{
+				flex-basis: 40%;
+			}
+			.skillsOverview{
+				flex-basis: 59%;
+			}
 		}
 	}
-}
-
-p{
-	
 }
