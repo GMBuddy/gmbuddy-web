@@ -4,7 +4,11 @@ import { FormsyText, FormsySelect } from "formsy-material-ui/lib";
 import { ICharacterData } from "gmbuddy/micro20/character";
 import { CLASSES, RACES } from "../../../constants/micro20";
 
-class CharacterDetails extends React.Component<ICharacterData, any> {
+interface ICharacterDetailsProps extends ICharacterData {
+    disabled?: boolean;
+}
+
+class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
     private classesMenu;
     private racesMenu;
 
@@ -16,13 +20,14 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
 
     public render() {
         return (
-            <section className="characterDetails">
+            <section className="micro20CharacterDetails">
                 <div>
                     <FormsyText
                         autoComplete="off"
                         name="details.name"
                         floatingLabelText="Character Name (required)"
                         value={this.props.details.name}
+                        disabled={this.props.disabled === true}
                         required
                     />
                 </div>
@@ -31,6 +36,7 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     floatingLabelText="Class (required)"
                     value={this.props.details.class}
                     required
+                    disabled={this.props.disabled === true}
                 >
                     <MenuItem primaryText=" "/>
                     {this.classesMenu}
@@ -40,10 +46,47 @@ class CharacterDetails extends React.Component<ICharacterData, any> {
                     floatingLabelText="Race (required)"
                     value={this.props.details.race}
                     required
+                    disabled={this.props.disabled === true}
                 >
                     <MenuItem primaryText=" "/>
                     {this.racesMenu}
                 </FormsySelect>
+                <div>
+                    <FormsyText
+                        autoComplete="off"
+                        name="details.height"
+                        floatingLabelText="Character Height"
+                        value={this.props.details.height}
+                        disabled={this.props.disabled === true}
+                    />
+                </div>
+                <div>
+                    <FormsyText
+                        autoComplete="off"
+                        name="details.weight"
+                        floatingLabelText="Character Weight"
+                        value={this.props.details.weight}
+                        disabled={this.props.disabled === true}
+                    />
+                </div>
+                <div>
+                    <FormsyText
+                        autoComplete="off"
+                        name="details.hairColor"
+                        floatingLabelText="Character Hair Color"
+                        value={this.props.details.hairColor}
+                        disabled={this.props.disabled === true}
+                    />
+                </div>
+                <div>
+                    <FormsyText
+                        autoComplete="off"
+                        name="details.eyeColor"
+                        floatingLabelText="Character Eye Color"
+                        value={this.props.details.eyeColor}
+                        disabled={this.props.disabled === true}
+                    />
+                </div>
             </section>
         );
     }

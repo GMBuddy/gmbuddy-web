@@ -35,7 +35,7 @@ class Sidebar extends React.Component<ISidebarProps, void> {
                 {icon: null, route: "/micro20/campaigns", text: "All Microlite20 Campaigns"},
                 {icon: null, route: null, text: null},
                 {icon: null, route: "/character/create", text: "Character Creator"},
-                {icon: null, route: "/character/view", text: "Character Viewer"},
+                {icon: null, route: "/micro20/characters", text: "All Microlite20 Characters"},
                 {icon: null, route: null, text: null},
                 {icon: <FontIcon className="material-icons">settings</FontIcon>, route: "/settings", text: "Settings"},
                 {icon: <FontIcon className="material-icons">help</FontIcon>, route: "/help", text: "Help"},

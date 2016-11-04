@@ -11,7 +11,7 @@ import { STATS } from "../../constants/micro20";
 import { createCharacter} from "../../actions/create/thunks";
 import {connect} from "react-redux";
 import { merge } from "lodash";
-import {browserHistory} from "react-router";
+import { browserHistory } from "react-router";
 
 interface IMicro20CharacterCreatorProps {
     dispatch: any;
@@ -33,7 +33,7 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
         this.state = {
             canPrevious: true,
             canSubmit: false,
-            data: { createError: null, details: {},  stats: {} },
+            data: { baseStats: {}, createError: null, details: {} },
         } as IMicro20CharacterCreatorState;
     }
 
@@ -46,7 +46,7 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
             Stats: <CharacterStats
                 key="stats"
                 names={STATS}
-                stats={this.state.data.stats} />,
+                stats={this.state.data.baseStats} />,
             Review: <CharacterReview
                 error={this.state.createError}
                 key="review"

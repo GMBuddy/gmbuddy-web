@@ -1,13 +1,13 @@
 export const STATS = [
-    "Strength",
-    "Dexterity",
-    "Mind",
+    "strength",
+    "dexterity",
+    "mind",
 ];
 
 export const CLASSES = [
     "Fighter",
     "Rogue",
-    "Mage",
+    "Magi",
     "Cleric",
 ];
 

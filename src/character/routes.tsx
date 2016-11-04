@@ -1,7 +1,7 @@
 import CharacterCreator from "./creator/containers/CharacterCreator";
-import CharacterViewer from "./viewer/containers/CharacterViewer";
-import Micro20CharacterViewer from "./viewer/containers/Micro20CharacterViewer";
 import { simpleAuth } from "../auth/authMethods";
+import CharacterView from "./fetch/containers/CharacterView";
+import CharactersView from "./fetch/containers/CharactersView";
 
 export default {
     childRoutes: [
@@ -11,14 +11,14 @@ export default {
             path: "/character/create",
         },
         {
-            component: CharacterViewer,
-            onEnter: simpleAuth,
-            path: "/character/view",
-        },
-        {
-            component: Micro20CharacterViewer,
+            component: CharacterView,
             onEnter: simpleAuth,
             path: "/:gameType/characters/:characterId",
+        },
+        {
+            component: CharactersView,
+            onEnter: simpleAuth,
+            path: "/:gameType/characters",
         },
     ],
 };

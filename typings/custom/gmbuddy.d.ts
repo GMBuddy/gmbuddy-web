@@ -13,9 +13,25 @@ declare module "gmbuddy/campaign" {
     }
 }
 
+/* Generics */
+
+declare module "gmbuddy/character" {
+    export interface ICharacter {
+        characterId?: number;
+        gameType?: String;
+        details: {
+            characterId: string;
+            name: string;
+            userId: string;
+        };
+    }
+}
+
 /* D&D 3.5 */
 declare module "gmbuddy/dnd35/character" {
     export interface ICharacterDetails {
+        userId: string;
+        characterId: string;
         name: string;
         class: string;
         race: string;
@@ -55,6 +71,7 @@ declare module "gmbuddy/dnd35/character" {
     }
 
     export interface ICharacterData {
+        characterId?: number;
         gameType?: String;
         details: ICharacterDetails;
         stats: ICharacterStats;
@@ -66,15 +83,21 @@ declare module "gmbuddy/dnd35/character" {
 /* Microlite20 */
 declare module "gmbuddy/micro20/character" {
     export interface ICharacterDetails {
+        userId: string;
+        characterId: string;
         name: string;
         class: string;
         race: string;
+        height: string;
+        weight: string
+        hairColor: string;
+        eyeColor: string;
     }
 
     export interface ICharacterStats {
-        Strength: number;
-        Dexterity: number;
-        Mind: number;
+        strength: number;
+        dexterity: number;
+        mind: number;
     }
 
     export interface ICharacterItem {
@@ -108,8 +131,10 @@ declare module "gmbuddy/micro20/character" {
     }
 
     export interface ICharacterData {
+        characterId?: number;
         gameType?: string;
         details: ICharacterDetails;
-        stats: ICharacterStats;
+        baseStats: ICharacterStats;
+        modifiers: ICharacterStats;
     }
 }

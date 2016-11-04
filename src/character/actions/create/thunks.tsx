@@ -3,10 +3,11 @@ import {requestCreateCharacter, createCharacterInvalid} from "./actions";
 import { API_URL } from "../../../constants";
 import { store } from "../../../main";
 import { ICharacterData } from "gmbuddy/micro20/character";
+import { merge } from "lodash";
 
 const createCharacter = (characterData: ICharacterData, successCb = null, failCb = null) => {
     return (dispatch) => {
-        const { gameType, details, stats } = characterData;
+        const { gameType, details, baseStats } = characterData;
 
         dispatch(requestCreateCharacter());
 
@@ -14,9 +15,13 @@ const createCharacter = (characterData: ICharacterData, successCb = null, failCb
         formData.append("name", details.name);
         formData.append("class", details.class);
         formData.append("race", details.race);
-        formData.append("Dexterity", stats.Dexterity);
-        formData.append("Strength", stats.Strength);
-        formData.append("Mind", stats.Mind);
+        formData.append("height", details.height);
+        formData.append("weight", details.weight);
+        formData.append("hairColor", details.hairColor);
+        formData.append("eyeColor", details.eyeColor);
+        formData.append("dexterity", baseStats.dexterity);
+        formData.append("strength", baseStats.strength);
+        formData.append("mind", baseStats.mind);
 
         fetch(`${API_URL}/${gameType}/characters`, {
             body: formData,
@@ -36,8 +41,8 @@ const createCharacter = (characterData: ICharacterData, successCb = null, failCb
                 const { characterId } = json;
 
                 if (characterId) {
-                    dispatch({ data: { characterId, gameType }, type: CREATE_CHARACTER_SUCCESS });
-
+                    const detailsWithId = merge(details, {characterId});
+                    dispatch({ data: { gameType, details: detailsWithId, baseStats }, type: CREATE_CHARACTER_SUCCESS });
                     if (typeof successCb === "function") {
                         successCb(characterId);
                     }

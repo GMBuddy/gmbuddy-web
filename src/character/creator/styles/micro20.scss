@@ -1,22 +1,22 @@
 .micro20CharacterCreator > .characterCreatorForm {
-  .characterDetails {
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-
-    div {
-      max-height: 72px;
-      flex-basis: 30%;
-      text-align: left;
-    }
-  }
-
   .characterItems {
     .addItem {
       padding-top: 15px;
       text-align: right;
     }
+  }
+}
+
+.micro20CharacterDetails {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+
+  div {
+    max-height: 72px;
+    flex-basis: 30%;
+    text-align: left;
   }
 }
