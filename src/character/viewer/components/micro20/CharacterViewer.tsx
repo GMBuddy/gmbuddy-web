@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Formsy from "formsy-react";
 import { CLASSES, RACES } from "../../../constants/micro20";
-import { FlatButton, MenuItem } from "material-ui";
+import { MenuItem } from "material-ui";
 import CharacterDetails from "../../../creator/components/micro20/CharacterDetails";
 import { FormsyText } from "formsy-material-ui/lib";
 import { ICharacterData } from "gmbuddy/micro20/character";
