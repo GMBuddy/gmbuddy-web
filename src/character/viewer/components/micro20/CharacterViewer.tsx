@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as Formsy from "formsy-react";
-import { connect } from "react-redux";
 import { CLASSES, RACES } from "../../../constants/micro20";
 import { FlatButton, MenuItem } from "material-ui";
 import CharacterDetails from "../../../creator/components/micro20/CharacterDetails";
@@ -13,6 +12,8 @@ interface ICharacterViewerProps {
 
 interface ICharacterViewerState {
     editing: boolean;
+    characterSnapshot: ICharacterData;
+    editedCharacter: ICharacterData;
 }
 
 class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterViewerState> {
@@ -23,16 +24,16 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
         super(props);
         this.classesMenu = this.generateMenuItems(CLASSES);
         this.racesMenu = this.generateMenuItems(RACES);
-        this.state = { editing: false };
+        this.state = { editing: false } as ICharacterViewerState;
     }
 
     public render() {
         const { baseStats, details } = this.props.character;
 
-        if (details.class) {
+        if (details.class && CLASSES[details.class]) {
             details.class = CLASSES[details.class].toLowerCase();
         }
-        if (details.race) {
+        if (details.race && RACES[details.race]) {
             details.race = RACES[details.race].toLowerCase();
         }
 
@@ -67,12 +68,7 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
                         />
                     </div>
                 </Formsy.Form>
-                <FlatButton onTouchTap={this.toggleEditing}>Edit Character</FlatButton>
             </section>);
-    }
-
-    private toggleEditing() {
-        this.setState({ editing: true});
     }
 
     // TODO: Remove duplication of this function
