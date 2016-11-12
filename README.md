@@ -1,4 +1,4 @@
-GMBuddy Web
+GMBuddy Web [![Build Status](https://travis-ci.org/GMBuddy/gmbuddy-web.svg?branch=master)](https://travis-ci.org/GMBuddy/gmbuddy-web)
 =============================================
 
 ## Install Instructions
