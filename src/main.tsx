@@ -20,7 +20,8 @@ import { syncHistoryWithStore } from "react-router-redux";
 
 // We have to force tslint allow this, so that the redux devtools can mount properly.
 /* tslint:disable */
-const enhancer = window["devToolsExtension"] ? window["devToolsExtension"]()(createStore) : createStore;
+const enhancer = (window["devToolsExtension"] && __DEVTOOLS__) ? window["devToolsExtension"]()(createStore) : createStore;
+
 /* tslint: enable */
 
 export const store: IStore<any> = applyMiddleware(thunk, routerMiddleware(browserHistory))(enhancer)(rootReducer);

@@ -1,3 +1,4 @@
+/// <reference path="custom/gmbuddy.d.ts" />
 /// <reference path="custom/formsy-material-ui.d.ts" />
 /// <reference path="custom/react-swipeable-views.d.ts" />
 /// <reference path="globals/assertion-error/index.d.ts" />
