@@ -1,7 +1,7 @@
 --- 
 dependencies:
   override:
-    - npm install --dev
+    - npm install
     - npm install -g typings
     - npm install -g webpack
     - typings install
