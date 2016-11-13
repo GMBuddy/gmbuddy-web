@@ -1,0 +1,16 @@
+--- 
+dependencies:
+  override:
+    - npm install --dev
+    - npm install -g typings
+    - npm install -g webpack
+    - typings install
+
+deployment: 
+  production: 
+    branch: master
+    commands:
+      - "npm run build:webpack"
+      - "cp index.html dist/index.html"
+      - "git remote add digitalocean ssh://root@$DO_GIT_WEB"
+      - "git push digitalocean master --force"
