@@ -12,6 +12,7 @@ test:
 
 deployment: 
   production: 
+    branch: [master, setup-production]
     commands:
       - "npm run build:webpack"
       - "cp index.html dist/index.html"
