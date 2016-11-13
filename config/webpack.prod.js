@@ -7,8 +7,8 @@ module.exports = {
     entry: './src/index.tsx',
     output: {
         path: path.join(__dirname, '..', 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/static/'
+        filename: 'gmbuddy.js',
+        publicPath: '/'
     },
     plugins: [
         new webpack.optimize.DedupePlugin(),
