@@ -15,5 +15,4 @@ deployment:
     branch: [master, setup-production]
     commands:
       - "npm run build:webpack"
-      - "cp index.html dist/index.html"
-      - "cd dist; git remote add digitalocean ssh://root@$DO_GIT_WEB; git push digitalocean master --force"
+      - "bash ./scripts/circle-deploy.sh"
