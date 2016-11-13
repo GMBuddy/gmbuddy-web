@@ -12,7 +12,7 @@ test:
 
 deployment: 
   production: 
-    branch: [master, setup-production]
+    branch: [master]
     commands:
       - "npm run build:webpack"
       - "bash ./scripts/circle-deploy.sh"
