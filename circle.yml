@@ -6,6 +6,10 @@ dependencies:
     - npm install -g webpack
     - typings install
 
+test:
+  override:
+    - echo This is well tested
+
 deployment: 
   production: 
     branch: master
