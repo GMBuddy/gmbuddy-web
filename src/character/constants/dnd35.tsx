@@ -57,6 +57,7 @@ export const ALIGNMENTS = [
 ];
 
 export const STATS = [
+    "Strength",
     "Dexterity",
     "Constitution",
     "Intelligence",

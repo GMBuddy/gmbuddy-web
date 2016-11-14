@@ -8,6 +8,14 @@ const createCampaign = (campaignData: ICampaignData, successCb = null, failCb = 
     return (dispatch) => {
         const { gameType, name } = campaignData;
 
+        // TODO: Not needed once we support D&D 3.5...
+        if (gameType !== "micro20") {
+            const message = "Trying to create a campaign with an invalid GameType.";
+            failCb(message);
+            dispatch(createCampaignInvalid(message));
+            return;
+        }
+
         dispatch(requestCreateCampaign());
 
         let formData = new FormData();
