@@ -1,15 +1,14 @@
-import {
-    requestFetchCampaign, fetchCampaignInvalid, fetchCampaignsSuccess, fetchCampaignsInvalid,
-    fetchCampaignSuccess, requestFetchCampaigns,
-} from "./actions";
+import { requestFetchCharacter, fetchCharacterInvalid, fetchCharacterSuccess,
+        requestFetchCharacters, fetchCharactersInvalid, fetchCharactersSuccess} from "./actions";
 import { API_URL } from "../../../constants";
 import { store } from "../../../main";
+import { merge } from "lodash";
 
-const fetchCampaign = (gameType: string, campaignId: string, successCb = null, failCb = null) => {
+const fetchCharacter = (gameType: string, characterId: string, successCb = null, failCb = null) => {
     return (dispatch) => {
-        dispatch(requestFetchCampaign());
+        dispatch(requestFetchCharacter());
 
-        fetch(`${API_URL}/${gameType}/campaigns/${campaignId}`, {
+        fetch(`${API_URL}/${gameType}/characters/${characterId}`, {
             headers: {
                 Authorization: `Bearer ${store.getState().auth.data.token}`,
             },
@@ -20,20 +19,18 @@ const fetchCampaign = (gameType: string, campaignId: string, successCb = null, f
                     return response.json();
                 }
 
-                throw "Error fetching campaign.";
+                throw "Error fetching character.";
             })
             .then(json => {
-                const { name, gmUserId } = json;
-
-                if (campaignId) {
-                    const data = { campaignId, gameType, gmUserId, name };
-                    dispatch(fetchCampaignSuccess(data));
+                if (characterId) {
+                    const data = merge(json, { gameType });
+                    dispatch(fetchCharacterSuccess(data));
 
                     if (typeof successCb === "function") {
                         successCb(data);
                     }
                 } else {
-                    throw "Error fetching campaign data.";
+                    throw "Error fetching character data.";
                 }
             })
             .catch((err) => {
@@ -43,7 +40,7 @@ const fetchCampaign = (gameType: string, campaignId: string, successCb = null, f
                     err = "Error connecting to server.";
                 }
 
-                dispatch(fetchCampaignInvalid(err));
+                dispatch(fetchCharacterInvalid(err));
 
                 if (typeof failCb === "function") {
                     failCb(err);
@@ -52,11 +49,11 @@ const fetchCampaign = (gameType: string, campaignId: string, successCb = null, f
     };
 };
 
-const fetchCampaigns = (gameType: string, successCb = null, failCb = null) => {
+const fetchCharacters = (gameType: string, successCb = null, failCb = null) => {
     return (dispatch) => {
-        dispatch(requestFetchCampaigns());
+        dispatch(requestFetchCharacters());
 
-        fetch(`${API_URL}/${gameType}/campaigns`, {
+        fetch(`${API_URL}/${gameType}/characters`, {
             headers: {
                 Authorization: `Bearer ${store.getState().auth.data.token}`,
             },
@@ -77,23 +74,21 @@ const fetchCampaigns = (gameType: string, successCb = null, failCb = null) => {
                         item.gameType = gameType;
                     });
 
-                    dispatch(fetchCampaignsSuccess({data}));
+                    dispatch(fetchCharactersSuccess({data}));
 
                     if (typeof successCb === "function") {
                         successCb(data);
                     }
                 } else {
-                    throw "Error fetching campaigns data.";
+                    throw "Error fetching characters data.";
                 }
             })
             .catch((err) => {
-                console.error(err);
-
                 if (typeof err !== "string") {
                     err = "Error connecting to server.";
                 }
 
-                dispatch(fetchCampaignsInvalid(err));
+                dispatch(fetchCharactersInvalid(err));
 
                 if (typeof failCb === "function") {
                     failCb(err);
@@ -102,4 +97,4 @@ const fetchCampaigns = (gameType: string, successCb = null, failCb = null) => {
     };
 };
 
-export { fetchCampaign, fetchCampaigns };
+export { fetchCharacter, fetchCharacters };
