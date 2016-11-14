@@ -18,11 +18,17 @@ interface ICharacterViewerProps {
 interface ICharacterViewerState {
     canSubmit: boolean;
     canEdit: boolean;
+    character: ICharacterData;
     editing: boolean;
     error: string;
 }
 
 class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterViewerState> {
+    refs: {
+        [string: string]: any;
+        form: any;
+    }
+
     private classesMenu;
     private racesMenu;
 
@@ -34,7 +40,7 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
     }
 
     public render() {
-        const { baseStats, details } = this.props.character;
+        const { baseStats, details } = this.state.character || this.props.character;
 
         if (details.class && CLASSES[details.class]) {
             details.class = CLASSES[details.class].toLowerCase();
@@ -61,7 +67,7 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
 
         if (this.state.editing) {
             buttons =   [
-                            <FlatButton key="cancel" onTouchTap={this.toggleEditing.bind(this)}>Cancel</FlatButton>,
+                            <FlatButton key="cancel" onTouchTap={ this.toggleEditing.bind(this) }>Cancel</FlatButton>,
                             <section key="spacer" className="spacer"/>,
                             <RaisedButton
                                 type="submit"
@@ -77,7 +83,9 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
         return (
             <section className="characterViewer">
                 {error}
+                <FlatButton onTouchTap={ this.refresh.bind(this) }>Refresh</FlatButton>
                 <Formsy.Form
+                    ref="form"
                     onValidSubmit={this.submitForm.bind(this)}
                     onValid={this.enableSubmit.bind(this)}
                     onInvalid={this.disableSubmit.bind(this)}>
@@ -124,6 +132,21 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
             </section>);
     }
 
+    private refresh() {
+        this.props.dispatch(fetchCharacter("micro20", this.props.character.details.characterId,
+            (character) => {
+                this.setState({ character } as ICharacterViewerState);
+                this.resetValues();
+            },
+            error => {
+                this.setState({ error } as ICharacterViewerState)
+            }));
+    }
+
+    private resetValues() {
+        this.refs.form.reset();
+    }
+
     private enableSubmit() {
         this.setState({ canSubmit: true } as ICharacterViewerState);
     }
@@ -135,8 +158,8 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
     private submitForm(data) {
         this.props.dispatch(editCharacter(merge(this.props.character, data),
             () => {
-                console.log("Success editing character.");
-                //this.props.dispatch(fetchCharacter("micro20", this.props.character.details.characterId));
+                this.setState({ error: null } as ICharacterViewerState);
+                this.refresh();
             },
             (error) => this.setState({ canEdit: true, editing: true, error } as ICharacterViewerState)));
 
@@ -145,6 +168,10 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
     }
 
     private toggleEditing() {
+        if (this.state.editing) {
+            this.resetValues();
+        }
+
         this.setState({ editing: !this.state.editing } as ICharacterViewerState);
     }
 

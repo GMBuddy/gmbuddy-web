@@ -34,14 +34,10 @@ const editCharacter = (characterData: ICharacterData, successCb = null, failCb =
             method: "PUT",
         })
             .then(response => {
-                if (response.status === 204) {
-                    return response.json();
+                if (response.status !== 204) {
+                    throw "Error editing character.";
                 }
 
-                throw "Error editing character.";
-            })
-            .then(() => {
-                console.log("OKAY");
                 const detailsWithId = merge(details);
                 dispatch({ data: { gameType, details: detailsWithId, baseStats }, type: EDIT_CHARACTER_SUCCESS });
                 if (typeof successCb === "function") {
