@@ -71,7 +71,13 @@ const fetchCampaigns = (gameType: string, successCb = null, failCb = null) => {
             })
             .then(data => {
                 if (data) {
-                    dispatch(fetchCampaignsSuccess(data));
+
+                    // Add the gametype to each campaign result.
+                    data.forEach((item) => {
+                        item.gameType = gameType;
+                    });
+
+                    dispatch(fetchCampaignsSuccess({data}));
 
                     if (typeof successCb === "function") {
                         successCb(data);

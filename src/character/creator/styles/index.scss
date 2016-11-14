@@ -1,0 +1,70 @@
+@import "micro20";
+@import "dnd35";
+
+// First page of character creator
+.characterCreatorForm {
+  margin-bottom: 15px;
+
+  .currentStep {
+    padding: 5px 25px 15px 25px;
+  }
+
+  .formContent {
+    padding: 0px 20px 12px 20px;
+  }
+
+  .designForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.campaignCreatorForm {
+  .campaignDesigner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.characterStepButtons {
+  text-align: center;
+  & > div {
+    margin: 10px 15px;
+  }
+
+}
+
+.placeholderStep {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+// Shared Character Stats Page
+.characterStats {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-wrap: wrap;
+
+  .statContainer {
+    display: flex;
+    align-self: center;
+    justify-content: space-around;
+    flex-direction: row;
+
+    .statValue {
+      flex-basis: 20%;
+    }
+
+    .statModifier {
+      flex-basis: 20%;
+    }
+
+    .rollButton {
+      top: 18px;
+    }
+  }
+}

@@ -14,8 +14,8 @@ export default handleActions({
         return merge({}, state, norm.entities.campaign);
     },
     [FETCH_CAMPAIGNS_SUCCESS]: (state, action: any) => {
-        const campaigns = action.payload;
-        const norm = normalize(campaigns, arrayOfCampaigns);
+        const { data } = action.payload;
+        const norm = normalize(data, arrayOfCampaigns);
 
         return merge({}, state, norm.entities.campaign);
     },

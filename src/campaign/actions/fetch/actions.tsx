@@ -10,7 +10,6 @@ const requestFetchCampaign = createAction(
 
 const fetchCampaignInvalid = createAction(
     FETCH_CAMPAIGN_INVALID,
-    (message: string) => message,
 );
 
 const fetchCampaignSuccess = createAction(
@@ -24,7 +23,6 @@ const requestFetchCampaigns = createAction(
 
 const fetchCampaignsInvalid = createAction(
     FETCH_CAMPAIGNS_INVALID,
-    (message: string) => message,
 );
 
 const fetchCampaignsSuccess = createAction(
