@@ -1,4 +1,4 @@
-GMBuddy Web
+GMBuddy Web [![CircleCI](https://circleci.com/gh/GMBuddy/gmbuddy-web.svg?style=svg)](https://circleci.com/gh/GMBuddy/gmbuddy-web)
 =============================================
 
 ## Install Instructions

@@ -1,0 +1,18 @@
+--- 
+dependencies:
+  override:
+    - npm install
+    - npm install -g typings
+    - npm install -g webpack
+    - typings install
+
+test:
+  override:
+    - echo This is well tested
+
+deployment: 
+  production: 
+    branch: [master]
+    commands:
+      - "npm run build:webpack"
+      - "bash ./scripts/circle-deploy.sh"

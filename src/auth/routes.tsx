@@ -1,5 +1,5 @@
 import LoginPage from "./containers/LoginPage";
-import Register from "./containers/register";
+import Register from "./containers/Register";
 import { authLoggedOut } from "./authMethods";
 
 export default {

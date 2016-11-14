@@ -4,16 +4,18 @@ var webpack = require('webpack');
 var SRC_DIR = path.join(__dirname, '..', 'src');
 
 module.exports = {
-    devtool: 'eval',
     entry: './src/index.tsx',
     output: {
         path: path.join(__dirname, '..', 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/static/'
+        filename: 'gmbuddy.js',
+        publicPath: '/'
     },
     plugins: [
+        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(true),
         new webpack.DefinePlugin({
+            '__DEV__': false,
+            '__DEVTOOLS__': false,
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')
             }

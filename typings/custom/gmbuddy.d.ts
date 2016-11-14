@@ -1,4 +1,7 @@
 /* Shared */
+
+declare var __DEVTOOLS__: boolean;
+
 declare module "gmbuddy/campaign" {
     export interface ICampaign {
         gameType: string;

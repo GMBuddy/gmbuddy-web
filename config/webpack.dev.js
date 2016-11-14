@@ -12,12 +12,15 @@ module.exports = {
 	],
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: 'bundle.js',
-		publicPath: '/static/'
+		filename: 'gmbuddy.js',
+		publicPath: '/'
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin()
+		new webpack.NoErrorsPlugin(),
+		new webpack.DefinePlugin({
+			'__DEVTOOLS__': true
+		}),
 	],
 	module: {
         preLoaders: [{
