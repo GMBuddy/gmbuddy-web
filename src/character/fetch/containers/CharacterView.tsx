@@ -11,7 +11,6 @@ class CharacterView extends React.Component<ICharacterViewProps, void> {
 
         return <FetchCharacter characterId={characterId} gameType={gameType}/>;
     }
-
 }
 
 export default CharacterView;

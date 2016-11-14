@@ -34,6 +34,7 @@ declare module "gmbuddy/character" {
 declare module "gmbuddy/dnd35/character" {
     export interface ICharacterDetails {
         userId: string;
+        campaign: string;
         characterId: string;
         name: string;
         class: string;
@@ -87,6 +88,7 @@ declare module "gmbuddy/dnd35/character" {
 declare module "gmbuddy/micro20/character" {
     export interface ICharacterDetails {
         userId: string;
+        campaign: string;
         characterId: string;
         name: string;
         class: string;
