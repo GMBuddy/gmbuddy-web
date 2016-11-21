@@ -112,9 +112,8 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
                     this.enableSubmit();
                 },
                 (error) => {
-                    this.setState({ createError: error } as IMicro20CharacterCreatorState);
+                    this.setState({ canPrevious: true, createError: error } as IMicro20CharacterCreatorState);
                     this.enableSubmit();
-                    this.setState({ canPrevious: true } as IMicro20CharacterCreatorState);
                 }));
             this.setState({ canPrevious: false } as IMicro20CharacterCreatorState);
             this.disableSubmit();
