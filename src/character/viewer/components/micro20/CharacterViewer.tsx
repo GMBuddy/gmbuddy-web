@@ -9,6 +9,7 @@ import { editCharacter } from "../../../actions/edit/thunks";
 import { connect } from "react-redux";
 import { merge } from "lodash";
 import { fetchCharacter } from "../../../actions/fetch/thunks";
+import { Link } from "react-router";
 
 interface ICharacterViewerProps {
     character: ICharacterData;
@@ -24,10 +25,9 @@ interface ICharacterViewerState {
 }
 
 class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterViewerState> {
-    refs: {
-        [string: string]: any;
+    public refs: {
         form: any;
-    }
+    };
 
     private classesMenu;
     private racesMenu;
@@ -52,8 +52,8 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
 
         let campaignDetails;
 
-        if (details.campaign) {
-            campaignDetails = <p>{details.campaign}</p>;
+        if (details.campaignId) {
+            campaignDetails = <p><Link to={`/micro20/campaign/${details.campaignId}`}>{details.campaignId}</Link></p>;
         } else {
             campaignDetails = <p>Not currently in a campaign.</p>;
         }
@@ -67,18 +67,20 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
 
         if (this.state.editing) {
             buttons =   [
-                            <FlatButton key="cancel" onTouchTap={ this.toggleEditing.bind(this) }>Cancel</FlatButton>,
-                            <section key="spacer" className="spacer"/>,
-                            <RaisedButton
-                                type="submit"
-                                key="save"
-                                primary={true}
-                                disabled={!this.state.canSubmit}
-                            >Save</RaisedButton>,
-                        ]
+                <FlatButton key="cancel" onTouchTap={ this.toggleEditing.bind(this) }>Cancel</FlatButton>,
+                <section key="spacer" className="spacer"/>,
+                <RaisedButton
+                    type="submit"
+                    key="save"
+                    primary={true}
+                    disabled={!this.state.canSubmit}
+                >Save</RaisedButton>,
+            ];
         } else {
-            buttons =   [<FlatButton key="edit" onTouchTap={this.toggleEditing.bind(this)}>Edit Character</FlatButton>]
+            buttons =   [<FlatButton key="edit" onTouchTap={this.toggleEditing.bind(this)}>Edit Character</FlatButton>];
         }
+
+        // TODO: only show edit button when the creator/gm is viewing.
 
         return (
             <section className="characterViewer">
@@ -119,9 +121,9 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
                     <h3>Campaign</h3>
                     <FormsyText
                         autoComplete="off"
-                        name="details.campaign"
+                        name="details.campaignId"
                         floatingLabelText="Campaign ID"
-                        value={details.campaign}
+                        value={details.campaignId}
                         disabled={!this.state.editing}
                     />
                     {campaignDetails}
@@ -139,7 +141,7 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
                 this.resetValues();
             },
             error => {
-                this.setState({ error } as ICharacterViewerState)
+                this.setState({ error } as ICharacterViewerState);
             }));
     }
 

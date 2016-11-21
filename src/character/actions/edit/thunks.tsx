@@ -9,12 +9,16 @@ const editCharacter = (characterData: ICharacterData, successCb = null, failCb =
     return (dispatch) => {
         const { gameType, details, baseStats } = characterData;
 
-        console.log(characterData);
-
         dispatch(requestEditCharacter());
 
         let formData = new FormData();
-        formData.append("campaign", details.campaign);
+
+        if (details.campaignId === "") {
+            formData.append("campaign", null);
+        } else {
+            formData.append("campaign", details.campaignId);
+        }
+
         formData.append("name", details.name);
         formData.append("class", details.class);
         formData.append("race", details.race);

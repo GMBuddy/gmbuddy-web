@@ -4,10 +4,11 @@ declare var __DEVTOOLS__: boolean;
 
 declare module "gmbuddy/campaign" {
     export interface ICampaign {
-        gameType: string;
         campaignId: string;
-        name: string;
+        characters: any[];
+        gameType: string;
         gmUserId: string;
+        name: string;
     }
 
     export interface ICampaignData {
@@ -34,7 +35,7 @@ declare module "gmbuddy/character" {
 declare module "gmbuddy/dnd35/character" {
     export interface ICharacterDetails {
         userId: string;
-        campaign: string;
+        campaignId: string;
         characterId: string;
         name: string;
         class: string;
@@ -88,7 +89,7 @@ declare module "gmbuddy/dnd35/character" {
 declare module "gmbuddy/micro20/character" {
     export interface ICharacterDetails {
         userId: string;
-        campaign: string;
+        campaignId: string;
         characterId: string;
         name: string;
         class: string;
