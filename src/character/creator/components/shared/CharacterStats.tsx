@@ -26,7 +26,7 @@ class CharacterStats extends React.Component<ICharacterStatsProps, ICharacterSta
                     className="statValue"
                     key={stat}
                     name={"stats." + stat}
-                    floatingLabelText={stat}
+                    floatingLabelText={stat[0].toUpperCase() + stat.slice(1)}
                     type="number"
                     required
                     value={this.props.stats[stat]}

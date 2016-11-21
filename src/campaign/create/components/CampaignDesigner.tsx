@@ -30,7 +30,7 @@ class CampaignDesigner extends React.Component<ICampaignDesignerProps, any> {
                     validations="isExisty"
                 >
                     <MenuItem primaryText=" "/>
-                    <MenuItem value="dnd35" label="Dungeons & Dragons v3.5" primaryText="D&D 3.5" />
+                    <MenuItem value="dnd35" label="Dungeons & Dragons v3.5" primaryText="D&D 3.5 (UNSUPPORTED)" />
                     <MenuItem value="micro20" label="Microlite20" primaryText="Microlite20" />
                 </FormsySelect>
             </section>

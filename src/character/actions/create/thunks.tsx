@@ -12,16 +12,26 @@ const createCharacter = (characterData: ICharacterData, successCb = null, failCb
         dispatch(requestCreateCharacter());
 
         let formData = new FormData();
-        formData.append("name", details.name);
-        formData.append("class", details.class);
-        formData.append("race", details.race);
-        formData.append("height", details.height);
-        formData.append("weight", details.weight);
-        formData.append("hairColor", details.hairColor);
-        formData.append("eyeColor", details.eyeColor);
-        formData.append("dexterity", baseStats.dexterity);
-        formData.append("strength", baseStats.strength);
-        formData.append("mind", baseStats.mind);
+
+        switch (gameType) {
+            case "micro20":
+                formData.append("name", details.name);
+                formData.append("class", details.class);
+                formData.append("race", details.race);
+                formData.append("height", details.height);
+                formData.append("weight", details.weight);
+                formData.append("hairColor", details.hairColor);
+                formData.append("eyeColor", details.eyeColor);
+                formData.append("dexterity", baseStats.dexterity);
+                formData.append("strength", baseStats.strength);
+                formData.append("mind", baseStats.mind);
+                break;
+            default:
+                const message = "Trying to create a campaign with an invalid GameType.";
+                failCb(message);
+                dispatch(createCharacterInvalid(message));
+                return;
+        }
 
         fetch(`${API_URL}/${gameType}/characters`, {
             body: formData,
