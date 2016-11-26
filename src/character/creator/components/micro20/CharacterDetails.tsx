@@ -19,6 +19,7 @@ class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
     }
 
     public render() {
+        this.props.details.level = 1;
         return (
             <section className="micro20CharacterDetails">
                 <div>
@@ -85,6 +86,17 @@ class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
                         floatingLabelText="Character Eye Color"
                         value={this.props.details.eyeColor}
                         disabled={this.props.disabled === true}
+                    />
+                </div>
+                <div>
+                    <FormsyText
+                        autoComplete="off"
+                        name="details.level"
+                        type="number"
+                        floatingLabelText="Character Level"
+                        value={this.props.details.level}
+                        disabled={this.props.disabled === true}
+                        required
                     />
                 </div>
             </section>

@@ -95,6 +95,7 @@ declare module "gmbuddy/micro20/character" {
         weight: string
         hairColor: string;
         eyeColor: string;
+        level: number;
     }
 
     export interface ICharacterStats {
