@@ -12,8 +12,6 @@ interface ICharacterViewerProps {
 
 interface ICharacterViewerState {
     editing: boolean;
-    characterSnapshot: ICharacterData;
-    editedCharacter: ICharacterData;
 }
 
 class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterViewerState> {

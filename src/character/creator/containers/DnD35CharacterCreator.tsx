@@ -8,9 +8,14 @@ import CharacterReviewDnd35 from "../components/dnd35/CharacterReview";
 import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 import CharacterStats from "../components/shared/CharacterStats";
-import { STATS } from "../../constants/micro20";
+import { STATS } from "../../constants/dnd35";
+import { merge } from "lodash";
+import { browserHistory } from "react-router";
+import { createCharacter } from "../../actions/create/thunks";
+import {connect} from "react-redux";
 
 interface IDnD35CharacterCreatorProps {
+    dispatch: any;
     step: number;
     previousStep: () => any;
     nextStep: () => any;
@@ -20,6 +25,7 @@ interface IDnD35CharacterCreatorState {
     canPrevious: boolean;
     canSubmit: boolean;
     data: any;
+    createError: string;
 }
 
 class DnD35CharacterCreator extends React.Component<IDnD35CharacterCreatorProps, IDnD35CharacterCreatorState> {
@@ -46,6 +52,7 @@ class DnD35CharacterCreator extends React.Component<IDnD35CharacterCreatorProps,
                 key="items"
                 items={this.state.data.items} />,
             Review: <CharacterReviewDnd35
+                error={this.state.createError}
                 key="review"
                 data={this.state.data} />,
         };
@@ -103,11 +110,21 @@ class DnD35CharacterCreator extends React.Component<IDnD35CharacterCreatorProps,
             this.setState({data: Object.assign(this.state.data, data)} as IDnD35CharacterCreatorState);
             this.nextStep();
         } else {
-            // console.info("Submit D&D 3.5 data:", this.state.data);
             this.setState({ canPrevious: false } as IDnD35CharacterCreatorState);
             this.disableSubmit();
+
+            this.props.dispatch(createCharacter(merge({gameType: "dnd35"}, this.state.data),
+                (id) => {
+                    browserHistory.push(`/dnd35/characters/${id}`);
+                    this.enableSubmit();
+                },
+                (error) => {
+                    this.setState({
+                        canPrevious: true, canSubmit: true, createError: error,
+                    } as IDnD35CharacterCreatorState);
+                }));
         }
     }
 }
 
-export default DnD35CharacterCreator;
+export default connect()(DnD35CharacterCreator);
