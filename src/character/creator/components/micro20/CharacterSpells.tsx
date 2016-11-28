@@ -1,11 +1,13 @@
 import * as React from "react";
 import { MenuItem } from "material-ui";
-import { FormsyText, FormsySelect } from "formsy-material-ui/lib";
+import { FormsySelect } from "formsy-material-ui/lib";
 import { ICharacterData } from "gmbuddy/micro20/character";
 import { CASTSPELLS, ARCANESPELLS, DIVINESPELLS } from "../../../constants/micro20";
+import { isUndefined } from "lodash";
 
 interface ICharacterSpellsProps extends ICharacterData {
     disabled?: boolean;
+    spells: any;
 }
 
 class CharacterSpells extends React.Component<ICharacterSpellsProps, any> {
@@ -17,42 +19,50 @@ class CharacterSpells extends React.Component<ICharacterSpellsProps, any> {
         // HEY STEVE TODO:
         // Do a map here, gotta have to generate a menu for each level of spells
         // Add another map thing down below when generating render
-        this.arcaneSpellMenu = this.generateMenuItems(ARCANESPELLS);
-        this.divineSpellMenu = this.generateMenuItems(DIVINESPELLS);
+        this.arcaneSpellMenu = {};
+        /* tslint:disable */
+        for (const key in ARCANESPELLS) {
+            if (!isUndefined(key)) {
+                let menu = this.generateMenuItems(ARCANESPELLS[key]);
+                this.arcaneSpellMenu[key] = menu;
+            }
+        };
+        /* tslint:enable */
+        this.divineSpellMenu = {};
+        for (const key in DIVINESPELLS) {
+            if (!isUndefined(key)) {
+                let menu = this.generateMenuItems(DIVINESPELLS[key]);
+                this.divineSpellMenu[key] = menu;
+            }
+        };
     }
 
     public render() {
-        console.log(this.props);
-        let spellList = {};
-        let canCast = CASTSPELLS[this.props.details.class]
+        let spellList = this.divineSpellMenu;
+        let canCast = CASTSPELLS[this.props.details.class];
         if ( canCast === "none") {
             return <div> No Spells available </div>;
         }
         // const SPELLSELECT = "";
-        if (canCast ==="arcane"){
-            spellList = ARCANESPELLS;
+        if (canCast === "arcane") {
+            spellList = this.arcaneSpellMenu;
         }
-        return (
-            <section className="micro20CharacterSpells">
-            <div>
-                <FormsyText
+        let spellMenu = Object.keys(spellList).map((level) => {
+            return <FormsySelect
                     autoComplete="off"
-                    name="spells.favorite"
-                    floatingLabelText="Favorite Spell (required)"
-                    value={this.props.details.name}
-                    disabled={this.props.disabled === true}
-                    required
-                />
-                <FormsySelect
-                    name="details.class"
-                    floatingLabelText="Class (required)"
-                    value={this.props.details.class}
-                    required
+                    name={"spells.favorite." + level}
+                    floatingLabelText={"Favorite " + level + " Spell"}
+                    value={this.props.spells[level]}
                     disabled={this.props.disabled === true}
                 >
                     <MenuItem primaryText=" "/>
-                    {this.arcaneSpellMenu}
-                </FormsySelect>
+                    {spellList[level]}
+                </FormsySelect>;
+        });
+        return (
+            <section className="micro20CharacterSpells">
+            <div>
+                {spellMenu}
             </div>
             </section>
         );

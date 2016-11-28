@@ -55,7 +55,7 @@ export const CASTSPELLS = {
     "cleric": "divine",
 };
 
-export const ARCANESPELLS ={
+export const ARCANESPELLS = {
     "lvl1": [
         "Mage Hand",
         "Surprise!",
@@ -63,10 +63,10 @@ export const ARCANESPELLS ={
     "lvl2": [
         "Boom",
         "Heal",
-    ]
+    ],
 };
 
-export const DIVINESPELLS ={
+export const DIVINESPELLS = {
     "lvl1": [
         "Priest Hand",
         "Heal",
@@ -74,5 +74,5 @@ export const DIVINESPELLS ={
     "lvl2": [
         "Convert the Heathen",
         "Healer",
-    ]
+    ],
 };

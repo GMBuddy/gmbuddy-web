@@ -52,7 +52,13 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                         <TableRowColumn>{ranks}</TableRowColumn>
                         </TableRow>;
         });
-        console.log(this.props.data);
+        const spellRows = Object.keys(this.props.data.spells.favorite).map((key) => {
+            const spell = this.props.data.spells.favorite[key];
+            return <TableRow key={key}>
+                        <TableRowColumn>{key}</TableRowColumn>
+                        <TableRowColumn>{spell}</TableRowColumn>
+                        </TableRow>;
+        });
         return (
             <section>
                 {errorMessage()}
@@ -65,6 +71,7 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                         <Tab label="Details" value={1} />
                         <Tab label="Stats" value={2} />
                         <Tab label="Skills" value={3} />
+                        <Tab label="Spells" value={4} />
                     </Tabs>
                     <SwipeableViews
                         index={this.state.slideIndex}
@@ -93,6 +100,10 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                                 <TableRow key="skills" hoverable={true}>
                                     <TableRowColumn>skills</TableRowColumn>
                                     <TableRowColumn>{JSON.stringify(data.skills)}</TableRowColumn>
+                                </TableRow>
+                                <TableRow key="spells" hoverable={true}>
+                                    <TableRowColumn>spells</TableRowColumn>
+                                    <TableRowColumn>{JSON.stringify(data.spells)}</TableRowColumn>
                                 </TableRow>
                             </TableBody>
                         </Table>
@@ -132,6 +143,19 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                                 </TableHeader>
                                 <TableBody displayRowCheckbox={false}>
                                     {skillRows}
+                                </TableBody>
+                            </Table>
+                        </div>
+                        <div>
+                            <Table selectable={false}>
+                                <TableHeader displaySelectAll={false}>
+                                    <TableRow>
+                                        <TableHeaderColumn>Key</TableHeaderColumn>
+                                        <TableHeaderColumn>Value</TableHeaderColumn>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody displayRowCheckbox={false}>
+                                    {spellRows}
                                 </TableBody>
                             </Table>
                         </div>
