@@ -60,3 +60,16 @@
     }
   }
 }
+.micro20CharacterSpells{
+  div{
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .favoriteSpell{
+      flex-basis: 51%;
+    }
+  }
+}
