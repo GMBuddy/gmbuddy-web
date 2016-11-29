@@ -49,7 +49,7 @@ class CharacterSpells extends React.Component<ICharacterSpellsProps, any> {
         }
         let spellMenu = Object.keys(spellList).map((level) => {
             return <FormsySelect
-                    key={level+"SpellList"}
+                    key={level + "SpellList"}
                     className="favoriteSpell"
                     autoComplete="off"
                     name={"spells.favorite." + level}

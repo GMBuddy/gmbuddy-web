@@ -6,8 +6,9 @@ import { ICharacterData } from "gmbuddy/micro20/character";
 import { merge } from "lodash";
 
 const createCharacter = (characterData: ICharacterData, successCb = null, failCb = null) => {
+    console.log(characterData);
     return (dispatch) => {
-        const { gameType, details, baseStats } = characterData;
+        const { gameType, details, baseStats, skills, spells} = characterData;
 
         dispatch(requestCreateCharacter());
 
@@ -25,6 +26,11 @@ const createCharacter = (characterData: ICharacterData, successCb = null, failCb
                 formData.append("dexterity", baseStats.dexterity);
                 formData.append("strength", baseStats.strength);
                 formData.append("mind", baseStats.mind);
+                formData.append("communication", skills.communication);
+                formData.append("knowledge", skills.knowledge);
+                formData.append("perception", skills.perception);
+                formData.append("subterfuge", skills.subterfuge);
+
                 break;
             default:
                 const message = "Trying to create a campaign with an invalid GameType.";
@@ -52,7 +58,7 @@ const createCharacter = (characterData: ICharacterData, successCb = null, failCb
 
                 if (characterId) {
                     const detailsWithId = merge(details, {characterId});
-                    dispatch({ data: { gameType, details: detailsWithId, baseStats }, type: CREATE_CHARACTER_SUCCESS });
+                    dispatch({ data: { gameType, details: detailsWithId, baseStats, skills, spells }, type: CREATE_CHARACTER_SUCCESS });
                     if (typeof successCb === "function") {
                         successCb(characterId);
                     }

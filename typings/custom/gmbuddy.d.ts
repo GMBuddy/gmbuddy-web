@@ -118,9 +118,16 @@ declare module "gmbuddy/micro20/character" {
     export interface ICharacterItems {
         items: ICharacterItem[];
     }
+    export interface ICharacterSkill {
+        rank: number;
+        classBonus: number;
 
+    }
     export interface ICharacterSkills {
-        skills: Object;
+        communication: ICharacterSkill;
+        knowledge: ICharacterSkill;
+        perception: ICharacterSkill;
+        subterfuge: ICharacterSkill;
     }
 
     export interface ICharacterSpell {
@@ -140,5 +147,7 @@ declare module "gmbuddy/micro20/character" {
         details: ICharacterDetails;
         baseStats: ICharacterStats;
         modifiers: ICharacterStats;
+        spells: ICharacterSpells;
+        skills: ICharacterSkills;
     }
 }
