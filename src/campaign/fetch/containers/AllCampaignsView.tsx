@@ -4,23 +4,22 @@ import * as Formsy from "formsy-react";
 import { FormsySelect } from "formsy-material-ui/lib";
 import { MenuItem } from "material-ui";
 
-interface ICampaignsProps {
+interface IAllCampaignsProps {
     params: any;
 }
-interface ICampaignsState {
-    gameType: string;
-}
+
 const gameTypes = [ "all", "micro20", "dnd35"];
 
-class AllCampaignsView extends React.Component<ICampaignsProps, ICampaignsState> {
+class AllCampaignsView extends React.Component<IAllCampaignsProps, void> {
     private gameTypeMenu;
 
     private constructor (props) {
         super(props);
-        this.state = {gameType: "all"} as ICampaignsState;
+        this.props.params.selectedGame = "all";
         this.gameTypeMenu = this.generateMenuItems(gameTypes);
     }
     public render() {
+        console.log(this.props);
         let gameDropDown = <section className="gameTypeSection">
             <Formsy.Form
                     className="campaignViewForm"
@@ -31,8 +30,7 @@ class AllCampaignsView extends React.Component<ICampaignsProps, ICampaignsState>
                         autoComplete="off"
                         name={"gameType"}
                         floatingLabelText={"Game Type"}
-                        value={this.state.gameType}
-                        type="string"
+                        value={this.props.params.selectedGame}
                         onChange={this.changeCampaign.bind(this, null)}
 
                     >
@@ -41,7 +39,7 @@ class AllCampaignsView extends React.Component<ICampaignsProps, ICampaignsState>
                 </FormsySelect>
             </Formsy.Form>
         </section>;
-        let gameType = this.state.gameType;
+        let gameType = this.props.params.selectedGame;
         let campaigns;
         if (gameType === "all") {
             campaigns = gameTypes.map((game) => {
@@ -64,8 +62,8 @@ class AllCampaignsView extends React.Component<ICampaignsProps, ICampaignsState>
         });
     }
     private changeCampaign(value: string, event) {
-        let newState = {gameType: event.target.innerHTML};
-        this.setState(newState);
+        this.props.params.selectedGame = event.target.innerHTML;
+        this.forceUpdate();
     }
 }
 
