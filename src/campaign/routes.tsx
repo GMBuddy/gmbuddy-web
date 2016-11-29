@@ -1,5 +1,6 @@
 import CampaignsView from "./fetch/containers/CampaignsView";
 import CampaignView from "./fetch/containers/CampaignView";
+import AllCampaignsView from "./fetch/containers/AllCampaignsView";
 import CampaignCreator from "./create/containers/CampaignCreator";
 import { simpleAuth } from "../auth/authMethods";
 
@@ -19,6 +20,11 @@ export default {
             component: CampaignCreator,
             onEnter: simpleAuth,
             path: "/campaign/create",
+        },
+        {
+            component: AllCampaignsView,
+            onEnter: simpleAuth,
+            path: "/campaigns",
         },
     ],
 };

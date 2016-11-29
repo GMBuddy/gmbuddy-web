@@ -33,7 +33,7 @@ class Sidebar extends React.Component<ISidebarProps, void> {
                 {icon: <FontIcon className="material-icons">add_circle</FontIcon>,
                     route: "/campaign/create", text: "Campaign Creator"},
                 {icon: <FontIcon className="material-icons">assignment</FontIcon>,
-                    route: "/micro20/campaigns", text: "All Campaigns"},
+                    route: "/campaigns", text: "All Campaigns"},
                 {icon: null, route: null, text: null},
                 {icon: <FontIcon className="material-icons">add_circle</FontIcon>,
                     route: "/character/create", text: "Character Creator"},
