@@ -1,16 +1,14 @@
 import * as React from "react";
-import FetchCampaigns from "../components/FetchCampaigns";
+import FetchCharacters from "../components/FetchCharacters";
 import * as Formsy from "formsy-react";
 import { FormsySelect } from "formsy-material-ui/lib";
 import { MenuItem } from "material-ui";
 
-interface IAllCampaignsProps {
+interface IAllCharactersViewProps {
     params: any;
 }
-
 const gameTypes = [ "all", "micro20", "dnd35"];
-
-class AllCampaignsView extends React.Component<IAllCampaignsProps, void> {
+class AllCharactersView extends React.Component<IAllCharactersViewProps, void> {
     private gameTypeMenu;
 
     private constructor (props) {
@@ -30,7 +28,7 @@ class AllCampaignsView extends React.Component<IAllCampaignsProps, void> {
                         name={"gameType"}
                         floatingLabelText={"Game Type"}
                         value={this.props.params.selectedGame}
-                        onChange={this.changeCampaign.bind(this, null)}
+                        onChange={this.changeGameType.bind(this, null)}
 
                     >
                         <MenuItem primaryText=" "/>
@@ -39,20 +37,20 @@ class AllCampaignsView extends React.Component<IAllCampaignsProps, void> {
             </Formsy.Form>
         </section>;
         let gameType = this.props.params.selectedGame;
-        let campaigns;
+        let characters;
         if (gameType === "all") {
-            campaigns = gameTypes.map((game) => {
+            characters = gameTypes.map((game) => {
                 if (game === "all") {
                     return;
                 }
-                return <FetchCampaigns key={game} gameType={game}/>;
+                return <FetchCharacters key={game} gameType={game}/>;
             });
         } else {
-            campaigns = <FetchCampaigns key={gameType} gameType={gameType}/>;
+            characters = <FetchCharacters key={gameType} gameType={gameType}/>;
         }
-        return <section className="CampaignViewAll">
+        return <section className="CharacterViewAll">
             {gameDropDown}
-            {campaigns}
+            {characters}
         </section>;
     }
     private generateMenuItems(menuItems) {
@@ -60,10 +58,10 @@ class AllCampaignsView extends React.Component<IAllCampaignsProps, void> {
             return <MenuItem key={index} value={menuName.toLowerCase()} primaryText={menuName} />;
         });
     }
-    private changeCampaign(value: string, event) {
+    private changeGameType(value: string, event) {
         this.props.params.selectedGame = event.target.innerHTML;
         this.forceUpdate();
     }
 }
 
-export default AllCampaignsView;
+export default AllCharactersView;
