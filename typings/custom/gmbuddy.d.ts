@@ -136,7 +136,12 @@ declare module "gmbuddy/micro20/character" {
         spells: ICharacterSpell[];
     }
 
+    export interface ICharacterCalculated {
+        health: number;
+    }
+
     export interface ICharacterData {
+        calculated: ICharacterCalculated;
         characterId?: number;
         gameType?: string;
         details: ICharacterDetails;
