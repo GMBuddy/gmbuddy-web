@@ -45,6 +45,14 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                     </TableRow>;
         });
 
+        const calculatedRows = Object.keys(this.props.data.calculated).map((key) => {
+            const value = this.props.data.calculated[key];
+            return  <TableRow key={key}>
+                <TableRowColumn>{key}</TableRowColumn>
+                <TableRowColumn>{value}</TableRowColumn>
+            </TableRow>;
+        });
+
         return (
             <section>
                 {errorMessage()}
@@ -56,6 +64,7 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                         <Tab label="Overview" value={0} />
                         <Tab label="Details" value={1} />
                         <Tab label="Stats" value={2} />
+                        <Tab label="Calculated" value={3} />
                     </Tabs>
                     <SwipeableViews
                         index={this.state.slideIndex}
@@ -80,6 +89,10 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                                 <TableRow key="stats" hoverable={true}>
                                     <TableRowColumn>stats</TableRowColumn>
                                     <TableRowColumn>{JSON.stringify(data.stats)}</TableRowColumn>
+                                </TableRow>
+                                <TableRow key="calculated" hoverable={true}>
+                                    <TableRowColumn>calculated</TableRowColumn>
+                                    <TableRowColumn>{JSON.stringify(data.calculated)}</TableRowColumn>
                                 </TableRow>
                             </TableBody>
                         </Table>
@@ -106,6 +119,19 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                                 </TableHeader>
                                 <TableBody displayRowCheckbox={false}>
                                     {statRows}
+                                </TableBody>
+                            </Table>
+                        </div>
+                        <div>
+                            <Table selectable={false}>
+                                <TableHeader displaySelectAll={false}>
+                                    <TableRow>
+                                        <TableHeaderColumn>Key</TableHeaderColumn>
+                                        <TableHeaderColumn>Value</TableHeaderColumn>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody displayRowCheckbox={false}>
+                                    {calculatedRows}
                                 </TableBody>
                             </Table>
                         </div>
