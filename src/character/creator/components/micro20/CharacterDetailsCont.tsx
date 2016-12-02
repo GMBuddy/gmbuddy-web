@@ -19,7 +19,7 @@ class CharacterDetailsCont extends React.Component<ICharacterDetailsContProps, I
     constructor(props: any) {
         super(props);
         const strMod = Math.floor(((this.props.strength || 0) - 10) / 2);
-        this.state = { totalHealth: strMod, strMod };
+        this.state = { totalHealth: strMod + (this.props.calculated.health || 0), strMod };
     }
 
     public render() {
