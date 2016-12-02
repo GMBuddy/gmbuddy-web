@@ -90,14 +90,16 @@ declare module "gmbuddy/micro20/character" {
     export interface ICharacterDetails {
         userId: string;
         campaignId: string;
+        class: string;
         characterId: string;
         name: string;
-        class: string;
         race: string;
         height: string;
         weight: string
         hairColor: string;
         eyeColor: string;
+        el: number;
+        level: number;
     }
 
     export interface ICharacterStats {
