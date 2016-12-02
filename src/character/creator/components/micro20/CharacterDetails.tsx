@@ -100,6 +100,7 @@ class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
                         required
                         floatingLabelText="Encounter Level (required)"
                         onChange={this.updateLevel.bind(this, true)}
+                        disabled={this.props.disabled === true}
                     />
                     <FormsyText
                         type="number"
@@ -110,6 +111,7 @@ class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
                         required
                         floatingLabelText="Level (required)"
                         onChange={this.updateLevel.bind(this, false)}
+                        disabled={this.props.disabled === true}
                     />
                 </div>
             </section>
