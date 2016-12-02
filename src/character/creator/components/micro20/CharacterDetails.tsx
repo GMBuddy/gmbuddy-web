@@ -6,7 +6,6 @@ import { CLASSES, RACES } from "../../../constants/micro20";
 
 interface ICharacterDetailsProps extends ICharacterData {
     disabled?: boolean;
-    level: number;
 }
 
 class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
@@ -17,7 +16,6 @@ class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
         super(props);
         this.classesMenu = this.generateMenuItems(CLASSES);
         this.racesMenu = this.generateMenuItems(RACES);
-        this.state = { level: null };
     }
 
     public render() {
@@ -96,7 +94,7 @@ class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
                     <FormsyText
                         type="number"
                         key="exp"
-                        name="details.exp"
+                        name="details.el"
                         value={this.props.details.el}
                         validations="isInt"
                         required
@@ -108,7 +106,7 @@ class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
                         key="level"
                         name="details.level"
                         validations="isInt"
-                        value={this.state.level}
+                        value={this.props.details.level}
                         required
                         floatingLabelText="Level (required)"
                         onChange={this.updateLevel.bind(this, false)}
@@ -121,10 +119,10 @@ class CharacterDetails extends React.Component<ICharacterDetailsProps, any> {
     private updateLevel(isExp, event) {
         if (isExp) {
             this.props.details.el = event.target.value;
-            this.state.level = this.getLevel(event.target.value);
+            this.props.details.level = this.getLevel(event.target.value);
         } else {
             this.props.details.el = this.getEncounterLevel(event.target.value);
-            this.state.level = event.target.value;
+            this.props.details.level = event.target.value;
         }
     }
 

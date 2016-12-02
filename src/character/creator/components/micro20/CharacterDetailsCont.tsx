@@ -7,6 +7,7 @@ import { PlacesCasino } from "material-ui/svg-icons";
 interface ICharacterDetailsContProps extends ICharacterData {
     strength: number;
     disabled?: boolean;
+    level: number;
 }
 
 interface ICharacterDetailsContState {
@@ -17,7 +18,7 @@ interface ICharacterDetailsContState {
 class CharacterDetailsCont extends React.Component<ICharacterDetailsContProps, ICharacterDetailsContState> {
     constructor(props: any) {
         super(props);
-        var strMod = Math.floor(((this.props.strength || 0) - 10) / 2);
+        const strMod = Math.floor(((this.props.strength || 0) - 10) / 2);
         this.state = { totalHealth: strMod, strMod };
     }
 
@@ -65,8 +66,7 @@ class CharacterDetailsCont extends React.Component<ICharacterDetailsContProps, I
 
     private roll() {
         // Roll 1d6 per level.
-        const level = 1; //TODO: replace with actual character's level.
-
+        const level = this.props.level;
         let rollTotal = 0;
 
         for (let i = 0; i < level; i++) {
@@ -78,7 +78,7 @@ class CharacterDetailsCont extends React.Component<ICharacterDetailsContProps, I
     }
 
     private updateHealth(newHealth: number, event) {
-        const health = parseInt(newHealth || event.target.value || 0);
+        const health = parseInt(newHealth || event.target.value || 0, 10);
         this.props.calculated.health = health;
         this.setState({totalHealth: (health + this.state.strMod)} as ICharacterDetailsContState);
     }

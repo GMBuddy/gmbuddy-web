@@ -51,7 +51,8 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
             Calculated: <CharacterDetailsCont
                 key="calculated"
                 calculated={this.state.data.calculated}
-                strength={this.state.data.baseStats.strength} />,
+                strength={this.state.data.baseStats.strength}
+                level={this.state.data.details.level} />,
             Review: <CharacterReview
                 error={this.state.createError}
                 key="review"
