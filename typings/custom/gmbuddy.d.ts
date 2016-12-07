@@ -156,5 +156,6 @@ declare module "gmbuddy/micro20/character" {
         details: ICharacterDetails;
         baseStats: ICharacterStats;
         modifiers: ICharacterStats;
+        items: ICharacterItems;
     }
 }
