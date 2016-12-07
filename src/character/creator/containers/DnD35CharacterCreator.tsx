@@ -3,7 +3,7 @@ import CharacterStepContainer from "../components/CharacterStepContainer";
 import CharacterStepper from "../components/CharacterStepper";
 import CharacterStepButtons from "../components/CharacterStepButtons";
 import CharacterDetailsDnd35 from "../components/dnd35/CharacterDetails";
-import CharacterItemsDnd35 from "../components/dnd35/CharacterItems";
+import CharacterItems from "../components/shared/CharacterItems";
 import CharacterReviewDnd35 from "../components/dnd35/CharacterReview";
 import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
@@ -48,7 +48,7 @@ class DnD35CharacterCreator extends React.Component<IDnD35CharacterCreatorProps,
                 names={STATS}
                 key="stats"
                 stats={this.state.data.stats} />,
-            Items: <CharacterItemsDnd35
+            Items: <CharacterItems
                 key="items"
                 items={this.state.data.items} />,
             Review: <CharacterReviewDnd35

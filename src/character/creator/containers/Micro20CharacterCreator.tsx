@@ -13,6 +13,7 @@ import {connect} from "react-redux";
 import { merge } from "lodash";
 import { browserHistory } from "react-router";
 import CharacterDetailsCont from "../components/micro20/CharacterDetailsCont";
+import CharacterItems from "../components/shared/CharacterItems";
 
 interface IMicro20CharacterCreatorProps {
     dispatch: any;
@@ -34,7 +35,7 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
         this.state = {
             canPrevious: true,
             canSubmit: false,
-            data: { baseStats: {}, calculated: {}, createError: null, details: {} },
+            data: { items: [], baseStats: {}, calculated: {}, createError: null, details: {} },
         } as IMicro20CharacterCreatorState;
     }
 
@@ -53,6 +54,9 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
                 calculated={this.state.data.calculated}
                 strength={this.state.data.baseStats.strength}
                 level={this.state.data.details.level} />,
+            Items: <CharacterItems
+                key="items"
+                items={this.state.data.items} />,
             Review: <CharacterReview
                 error={this.state.createError}
                 key="review"
