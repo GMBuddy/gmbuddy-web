@@ -12,7 +12,7 @@ const createCharacter = (characterData: ICharacterData, successCb = null, failCb
         dispatch(requestCreateCharacter());
 
         let formData = new FormData();
-
+        console.log(skills);
         switch (gameType) {
             case "micro20":
                 formData.append("name", details.name);
@@ -25,10 +25,10 @@ const createCharacter = (characterData: ICharacterData, successCb = null, failCb
                 formData.append("dexterity", baseStats.dexterity);
                 formData.append("strength", baseStats.strength);
                 formData.append("mind", baseStats.mind);
-                formData.append("communication", skills.communication);
-                formData.append("knowledge", skills.knowledge);
-                formData.append("perception", skills.perception);
-                formData.append("subterfuge", skills.subterfuge);
+                formData.append("communication", skills.communication.rank);
+                formData.append("knowledge", skills.knowledge.rank);
+                formData.append("physical", skills.physical.rank);
+                formData.append("subterfuge", skills.subterfuge.rank);
 
                 break;
             default:
