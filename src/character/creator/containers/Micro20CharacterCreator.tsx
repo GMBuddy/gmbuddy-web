@@ -3,11 +3,13 @@ import CharacterStepContainer from "../components/CharacterStepContainer";
 import CharacterStepper from "../components/CharacterStepper";
 import CharacterStepButtons from "../components/CharacterStepButtons";
 import CharacterDetails from "../components/micro20/CharacterDetails";
+import CharacterSkills from "../components/micro20/CharacterSkills";
+import CharacterSpells from "../components/micro20/CharacterSpells";
 import CharacterReview from "../components/micro20/CharacterReview";
 import { Divider } from "material-ui";
 import * as Formsy from "formsy-react";
 import CharacterStats from "../components/shared/CharacterStats";
-import { STATS } from "../../constants/micro20";
+import { STATS, SKILLS } from "../../constants/micro20";
 import { createCharacter} from "../../actions/create/thunks";
 import {connect} from "react-redux";
 import { merge } from "lodash";
@@ -30,10 +32,19 @@ interface IMicro20CharacterCreatorState {
 class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorProps, IMicro20CharacterCreatorState> {
     constructor() {
         super();
+        let baseSkills = {};
+        SKILLS.map((skill) => {
+           baseSkills[skill] = {};
+        });
+        let faveSpells = {};
+        for (let i = 1; i < 10; i++) {
+            let key = "lvl" + i;
+            faveSpells[key] = {};
+        }
         this.state = {
             canPrevious: true,
             canSubmit: false,
-            data: { baseStats: {}, createError: null, details: {} },
+            data: { baseStats: {}, createError: null, details: {}, skills: baseSkills, spells: faveSpells},
         } as IMicro20CharacterCreatorState;
     }
 
@@ -44,10 +55,18 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
                 key="details"
                 details={this.state.data.details} />,
             Stats: <CharacterStats
-                key="stats"
+                key="stats" 
                 names={STATS}
                 stats={this.state.data.baseStats} />,
-            Review: <CharacterReview
+            Skills: <CharacterSkills
+                key="skills"
+                details={this.state.data.details}
+                skills={this.state.data.skills} />,
+            Spells: <CharacterSpells
+                key="spells"
+                details={this.state.data.details}
+                spells={this.state.data.spells} />,
+            Review: <CharacterReview 
                 error={this.state.createError}
                 key="review"
                 data={this.state.data} />,
