@@ -36,15 +36,10 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
         SKILLS.map((skill) => {
            baseSkills[skill] = {};
         });
-        let faveSpells = {};
-        for (let i = 1; i < 10; i++) {
-            let key = "lvl" + i;
-            faveSpells[key] = {};
-        }
         this.state = {
             canPrevious: true,
             canSubmit: false,
-            data: { baseStats: {}, createError: null, details: {}, skills: baseSkills, spells: faveSpells},
+            data: { baseStats: {}, createError: null, details: {}, skills: baseSkills, spells: {}},
         } as IMicro20CharacterCreatorState;
     }
 

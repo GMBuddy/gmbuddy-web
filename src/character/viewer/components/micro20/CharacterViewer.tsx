@@ -27,7 +27,6 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
 
     public render() {
         const { baseStats, details } = this.props.character;
-
         if (details.class && CLASSES[details.class]) {
             details.class = CLASSES[details.class].toLowerCase();
         }
@@ -64,6 +63,10 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
                             value={baseStats.mind}
                             disabled={!this.state.editing}
                         />
+                    </div>
+                    <h3>Skills</h3>
+                    <div className="characterSkills">
+
                     </div>
                 </Formsy.Form>
             </section>);

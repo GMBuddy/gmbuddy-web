@@ -6,7 +6,6 @@ import { ICharacterData } from "gmbuddy/micro20/character";
 import { merge } from "lodash";
 
 const createCharacter = (characterData: ICharacterData, successCb = null, failCb = null) => {
-    console.log(characterData);
     return (dispatch) => {
         const { gameType, details, baseStats, skills, spells} = characterData;
 
@@ -58,7 +57,8 @@ const createCharacter = (characterData: ICharacterData, successCb = null, failCb
 
                 if (characterId) {
                     const detailsWithId = merge(details, {characterId});
-                    dispatch({ data: { gameType, details: detailsWithId, baseStats, skills, spells }, type: CREATE_CHARACTER_SUCCESS });
+                    dispatch({ data: { gameType,
+                                details: detailsWithId, baseStats, skills, spells }, type: CREATE_CHARACTER_SUCCESS });
                     if (typeof successCb === "function") {
                         successCb(characterId);
                     }

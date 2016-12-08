@@ -16,9 +16,6 @@ class CharacterSpells extends React.Component<ICharacterSpellsProps, any> {
 
     private constructor(props) {
         super(props);
-        // HEY STEVE TODO:
-        // Do a map here, gotta have to generate a menu for each level of spells
-        // Add another map thing down below when generating render
         this.arcaneSpellMenu = {};
         /* tslint:disable */
         for (const key in ARCANESPELLS) {
@@ -43,7 +40,6 @@ class CharacterSpells extends React.Component<ICharacterSpellsProps, any> {
         if ( canCast === "none") {
             return <div> No Spells available </div>;
         }
-        // const SPELLSELECT = "";
         if (canCast === "arcane") {
             spellList = this.arcaneSpellMenu;
         }
@@ -52,7 +48,7 @@ class CharacterSpells extends React.Component<ICharacterSpellsProps, any> {
                     key={level + "SpellList"}
                     className="favoriteSpell"
                     autoComplete="off"
-                    name={"spells.favorite." + level}
+                    name={"spells." + level}
                     floatingLabelText={"Favorite " + level + " Spell"}
                     value={this.props.spells[level]}
                     disabled={this.props.disabled === true}

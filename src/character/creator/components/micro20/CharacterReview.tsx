@@ -52,13 +52,16 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                         <TableRowColumn>{ranks}</TableRowColumn>
                         </TableRow>;
         });
-        const spellRows = Object.keys(this.props.data.spells.favorite).map((key) => {
-            const spell = this.props.data.spells.favorite[key];
-            return <TableRow key={key}>
-                        <TableRowColumn>{key}</TableRowColumn>
-                        <TableRowColumn>{spell}</TableRowColumn>
-                        </TableRow>;
-        });
+        let spellRows;
+        if (this.props.data.spells) {
+            spellRows = Object.keys(this.props.data.spells).map((key) => {
+                const spell = this.props.data.spells[key];
+                return <TableRow key={key}>
+                            <TableRowColumn>{key}</TableRowColumn>
+                            <TableRowColumn>{spell}</TableRowColumn>
+                            </TableRow>;
+            });
+        }
         return (
             <section>
                 {errorMessage()}
