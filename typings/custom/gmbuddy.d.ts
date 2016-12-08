@@ -2,17 +2,26 @@
 
 declare var __DEVTOOLS__: boolean;
 
+declare let io: any;
+
+interface Socket {
+    on(event: string, callback: (data: any) => void );
+    emit(event: string, data: any);
+}
+
 declare module "gmbuddy/campaign" {
     export interface ICampaign {
-        gameType: string;
         campaignId: string;
-        name: string;
+        characters: any[];
+        gameType: string;
         gmUserId: string;
+        name: string;
     }
 
     export interface ICampaignData {
         gameType: string;
         name: string;
+        campaignId: string;
     }
 }
 
@@ -34,6 +43,7 @@ declare module "gmbuddy/character" {
 declare module "gmbuddy/dnd35/character" {
     export interface ICharacterDetails {
         userId: string;
+        campaignId: string;
         characterId: string;
         name: string;
         class: string;
@@ -87,14 +97,17 @@ declare module "gmbuddy/dnd35/character" {
 declare module "gmbuddy/micro20/character" {
     export interface ICharacterDetails {
         userId: string;
+        campaignId: string;
+        class: any;
         characterId: string;
         name: string;
-        class: string;
-        race: string;
+        race: any;
         height: string;
         weight: string
         hairColor: string;
         eyeColor: string;
+        el: number;
+        level: number;
     }
 
     export interface ICharacterStats {
@@ -133,11 +146,17 @@ declare module "gmbuddy/micro20/character" {
         spells: ICharacterSpell[];
     }
 
+    export interface ICharacterCalculated {
+        health: number;
+    }
+
     export interface ICharacterData {
+        calculated: ICharacterCalculated;
         characterId?: number;
         gameType?: string;
         details: ICharacterDetails;
         baseStats: ICharacterStats;
         modifiers: ICharacterStats;
+        items: ICharacterItems;
     }
 }

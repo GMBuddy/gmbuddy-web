@@ -4,6 +4,8 @@ import {
 } from "./actions";
 import { API_URL } from "../../../constants";
 import { store } from "../../../main";
+import { merge } from "lodash";
+import { fetchCharacterSuccess } from "../../../character/actions/fetch/actions";
 
 const fetchCampaign = (gameType: string, campaignId: string, successCb = null, failCb = null) => {
     return (dispatch) => {
@@ -23,10 +25,22 @@ const fetchCampaign = (gameType: string, campaignId: string, successCb = null, f
                 throw "Error fetching campaign.";
             })
             .then(json => {
-                const { name, gmUserId } = json;
-
                 if (campaignId) {
-                    const data = { campaignId, gameType, gmUserId, name };
+                    let data = merge({gameType}, json);
+
+                    // only keep track of the characterIds.
+                    if (data.characters && typeof data.characters === "object") {
+                        let charactersById = [];
+
+                        // Store the user data in redux, and only keep track of characterIds in the campaign.
+                        data.characters.forEach((char) => {
+                            dispatch(fetchCharacterSuccess(merge({gameType}, char)));
+                            charactersById.push(char.details.characterId);
+                        });
+
+                        data.characters = charactersById;
+                    }
+
                     dispatch(fetchCampaignSuccess(data));
 
                     if (typeof successCb === "function") {

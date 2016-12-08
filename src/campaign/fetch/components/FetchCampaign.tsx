@@ -45,10 +45,8 @@ class FetchCampaign extends React.Component<IFetchCampaignProps, IFetchCampaignS
         const campaign = () => {
             const campaignData = this.state.campaign || this.props.campaign;
 
-            if (campaignData) {
-                if (!this.state.isFetching ) {
-                    return <Campaign campaign={campaignData} />;
-                }
+            if (campaignData && !this.state.isFetching ) {
+                return <Campaign campaign={campaignData} />;
             }
         };
 
@@ -73,7 +71,8 @@ class FetchCampaign extends React.Component<IFetchCampaignProps, IFetchCampaignS
     private loadCampaignData(gameType, campaignId) {
         this.props.dispatch(fetchCampaign(gameType, campaignId,
             (campaign) => this.updateCampaignData(campaign),
-            (error) => this.setState({error} as IFetchCampaignState)));
+            (error) => this.setState({error} as IFetchCampaignState),
+        ));
     }
 }
 
@@ -81,8 +80,10 @@ const mapStateToProps = (state, ownProps): Object => {
     const campaign = state.campaign[ownProps.campaignId];
 
     if (campaign) {
-        return { campaign, isFetching: false };
+        return { campaign };
     }
+
+    return {};
 };
 
 export default connect(mapStateToProps)(FetchCampaign);

@@ -12,3 +12,15 @@
     }
   }
 }
+
+.charViewEditButtons {
+  display: flex;
+  text-align: right;
+  flex-direction: row;
+  margin: 10px 0px;
+  justify-content: flex-end;
+
+  .spacer {
+    flex-basis: 25px;
+  }
+}

@@ -22,15 +22,12 @@ const fetchCharacter = (gameType: string, characterId: string, successCb = null,
                 throw "Error fetching character.";
             })
             .then(json => {
-                if (characterId) {
-                    const data = merge(json, { gameType });
-                    dispatch(fetchCharacterSuccess(data));
+                const data = merge(json, { gameType });
 
-                    if (typeof successCb === "function") {
-                        successCb(data);
-                    }
-                } else {
-                    throw "Error fetching character data.";
+                dispatch(fetchCharacterSuccess(data));
+
+                if (typeof successCb === "function") {
+                    successCb(data);
                 }
             })
             .catch((err) => {

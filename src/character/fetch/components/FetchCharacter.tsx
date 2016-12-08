@@ -9,8 +9,10 @@ interface IFetchCharacterProps {
     character: any;
     characterId: string;
     dispatch: any;
+    fromStore?: boolean;
     gameType: string;
     params: any;
+    editable: boolean;
 }
 
 interface IFetchCharacterState {
@@ -25,7 +27,7 @@ class FetchCharacter extends React.Component<IFetchCharacterProps, IFetchCharact
 
         let finalState = { character: null, error: null, isFetching: false };
 
-        if (!props.campaign) {
+        if (!props.character && this.props.fromStore !== true) {
             finalState.isFetching = true;
         }
 
@@ -42,12 +44,12 @@ class FetchCharacter extends React.Component<IFetchCharacterProps, IFetchCharact
         };
 
         const character = () => {
-            const characterData = this.state.character || this.props.character;
+            const characterData = this.props.character || this.state.character;
 
             if (characterData) {
                 if (!this.state.isFetching ) {
                     if (characterData.gameType === "micro20") {
-                        return <Micro20CharacterViewer character={characterData}/>;
+                        return <Micro20CharacterViewer character={characterData} editable={this.props.editable}/>;
                     } else {
                         return <NotFound/>;
                     }
@@ -65,7 +67,9 @@ class FetchCharacter extends React.Component<IFetchCharacterProps, IFetchCharact
 
     /* tslint:disable */
     private componentDidMount() {
-        this.loadCharacterData(this.props.gameType, this.props.characterId);
+        if (this.props.fromStore !== true) {
+            this.loadCharacterData(this.props.gameType, this.props.characterId);
+        }
     }
     /* tslint:enable */
 
@@ -84,7 +88,7 @@ const mapStateToProps = (state, ownProps): Object => {
     const character = state.character[ownProps.characterId];
 
     if (character) {
-        return { character, isFetching: false };
+        return { character };
     }
 
     return {};
