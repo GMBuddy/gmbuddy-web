@@ -9,11 +9,13 @@ import { editCharacter } from "../../../actions/edit/thunks";
 import { connect } from "react-redux";
 import { merge } from "lodash";
 import { fetchCharacter } from "../../../actions/fetch/thunks";
-import { Link } from "react-router";
+import {editCampaign} from "../../../../campaign/actions/edit/thunks";
 
 interface ICharacterViewerProps {
     character: ICharacterData;
     dispatch: any;
+    editable: boolean;
+    campaign: any;
 }
 
 interface ICharacterViewerState {
@@ -43,19 +45,11 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
         const { baseStats, details } = this.state.character || this.props.character;
 
         if (details.class && CLASSES[details.class]) {
-            details.class = CLASSES[details.class].toLowerCase();
+            details.class = CLASSES[details.class];
         }
 
         if (details.race && RACES[details.race]) {
-            details.race = RACES[details.race].toLowerCase();
-        }
-
-        let campaignDetails;
-
-        if (details.campaignId) {
-            campaignDetails = <p><Link to={`/micro20/campaign/${details.campaignId}`}>{details.campaignId}</Link></p>;
-        } else {
-            campaignDetails = <p>Not currently in a campaign.</p>;
+            details.race = RACES[details.race];
         }
 
         let error;
@@ -65,35 +59,47 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
 
         let buttons;
 
-        if (this.state.editing) {
-            buttons =   [
-                <FlatButton key="cancel" onTouchTap={ this.toggleEditing.bind(this) }>Cancel</FlatButton>,
-                <section key="spacer" className="spacer"/>,
-                <RaisedButton
-                    type="submit"
-                    key="save"
-                    primary={true}
-                    disabled={!this.state.canSubmit}
-                >Save</RaisedButton>,
-            ];
-        } else {
-            buttons =   [<FlatButton key="edit" onTouchTap={this.toggleEditing.bind(this)}>Edit Character</FlatButton>];
-        }
+        let campaignDetails;
 
-        // TODO: only show edit button when the creator/gm is viewing.
+        if (this.props.editable) {
+            if (details.campaignId) {
+                campaignDetails =   <p>
+                                        <FlatButton onTouchTap={this.removeFromCampaign.bind(this)}>
+                                            Remove from campaign
+                                        </FlatButton>
+                                    </p>;
+            } else {
+                campaignDetails = <p>Not currently in a campaign.</p>;
+            }
+
+            if (this.state.editing) {
+                buttons = [
+                    <FlatButton key="cancel" onTouchTap={ this.toggleEditing.bind(this) }>Cancel</FlatButton>,
+                    <section key="spacer" className="spacer"/>,
+                    <RaisedButton
+                        type="submit"
+                        key="save"
+                        primary={true}
+                        disabled={!this.state.canSubmit}
+                    >Save</RaisedButton>,
+                ];
+            } else {
+                buttons = [<FlatButton
+                                key="edit"
+                                onTouchTap={this.toggleEditing.bind(this)}>Edit Character</FlatButton>];
+            }
+        }
 
         return (
             <section className="characterViewer">
                 {error}
-                <FlatButton onTouchTap={ this.refresh.bind(this) }>Refresh</FlatButton>
                 <Formsy.Form
                     ref="form"
                     onValidSubmit={this.submitForm.bind(this)}
                     onValid={this.enableSubmit.bind(this)}
                     onInvalid={this.disableSubmit.bind(this)}>
-                    <p><strong>Character created by user:</strong> {details.userId}</p>
                     <h3>Details</h3>
-                    <CharacterDetails disabled={!this.state.editing} details={details}/>
+                    <CharacterDetails editing={true} disabled={!this.state.editing} details={details}/>
                     <h3>Stats</h3>
                     <div className="characterStats">
                         <FormsyText
@@ -132,6 +138,14 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
                     </div>
                 </Formsy.Form>
             </section>);
+    }
+
+    private removeFromCampaign() {
+        let campaign = this.props.campaign[this.props.character.details.campaignId];
+
+        if (campaign) {
+            this.props.dispatch(editCampaign(campaign, "", this.props.character.details.characterId, () => {this.refresh()}));
+        }
     }
 
     private refresh() {
@@ -180,9 +194,14 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
     // TODO: Remove duplication of this function
     private generateMenuItems(menuItems) {
         return menuItems.map((menuName, index) => {
-            return <MenuItem key={index} value={menuName.toLowerCase()} primaryText={menuName} />;
+            return <MenuItem key={index} value={menuName} primaryText={menuName} />;
         });
     }
 }
 
-export default connect()(Micro20CharacterViewer);
+function mapStateToProps(state) {
+    const { campaign } = state;
+    return { campaign };
+}
+
+export default connect(mapStateToProps)(Micro20CharacterViewer);

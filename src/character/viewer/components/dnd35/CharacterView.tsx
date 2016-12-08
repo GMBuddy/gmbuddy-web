@@ -42,8 +42,9 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
             <section className="charViewerInfo">
                 <Paper>
                     <Tabs
-                    onChange={this.setSlideIndex.bind(this)}
-                    value={this.state.slideIndex}>
+                        onChange={this.setSlideIndex.bind(this)}
+                        value={this.state.slideIndex}
+                    >
                         <Tab label="Overview" value={0} />
                         <Tab label="Details" value={1} />
                         <Tab label="Stats" value={2} />
@@ -90,6 +91,7 @@ class CharacterView extends React.Component<ICharacterData, ICharacterViewState>
             </section>
         );
     }
+
     private setSlideIndex(value) {
         this.setState({slideIndex: value} as ICharacterViewState);
     }

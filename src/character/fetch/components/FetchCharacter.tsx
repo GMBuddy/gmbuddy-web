@@ -12,6 +12,7 @@ interface IFetchCharacterProps {
     fromStore?: boolean;
     gameType: string;
     params: any;
+    editable: boolean;
 }
 
 interface IFetchCharacterState {
@@ -43,12 +44,12 @@ class FetchCharacter extends React.Component<IFetchCharacterProps, IFetchCharact
         };
 
         const character = () => {
-            const characterData = this.state.character || this.props.character;
+            const characterData = this.props.character || this.state.character;
 
             if (characterData) {
                 if (!this.state.isFetching ) {
                     if (characterData.gameType === "micro20") {
-                        return <Micro20CharacterViewer character={characterData}/>;
+                        return <Micro20CharacterViewer character={characterData} editable={this.props.editable}/>;
                     } else {
                         return <NotFound/>;
                     }

@@ -35,7 +35,7 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
         this.state = {
             canPrevious: true,
             canSubmit: false,
-            data: { items: [], baseStats: {}, calculated: {}, createError: null, details: {} },
+            data: { baseStats: {}, calculated: {}, createError: null, details: {}, items: [] },
         } as IMicro20CharacterCreatorState;
     }
 
