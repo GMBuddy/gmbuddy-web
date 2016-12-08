@@ -126,7 +126,7 @@ declare module "gmbuddy/micro20/character" {
     export interface ICharacterSkills {
         communication: ICharacterSkill;
         knowledge: ICharacterSkill;
-        perception: ICharacterSkill;
+        physical: ICharacterSkill;
         subterfuge: ICharacterSkill;
     }
 
