@@ -14,6 +14,8 @@ import { createCharacter} from "../../actions/create/thunks";
 import {connect} from "react-redux";
 import { merge } from "lodash";
 import { browserHistory } from "react-router";
+import CharacterDetailsCont from "../components/micro20/CharacterDetailsCont";
+import CharacterItems from "../components/shared/CharacterItems";
 
 interface IMicro20CharacterCreatorProps {
     dispatch: any;
@@ -39,8 +41,9 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
         this.state = {
             canPrevious: true,
             canSubmit: false,
-            data: { baseStats: {}, createError: null, details: {}, skills: baseSkills, spells: {}},
-        } as IMicro20CharacterCreatorState;
+            data: { baseStats: {}, calculated: {}, createError: null,
+                details: {}, items: [], skills: baseSkills, spells: {}},
+      } as IMicro20CharacterCreatorState;
     }
 
     public render() {
@@ -53,6 +56,11 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
                 key="stats" 
                 names={STATS}
                 stats={this.state.data.baseStats} />,
+            Calculated: <CharacterDetailsCont
+                key="calculated"
+                calculated={this.state.data.calculated}
+                strength={this.state.data.baseStats.strength}
+                level={this.state.data.details.level} />,
             Skills: <CharacterSkills
                 key="skills"
                 details={this.state.data.details}
@@ -61,6 +69,9 @@ class Micro20CharacterCreator extends React.Component<IMicro20CharacterCreatorPr
                 key="spells"
                 details={this.state.data.details}
                 spells={this.state.data.spells} />,
+                Items: <CharacterItems
+                key="items"
+                items={this.state.data.items} />,
             Review: <CharacterReview 
                 error={this.state.createError}
                 key="review"

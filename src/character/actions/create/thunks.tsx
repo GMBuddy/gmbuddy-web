@@ -12,7 +12,6 @@ const createCharacter = (characterData: ICharacterData, successCb = null, failCb
         dispatch(requestCreateCharacter());
 
         let formData = new FormData();
-        console.log(skills);
         switch (gameType) {
             case "micro20":
                 formData.append("name", details.name);

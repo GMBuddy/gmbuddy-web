@@ -62,6 +62,26 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                             </TableRow>;
             });
         }
+        const calculatedRows = Object.keys(this.props.data.calculated).map((key) => {
+            const value = this.props.data.calculated[key];
+            return  <TableRow key={key}>
+                <TableRowColumn>{key}</TableRowColumn>
+                <TableRowColumn>{value}</TableRowColumn>
+            </TableRow>;
+        });
+
+        const itemRows = this.props.data.items.map((item, index) => {
+            return  <TableRow key={index}>
+                <TableRowColumn>{item.name}</TableRowColumn>
+                <TableRowColumn>{item.type}</TableRowColumn>
+                <TableRowColumn>{item.damageDieAmount || 0}d{item.damageDie || 0}</TableRowColumn>
+                <TableRowColumn>{item.damageType}</TableRowColumn>
+                <TableRowColumn>{item.twoHands || "false"}</TableRowColumn>
+                <TableRowColumn>{item.weight}</TableRowColumn>
+                <TableRowColumn>{item.range}</TableRowColumn>
+            </TableRow>;
+        });
+
         return (
             <section>
                 {errorMessage()}
@@ -73,8 +93,10 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                         <Tab label="Overview" value={0} />
                         <Tab label="Details" value={1} />
                         <Tab label="Stats" value={2} />
-                        <Tab label="Skills" value={3} />
-                        <Tab label="Spells" value={4} />
+                        <Tab label="Calculated" value={3} />
+                        <Tab label="Skills" value={4} />
+                        <Tab label="Spells" value={5} />
+                        <Tab label="Items" value={6} />
                     </Tabs>
                     <SwipeableViews
                         index={this.state.slideIndex}
@@ -100,6 +122,10 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                                     <TableRowColumn>stats</TableRowColumn>
                                     <TableRowColumn>{JSON.stringify(data.stats)}</TableRowColumn>
                                 </TableRow>
+                                <TableRow key="calculated" hoverable={true}>
+                                    <TableRowColumn>calculated</TableRowColumn>
+                                    <TableRowColumn>{JSON.stringify(data.calculated)}</TableRowColumn>
+                                </TableRow>
                                 <TableRow key="skills" hoverable={true}>
                                     <TableRowColumn>skills</TableRowColumn>
                                     <TableRowColumn>{JSON.stringify(data.skills)}</TableRowColumn>
@@ -107,6 +133,10 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                                 <TableRow key="spells" hoverable={true}>
                                     <TableRowColumn>spells</TableRowColumn>
                                     <TableRowColumn>{JSON.stringify(data.spells)}</TableRowColumn>
+                                </TableRow>
+                                <TableRow key="items" hoverable={true}>
+                                    <TableRowColumn>items</TableRowColumn>
+                                    <TableRowColumn>{JSON.stringify(data.items)}</TableRowColumn>
                                 </TableRow>
                             </TableBody>
                         </Table>
@@ -145,6 +175,19 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody displayRowCheckbox={false}>
+                                    {calculatedRows}
+                                </TableBody>
+                            </Table>
+                        </div>
+                        <div>
+                            <Table selectable={false}>
+                                <TableHeader displaySelectAll={false}>
+                                    <TableRow>
+                                        <TableHeaderColumn>Key</TableHeaderColumn>
+                                        <TableHeaderColumn>Value</TableHeaderColumn>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody displayRowCheckbox={false}>
                                     {skillRows}
                                 </TableBody>
                             </Table>
@@ -159,7 +202,25 @@ class CharacterReview extends React.Component<ICharacterReviewProps, ICharacterR
                                 </TableHeader>
                                 <TableBody displayRowCheckbox={false}>
                                     {spellRows}
-                                </TableBody>
+                                    </TableBody>
+                            </Table>
+                        </div>
+                        <div>
+                            <Table>
+                                <TableHeader>
+                                        <TableRow>
+                                            <TableHeaderColumn>Name</TableHeaderColumn>
+                                            <TableHeaderColumn>Type</TableHeaderColumn>
+                                            <TableHeaderColumn>Damage</TableHeaderColumn>
+                                            <TableHeaderColumn>Damage Type</TableHeaderColumn>
+                                            <TableHeaderColumn>Two Hands</TableHeaderColumn>
+                                            <TableHeaderColumn>Weight</TableHeaderColumn>
+                                            <TableHeaderColumn>Range</TableHeaderColumn>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody displayRowCheckbox={false}>
+                                        {itemRows}
+                                    </TableBody>
                             </Table>
                         </div>
                     </SwipeableViews>

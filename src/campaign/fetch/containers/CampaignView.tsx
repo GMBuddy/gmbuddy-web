@@ -11,7 +11,6 @@ class CampaignView extends React.Component<ICampaignProps, void> {
 
         return <FetchCampaign campaignId={campaignId} gameType={gameType}/>;
     }
-
 }
 
 export default CampaignView;

@@ -36,7 +36,7 @@ class AllCharactersView extends React.Component<IAllCharactersViewProps, void> {
                 </FormsySelect>
             </Formsy.Form>
         </section>;
-        let gameType = this.props.params.selectedGame; 
+        let gameType = this.props.params.selectedGame;
         let characters;
         if (gameType === "all") {
             characters = gameTypes.map((game) => {
