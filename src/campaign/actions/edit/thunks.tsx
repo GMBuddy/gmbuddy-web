@@ -5,18 +5,25 @@ import { store } from "../../../main";
 import { ICampaignData } from "gmbuddy/campaign";
 import { merge } from "lodash";
 
-const editCampaign = (data: ICampaignData, addCharacters: string = "", removeCharacters: string = "", successCb = null, failCb = null) => {
+const editCampaign = (data: ICampaignData, addCharacters: string = "", removeCharacters: string = "",
+                      successCb = null, failCb = null) => {
     return (dispatch) => {
-        const { name, gameType, campaignId } = data;
+        const {name, gameType, campaignId} = data;
 
         dispatch(requestEditCampaign());
 
         let formData = new FormData();
 
-        console.log("NAME", name);
-        if (name) formData.append("name", name);
-        if (addCharacters) formData.append("AddCharacters", addCharacters);
-        if (removeCharacters) formData.append("RemoveCharacters", removeCharacters);
+        if (name) {
+            formData.append("name", name);
+        }
+        if (addCharacters) {
+            formData.append("AddCharacters", addCharacters);
+        }
+
+        if (removeCharacters) {
+            formData.append("RemoveCharacters", removeCharacters);
+        }
 
         fetch(`${API_URL}/${gameType}/campaigns/${campaignId}`, {
             body: formData,

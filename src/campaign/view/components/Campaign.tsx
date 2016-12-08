@@ -37,7 +37,7 @@ class Campaign extends React.Component<ICampaignProps, ICampaignState> {
         this.state = {
             characters: [],
             editingTitle: false,
-            slideIndex: 0
+            slideIndex: 0,
         } as ICampaignState;
     }
 

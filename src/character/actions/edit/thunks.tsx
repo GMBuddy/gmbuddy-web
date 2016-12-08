@@ -13,21 +13,52 @@ const editCharacter = (characterData: ICharacterData, successCb = null, failCb =
         const { gameType, details, baseStats } = characterData;
 
         // Changes to campaign ID:
-        dispatch(editCampaign({ campaignId: details.campaignId, gameType: gameType } as ICampaignData, details.characterId, ""));
+        dispatch(editCampaign({ campaignId: details.campaignId, gameType: gameType } as ICampaignData,
+            details.characterId, ""));
 
         dispatch(requestEditCharacter());
 
         let formData = new FormData();
-        if (details.name) formData.append("name", details.name);
-        if (details.class) formData.append("class", CLASSES.indexOf(details.class));
-        if (details.race) formData.append("race", RACES.indexOf(details.race));
-        if (details.height) formData.append("height", details.height);
-        if (details.weight) formData.append("weight", details.weight);
-        if (details.hairColor) formData.append("hairColor", details.hairColor);
-        if (details.eyeColor) formData.append("eyeColor", details.eyeColor);
-        if (baseStats.dexterity) formData.append("dexterity", baseStats.dexterity);
-        if (baseStats.strength) formData.append("strength", baseStats.strength);
-        if (baseStats.mind) formData.append("mind", baseStats.mind);
+
+        if (details.name) {
+            formData.append("name", details.name);
+        }
+
+        if (details.class) {
+            formData.append("class", CLASSES.indexOf(details.class));
+        }
+
+        if (details.race) {
+            formData.append("race", RACES.indexOf(details.race));
+        }
+
+        if (details.height) {
+            formData.append("height", details.height);
+        }
+
+        if (details.weight) {
+            formData.append("weight", details.weight);
+        }
+
+        if (details.hairColor) {
+            formData.append("hairColor", details.hairColor);
+        }
+
+        if (details.eyeColor) {
+            formData.append("eyeColor", details.eyeColor);
+        }
+
+        if (baseStats.dexterity) {
+            formData.append("dexterity", baseStats.dexterity);
+        }
+
+        if (baseStats.strength) {
+            formData.append("strength", baseStats.strength);
+        }
+
+        if (baseStats.mind) {
+            formData.append("mind", baseStats.mind);
+        }
 
         fetch(`${API_URL}/${gameType}/characters/${details.characterId}`, {
             body: formData,

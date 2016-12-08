@@ -144,7 +144,8 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
         let campaign = this.props.campaign[this.props.character.details.campaignId];
 
         if (campaign) {
-            this.props.dispatch(editCampaign(campaign, "", this.props.character.details.characterId, () => {this.refresh()}));
+            this.props.dispatch(editCampaign(campaign, "",
+                this.props.character.details.characterId, () => { this.refresh(); }));
         }
     }
 
