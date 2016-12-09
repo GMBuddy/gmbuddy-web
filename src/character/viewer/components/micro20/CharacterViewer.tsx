@@ -40,8 +40,7 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
     }
 
     public render() {
-        const { baseStats, details } = this.state.character || this.props.character;
-
+        const { baseStats, details, skills } = this.state.character || this.props.character;
         if (details.class && CLASSES[details.class]) {
             details.class = CLASSES[details.class].toLowerCase();
         }
@@ -79,7 +78,6 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
         } else {
             buttons =   [<FlatButton key="edit" onTouchTap={this.toggleEditing.bind(this)}>Edit Character</FlatButton>];
         }
-
         // TODO: only show edit button when the creator/gm is viewing.
 
         return (
@@ -115,6 +113,37 @@ class Micro20CharacterViewer extends React.Component<ICharacterViewerProps, ICha
                             name="baseStats.mind"
                             floatingLabelText="Mind"
                             value={baseStats.mind}
+                            disabled={!this.state.editing}
+                        />
+                    </div>
+                    <h3>Skills</h3>
+                    <div className="characterSkills">
+                        <FormsyText
+                            autoComplete="off"
+                            name="skills.communication"
+                            floatingLabelText="Communication"
+                            value={skills.communication}
+                            disabled={!this.state.editing}
+                        />
+                        <FormsyText
+                            autoComplete="off"
+                            name="skills.knowledge"
+                            floatingLabelText="Knowledge"
+                            value={skills.knowledge}
+                            disabled={!this.state.editing}
+                        />
+                        <FormsyText
+                            autoComplete="off"
+                            name="skills.physical"
+                            floatingLabelText="Physical"
+                            value={skills.physical}
+                            disabled={!this.state.editing}
+                        />
+                        <FormsyText
+                            autoComplete="off"
+                            name="skills.subterfuge"
+                            floatingLabelText="Subterfuge"
+                            value={skills.subterfuge}
                             disabled={!this.state.editing}
                         />
                     </div>
