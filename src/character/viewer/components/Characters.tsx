@@ -31,11 +31,15 @@ class Characters extends React.Component<ICharactersProps, void> {
                         </CardActions>
                     </Card>);
             });
+
+            if (characters.length === 0 ) {
+                characters = <p>You do not currently have any characters.</p>;
+            }
         }
 
         return (
             <div className="characters">
-                <h2>Here are all of the '{this.props.gameType}' characters:</h2>
+                <h2>Your Characters</h2>
                 {characters}
             </div>
         );

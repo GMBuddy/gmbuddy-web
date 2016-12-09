@@ -21,6 +21,7 @@ declare module "gmbuddy/campaign" {
     export interface ICampaignData {
         gameType: string;
         name: string;
+        campaignId: string;
     }
 }
 
@@ -97,10 +98,10 @@ declare module "gmbuddy/micro20/character" {
     export interface ICharacterDetails {
         userId: string;
         campaignId: string;
-        class: string;
+        class: any;
         characterId: string;
         name: string;
-        race: string;
+        race: any;
         height: string;
         weight: string
         hairColor: string;

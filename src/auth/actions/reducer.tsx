@@ -6,6 +6,9 @@ import * as jwtDecode from "jwt-decode";
 interface IAuthData {
     username: string;
     token: string;
+    id: string;
+    firstname: string;
+    lastname: string;
 }
 
 interface IAuthState {
@@ -16,6 +19,9 @@ interface IAuthState {
 
 const initialState: IAuthState = {
     data: {
+        firstname: null,
+        id: null,
+        lastname: null,
         token: null,
         username: null,
     },
@@ -46,6 +52,9 @@ export default handleActions({
                 state,
                 {
                     data: {
+                        firstname: decoded.given_name || "undefined",
+                        id: decoded.sub || "undefined",
+                        lastname: decoded.family_name || "undefined",
                         token: action.payload,
                         username: decoded.email || "undefined",
                     },
@@ -54,8 +63,8 @@ export default handleActions({
                 },
             );
         } catch (err) {
-                console.error("Error with JWT:", err);
-                return setState(state, { error: err, isFetching: false } as IAuthState);
+            console.error("Error with JWT:", err);
+            return setState(state, { error: err, isFetching: false } as IAuthState);
         }
     },
 

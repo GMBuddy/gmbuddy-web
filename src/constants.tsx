@@ -9,7 +9,7 @@ if (__DEVTOOLS__) {
 } else {
     AUTH_API_URL = "http://identity.gmbuddy.com";
     API_URL = "http://api.gmbuddy.com";
-    SOCK_URL = "http://socket.gmbuddy.com";
+    SOCK_URL = "http://live.gmbuddy.com";
 }
 
 export { AUTH_API_URL, API_URL, SOCK_URL };

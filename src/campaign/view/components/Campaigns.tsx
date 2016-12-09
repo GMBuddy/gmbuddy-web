@@ -34,7 +34,7 @@ class Campaigns extends React.Component<ICampaignProps, void> {
 
         return (
             <div className="campaigns">
-                <h2>Here are all of the '{this.props.gameType}' campaigns:</h2>
+                <h2>Your Campaigns</h2>
                 {campaigns}
             </div>
         );
